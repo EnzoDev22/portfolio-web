@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Education from '../components/Education.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<BaseLayout title="Enzo Jesuan Del Sole · Full Stack Developer" description="Portfolio de Enzo Jesuan Del Sole, desarrollador Full Stack.">
+  <div class="page-shell">
+    <Header />
+    <main>
+      <Hero />
+      <Projects />
+      <Skills />
+      <Education />
+      <Contact />
+    </main>
+    <footer><span class="lang-es">Diseñado y desarrollado por Enzo · 2026</span><span class="lang-en">Designed and developed by Enzo · 2026</span></footer>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const themeButton = document.querySelector<HTMLButtonElement>('.theme-toggle');
+    const themeIcon = document.querySelector<HTMLElement>('.theme-icon');
+    const themeMeta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+
+    function syncTheme() {
+      const dark = root.classList.contains('dark');
+      themeButton?.setAttribute('aria-pressed', String(dark));
+      themeButton?.setAttribute('aria-label', dark ? 'Activar tema claro' : 'Activar tema oscuro');
+      if (themeIcon) themeIcon.textContent = dark ? '☾' : '☼';
+      themeMeta?.setAttribute('content', dark ? '#1d1d1d' : '#ffffff');
+    }
+    syncTheme();
+    themeButton?.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+      syncTheme();
+    });
+
+    const languageButton = document.querySelector<HTMLButtonElement>('.language-toggle');
+    languageButton?.addEventListener('click', () => {
+      const next = root.dataset.lang === 'en' ? 'es' : 'en';
+      root.dataset.lang = next;
+      root.lang = next;
+      languageButton.querySelector('span')!.textContent = next.toUpperCase();
+      languageButton.setAttribute('aria-pressed', String(next === 'en'));
+    });
+
+    const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
+    const mobileMenu = document.querySelector<HTMLElement>('#mobile-menu');
+    menuButton?.addEventListener('click', () => {
+      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+      if (mobileMenu) mobileMenu.hidden = isOpen;
+    });
+    mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      mobileMenu.hidden = true;
+      menuButton?.setAttribute('aria-expanded', 'false');
+    }));
+
+    const dialog = document.querySelector<HTMLDialogElement>('.project-dialog');
+    const projectTitles = ['Sistema de monopatines', 'Sitio de videojuegos', 'Tienda de mates'];
+    document.querySelectorAll<HTMLButtonElement>('.open-project').forEach((button) => button.addEventListener('click', () => {
+      const title = projectTitles[Number(button.dataset.project)];
+      const heading = dialog?.querySelector<HTMLElement>('[data-dialog-title]');
+      if (heading) heading.textContent = title;
+      dialog?.showModal();
+    }));
+    document.querySelector<HTMLButtonElement>('.dialog-close')?.addEventListener('click', () => dialog?.close());
+    dialog?.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    document.querySelector<HTMLFormElement>('.contact-form')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget as HTMLFormElement);
+      const subject = encodeURIComponent(String(data.get('subject')));
+      const body = encodeURIComponent(`Nombre: ${data.get('name')}\nEmail: ${data.get('email')}\n\n${data.get('message')}`);
+      window.location.href = `mailto:enzodelsole@gmail.com?subject=${subject}&body=${body}`;
+    });
+  </script>
+</BaseLayout>

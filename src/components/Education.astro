@@ -1,0 +1,19 @@
+---
+import { education } from '../data/portfolio';
+---
+
+<section id="formacion" class="panel section-block education-section" aria-labelledby="education-title">
+  <h2 id="education-title"><span class="lang-es">Formación y</span><span class="lang-en">Education &</span> <em><span class="lang-es">certificaciones</span><span class="lang-en">certifications</span></em></h2>
+  <p><span class="lang-es">Un recorrido por los espacios donde sigo aprendiendo, practicando y creciendo.</span><span class="lang-en">A journey through the places where I keep learning, practicing, and growing.</span></p>
+  <div class="education-grid">
+    {education.map((item) => (
+      <article class="education-card">
+        <p class="education-eyebrow"><span class="dot">●</span><span class="lang-es">{item.eyebrow}</span><span class="lang-en">{item.eyebrowEn}</span></p>
+        <h3><span class="lang-es">{item.title}</span><span class="lang-en">{item.titleEn}</span></h3>
+        <p class="education-source"><span class="lang-es">{item.source}</span><span class="lang-en">{item.sourceEn}</span></p>
+        <hr />
+        <p><span class="lang-es">{item.body}</span><span class="lang-en">{item.bodyEn}</span></p>
+      </article>
+    ))}
+  </div>
+</section>

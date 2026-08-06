@@ -1,0 +1,19 @@
+---
+import { skills } from '../data/portfolio';
+const rail = [...skills, ...skills];
+---
+
+<section id="habilidades" class="panel section-block skills-section" aria-labelledby="skills-title">
+  <h2 id="skills-title"><span class="lang-es">Mis</span><span class="lang-en">My</span> <em><span class="lang-es">Habilidades</span><span class="lang-en">Skills</span></em></h2>
+  <p><span class="lang-es">Tecnologías y herramientas que uso para convertir ideas en productos digitales.</span><span class="lang-en">Technologies and tools I use to turn ideas into digital products.</span></p>
+  <div class="skills-viewport" aria-label="Tecnologías">
+    <div class="skills-rail">
+      {rail.map(([name, icon], index) => (
+        <div class="skill-card" aria-hidden={index >= skills.length ? 'true' : undefined}>
+          <img src={icon} width="66" height="66" alt="" />
+          <span>{name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
