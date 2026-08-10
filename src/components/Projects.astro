@@ -1,28 +1,25 @@
 ---
-import { projects } from '../data/portfolio';
+import { projects } from '../data/projects';
+import ProjectCard from './projects/ProjectCard.astro';
+import ProjectModal from './projects/ProjectModal.astro';
+
 const visibleProjects = [...projects, ...projects];
 ---
 
 <section id="proyectos" class="panel section-block projects-section" aria-labelledby="projects-title">
-  <h2 id="projects-title"><span class="lang-es">Proyectos</span><span class="lang-en">Featured</span> <em><span class="lang-es">Destacados</span><span class="lang-en">Projects</span></em></h2>
+  <h2 id="projects-title">
+    <span class="lang-es">Proyectos</span><span class="lang-en">Featured</span>
+    <em><span class="lang-es">Destacados</span><span class="lang-en">Projects</span></em>
+  </h2>
   <div class="projects-grid">
     {visibleProjects.map((project, index) => (
-      <article class:list={['project-card', { 'desktop-repeat': index >= projects.length }]} aria-hidden={index >= projects.length ? 'true' : undefined}>
-        <img src={project.image} alt={index < projects.length ? project.alt : ''} loading="lazy" />
-        <div class="project-overlay">
-          <h3><span class="lang-es">{project.title}</span><span class="lang-en">{project.titleEn}</span></h3>
-        </div>
-        <button class="open-project" type="button" aria-label={`Ver ${project.title}`} data-project={index % projects.length}></button>
-      </article>
+      <ProjectCard project={project} repeated={index >= projects.length} />
     ))}
   </div>
-  <p class="mobile-hint"><span class="lang-es">Tocá un proyecto para conocerlo</span><span class="lang-en">Tap a project to learn more</span></p>
+  <p class="mobile-hint">
+    <span class="lang-es">Tocá un proyecto para conocerlo</span>
+    <span class="lang-en">Tap a project to learn more</span>
+  </p>
 </section>
 
-<dialog class="project-dialog">
-  <button class="dialog-close" type="button" aria-label="Cerrar">×</button>
-  <p class="dialog-eyebrow">CASE STUDY</p>
-  <h2 data-dialog-title></h2>
-  <p class="lang-es">Próximamente vas a encontrar aquí el contexto, el proceso, las decisiones técnicas y los resultados del proyecto.</p>
-  <p class="lang-en">This case study will soon include its context, process, technical decisions, and results.</p>
-</dialog>
+<ProjectModal projects={projects} />

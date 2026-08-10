@@ -65,21 +65,6 @@ import Contact from '../components/Contact.astro';
     }));
     //end Mobile menu toggle
 
-    // Project dialog
-    const dialog = document.querySelector<HTMLDialogElement>('.project-dialog');
-    const projectTitles = ['Sistema de monopatines', 'Sitio de videojuegos', 'Tienda de mates'];
-    document.querySelectorAll<HTMLButtonElement>('.open-project').forEach((button) => button.addEventListener('click', () => {
-      const title = projectTitles[Number(button.dataset.project)];
-      const heading = dialog?.querySelector<HTMLElement>('[data-dialog-title]');
-      if (heading) heading.textContent = title;
-      dialog?.showModal();
-    }));
-    document.querySelector<HTMLButtonElement>('.dialog-close')?.addEventListener('click', () => dialog?.close());
-    dialog?.addEventListener('click', (event) => {
-      if (event.target === dialog) dialog.close();
-    });
-    //end Project dialog
-
     //contact form submission
     document.querySelector<HTMLFormElement>('.contact-form')?.addEventListener('submit', (event) => {
       event.preventDefault();

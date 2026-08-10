@@ -11,6 +11,12 @@
   --muted: #666;
   --line: #d9d9d9;
   --shadow: 4px 4px 4px rgb(0 0 0 / 25%);
+  --modal-bg: #f6f6f6;
+  --modal-title: #171717;
+  --modal-copy: #4d4d4d;
+  --modal-control-bg: #fff;
+  --modal-control-text: #171717;
+  --modal-button-text: #171717;
 }
 
 :root.dark {
@@ -21,6 +27,12 @@
   --text: #f6f6f6;
   --muted: #d0d0d0;
   --line: #555;
+  --modal-bg: #252525;
+  --modal-title: #fff;
+  --modal-copy: #d9d9d9;
+  --modal-control-bg: #1d1d1d;
+  --modal-control-text: #fff;
+  --modal-button-text: #fff;
 }
 
 * { box-sizing: border-box; }
@@ -289,18 +301,96 @@ main { display: grid; gap: 24px; padding: 12px 16px 0; }
 }
 .desktop-repeat { display: none; }
 .mobile-hint { font-size: .72rem !important; }
-.project-dialog {
-  width: min(620px, calc(100% - 32px));
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  background: var(--card);
-  color: var(--text);
-  padding: 36px;
-  box-shadow: 0 24px 80px rgb(0 0 0 / 35%);
+.project-modal { overscroll-behavior: contain; }
+.project-modal::backdrop {
+  background: rgb(0 0 0 / 72%);
+  backdrop-filter: blur(3px);
 }
-.project-dialog::backdrop { background: rgb(0 0 0 / 55%); backdrop-filter: blur(4px); }
-.dialog-close { position: absolute; top: 14px; right: 16px; border: 0; background: none; cursor: pointer; font-size: 2rem; }
-.dialog-eyebrow { color: var(--accent); font-weight: 700; letter-spacing: .12em; }
+.project-modal__surface {
+  opacity: 0;
+  scrollbar-color: var(--accent) transparent;
+  scrollbar-width: thin;
+  transform: translateY(14px) scale(.98);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.project-modal[data-state='open'] .project-modal__surface {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.project-modal[data-state='closing'] .project-modal__surface {
+  opacity: 0;
+  transform: translateY(10px) scale(.985);
+}
+.project-modal__figure { background: #e8e8e8; }
+:root.dark .project-modal__figure {
+  border: 1px solid #d9d9d9;
+  background: #252525;
+}
+.carousel-arrow {
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 13px;
+  background: var(--accent);
+  color: var(--modal-button-text);
+  cursor: pointer;
+}
+.carousel-arrow span,
+.modal-project-link__arrow {
+  width: 22px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: url('/assets/arrow-send.svg') center / contain no-repeat;
+  mask: url('/assets/arrow-send.svg') center / contain no-repeat;
+}
+.carousel-arrow--previous span { transform: rotate(180deg); }
+.project-thumbnail {
+  background: #dbdbdb;
+  cursor: pointer;
+  opacity: .72;
+  transition: border-color .18s ease, opacity .18s ease, transform .18s ease;
+}
+:root.dark .project-thumbnail { background: #252525; }
+.project-thumbnail[aria-current='true'] {
+  border: 3px solid var(--accent);
+  opacity: 1;
+}
+.project-thumbnail:hover { opacity: 1; transform: translateY(-1px); }
+.modal-close { cursor: pointer; }
+.modal-close span,
+.modal-close span::before {
+  display: block;
+  width: 20px;
+  height: 3px;
+  border-radius: 99px;
+  background: currentColor;
+  content: '';
+}
+.modal-close span { transform: rotate(45deg); }
+.modal-close span::before { transform: rotate(90deg); }
+.modal-github span {
+  display: block;
+  width: 19px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: url('/assets/brand-github.svg') center / contain no-repeat;
+  mask: url('/assets/brand-github.svg') center / contain no-repeat;
+}
+.modal-github { color: #d9d9d9; }
+.modal-github,
+.modal-project-link,
+.modal-close,
+.carousel-arrow {
+  transition: box-shadow .18s ease, transform .18s ease;
+}
+.modal-github:hover,
+.modal-project-link:hover,
+.modal-close:hover,
+.carousel-arrow:hover { transform: translateY(-1px); }
+.modal-project-link:hover,
+.modal-project-link:focus-visible { box-shadow: 4px 4px 4px rgb(0 0 0 / 35%); }
+:root.dark .modal-project-link:hover,
+:root.dark .modal-project-link:focus-visible { box-shadow: 4px 4px 4px rgb(217 217 217 / 30%); }
 
 .skills-section { min-height: 192px; }
 .skills-viewport { margin-top: 10px; overflow: hidden; mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }

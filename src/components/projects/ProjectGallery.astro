@@ -1,0 +1,44 @@
+---
+interface Props {
+  images: string[];
+  alt: string;
+}
+
+const { images, alt } = Astro.props;
+const galleryImages = images.slice(0, 3);
+---
+
+<div class="project-modal__gallery contents min-[900px]:flex min-[900px]:h-[560px] min-[900px]:w-[430px] min-[900px]:flex-col min-[900px]:items-start min-[900px]:gap-[18px]">
+  <figure class="project-modal__figure order-4 m-0 flex h-[210px] w-full items-center justify-center overflow-hidden rounded-[22px] min-[900px]:h-[332px] min-[900px]:w-[412px] min-[900px]:rounded-[26px]">
+    <img
+      class="h-full w-full object-cover"
+      src={galleryImages[0]}
+      alt={alt}
+      data-modal-main-image
+    />
+  </figure>
+
+  <div class="project-modal__controls order-5 grid h-[55px] w-full grid-cols-[38px_repeat(3,minmax(0,1fr))_38px] items-center gap-2 min-[900px]:h-[100px] min-[900px]:w-[430px] min-[900px]:grid-cols-[44px_repeat(3,92px)_44px] min-[900px]:gap-[10px]">
+    <button class="carousel-arrow carousel-arrow--previous size-[38px] min-[900px]:size-11" type="button" aria-label="Imagen anterior" data-gallery-prev>
+      <span aria-hidden="true"></span>
+    </button>
+
+    <div class="contents" data-gallery-thumbnails>
+      {galleryImages.map((image, index) => (
+        <button
+          class="project-thumbnail h-[55px] min-w-0 overflow-hidden rounded-[11px] border border-[#bfbfbf] min-[900px]:h-[72px] min-[900px]:rounded-[14px]"
+          type="button"
+          aria-label={`Mostrar imagen ${index + 1}`}
+          aria-current={index === 0 ? 'true' : 'false'}
+          data-gallery-index={index}
+        >
+          <img class="h-full w-full object-cover" src={image} alt="" />
+        </button>
+      ))}
+    </div>
+
+    <button class="carousel-arrow carousel-arrow--next size-[38px] min-[900px]:size-11" type="button" aria-label="Imagen siguiente" data-gallery-next>
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+</div>
