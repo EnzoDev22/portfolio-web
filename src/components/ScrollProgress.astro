@@ -1,0 +1,51 @@
+<div
+  class="scroll-progress"
+  role="progressbar"
+  aria-label="Progreso de lectura"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+  data-scroll-progress
+></div>
+
+<style>
+  .scroll-progress {
+    position: fixed;
+    z-index: 40;
+    top: 0;
+    left: 0;
+    width: 0;
+    max-width: 100%;
+    height: 4px;
+    pointer-events: none;
+    background: var(--accent);
+  }
+</style>
+
+<script>
+  const scrollProgress = document.querySelector<HTMLElement>('[data-scroll-progress]');
+  let scrollProgressFrame = 0;
+
+  function updateScrollProgress() {
+    scrollProgressFrame = 0;
+    if (!scrollProgress) return;
+
+    const scrollableHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+    const progress = scrollableHeight === 0
+      ? 0
+      : Math.min(Math.max(window.scrollY / scrollableHeight, 0), 1);
+    const percentage = progress * 100;
+
+    scrollProgress.style.width = `${percentage}%`;
+    scrollProgress.setAttribute('aria-valuenow', String(Math.round(percentage)));
+  }
+
+  function scheduleScrollProgressUpdate() {
+    if (scrollProgressFrame) return;
+    scrollProgressFrame = window.requestAnimationFrame(updateScrollProgress);
+  }
+
+  updateScrollProgress();
+  window.addEventListener('scroll', scheduleScrollProgressUpdate, { passive: true });
+  window.addEventListener('resize', scheduleScrollProgressUpdate, { passive: true });
+</script>
