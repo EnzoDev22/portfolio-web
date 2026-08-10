@@ -41,6 +41,10 @@
   const desktopMedia = matchMedia('(min-width: 900px)');
   let navbarFrame = 0;
 
+  function syncDesktopNavbarBlur() {
+    desktopNav?.classList.toggle('is-scrolled', desktopMedia.matches && window.scrollY > 0);
+  }
+
   function positionDesktopNavbar() {
     if (!desktopNavSlot || !desktopNav) return;
 
@@ -51,15 +55,20 @@
     desktopNavSlot.style.removeProperty('width');
     desktopNavSlot.style.removeProperty('height');
 
-    if (!desktopMedia.matches) return;
+    if (!desktopMedia.matches) {
+      syncDesktopNavbarBlur();
+      return;
+    }
 
     const navbarBounds = desktopNav.getBoundingClientRect();
+    const navbarTop = navbarBounds.top + window.scrollY;
     desktopNavSlot.style.width = `${navbarBounds.width}px`;
     desktopNavSlot.style.height = `${navbarBounds.height}px`;
     desktopNav.style.left = `${desktopNavSlot.getBoundingClientRect().left}px`;
-    desktopNav.style.top = `${navbarBounds.top + window.scrollY}px`;
+    desktopNav.style.top = `${navbarTop}px`;
     desktopNav.style.width = `${navbarBounds.width}px`;
     desktopNav.classList.add('is-fixed');
+    syncDesktopNavbarBlur();
   }
 
   function scheduleNavbarPosition() {
@@ -69,6 +78,7 @@
 
   desktopMedia.addEventListener('change', scheduleNavbarPosition);
   window.addEventListener('resize', scheduleNavbarPosition, { passive: true });
+  window.addEventListener('scroll', syncDesktopNavbarBlur, { passive: true });
   new MutationObserver(scheduleNavbarPosition).observe(document.documentElement, {
     attributes: true,
     attributeFilter: ['data-lang'],

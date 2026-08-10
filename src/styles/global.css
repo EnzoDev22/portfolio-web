@@ -498,6 +498,10 @@ footer { padding: 22px 16px 32px; color: var(--muted); text-align: center; font-
   .desktop-nav-slot { display: block; flex: 0 0 auto; }
   .desktop-nav { display: flex; gap: 4px; padding: 5px; border-radius: 30px; background: color-mix(in srgb, var(--card) 90%, transparent); box-shadow: 2px 4px 4px rgb(0 0 0 / 25%); }
   .desktop-nav.is-fixed { position: fixed; z-index: 30; }
+  .desktop-nav.is-scrolled {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
   .desktop-nav a { padding: 12px 22px; border-radius: 24px; font-weight: 700; }
   .desktop-nav a:first-child { background: var(--accent); }
   .menu-toggle { display: none; }
