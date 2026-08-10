@@ -65,6 +65,14 @@ import Contact from '../components/Contact.astro';
     }));
     //end Mobile menu toggle
 
+    document.querySelectorAll<HTMLAnchorElement>('.desktop-nav a[href="#inicio"], .mobile-nav a[href="#inicio"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        history.pushState(null, '', '#inicio');
+        window.scrollTo({ top: 0 });
+      });
+    });
+
     //contact form submission
     document.querySelector<HTMLFormElement>('.contact-form')?.addEventListener('submit', (event) => {
       event.preventDefault();

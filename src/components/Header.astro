@@ -1,13 +1,15 @@
 <header class="site-header" aria-label="Navegación principal">
   <a class="logo" href="#inicio" aria-label="Ir al inicio">E N Z O</a>
 
-  <nav class="desktop-nav" aria-label="Secciones del portfolio">
-    <a href="#inicio"><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
-    <a href="#proyectos"><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a>
-    <a href="#habilidades"><span class="lang-es">Habilidades</span><span class="lang-en">Skills</span></a>
-    <a href="#formacion"><span class="lang-es">Formación</span><span class="lang-en">Education</span></a>
-    <a href="#contacto"><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a>
-  </nav>
+  <div class="desktop-nav-slot">
+    <nav class="desktop-nav" aria-label="Secciones del portfolio">
+      <a href="#inicio"><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
+      <a href="#proyectos"><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a>
+      <a href="#habilidades"><span class="lang-es">Habilidades</span><span class="lang-en">Skills</span></a>
+      <a href="#formacion"><span class="lang-es">Formación</span><span class="lang-en">Education</span></a>
+      <a href="#contacto"><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a>
+    </nav>
+  </div>
 
   <div class="header-controls">
     <button class="language-toggle" type="button" aria-label="Cambiar idioma" aria-pressed="false">
@@ -32,3 +34,44 @@
     <a href="#contacto"><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a>
   </nav>
 </header>
+
+<script>
+  const desktopNavSlot = document.querySelector<HTMLElement>('.desktop-nav-slot');
+  const desktopNav = desktopNavSlot?.querySelector<HTMLElement>('.desktop-nav');
+  const desktopMedia = matchMedia('(min-width: 900px)');
+  let navbarFrame = 0;
+
+  function positionDesktopNavbar() {
+    if (!desktopNavSlot || !desktopNav) return;
+
+    desktopNav.classList.remove('is-fixed');
+    desktopNav.style.removeProperty('left');
+    desktopNav.style.removeProperty('top');
+    desktopNav.style.removeProperty('width');
+    desktopNavSlot.style.removeProperty('width');
+    desktopNavSlot.style.removeProperty('height');
+
+    if (!desktopMedia.matches) return;
+
+    const navbarBounds = desktopNav.getBoundingClientRect();
+    desktopNavSlot.style.width = `${navbarBounds.width}px`;
+    desktopNavSlot.style.height = `${navbarBounds.height}px`;
+    desktopNav.style.left = `${desktopNavSlot.getBoundingClientRect().left}px`;
+    desktopNav.style.top = `${navbarBounds.top + window.scrollY}px`;
+    desktopNav.style.width = `${navbarBounds.width}px`;
+    desktopNav.classList.add('is-fixed');
+  }
+
+  function scheduleNavbarPosition() {
+    cancelAnimationFrame(navbarFrame);
+    navbarFrame = requestAnimationFrame(positionDesktopNavbar);
+  }
+
+  desktopMedia.addEventListener('change', scheduleNavbarPosition);
+  window.addEventListener('resize', scheduleNavbarPosition, { passive: true });
+  new MutationObserver(scheduleNavbarPosition).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-lang'],
+  });
+  scheduleNavbarPosition();
+</script>

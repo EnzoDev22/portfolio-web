@@ -129,7 +129,7 @@ button { color: inherit; }
   background: #252525;
   color: #fff;
 }
-.desktop-nav { display: none; }
+.desktop-nav-slot, .desktop-nav { display: none; }
 .mobile-nav {
   position: absolute;
   top: 76px;
@@ -495,7 +495,9 @@ footer { padding: 22px 16px 32px; color: var(--muted); text-align: center; font-
 @media (min-width: 900px) {
   .site-header { min-height: 133px; max-width: 1250px; margin: auto; padding: 30px 0 35px; }
   .logo { font-size: 3rem; }
+  .desktop-nav-slot { display: block; flex: 0 0 auto; }
   .desktop-nav { display: flex; gap: 4px; padding: 5px; border-radius: 30px; background: color-mix(in srgb, var(--card) 90%, transparent); box-shadow: 2px 4px 4px rgb(0 0 0 / 25%); }
+  .desktop-nav.is-fixed { position: fixed; z-index: 30; }
   .desktop-nav a { padding: 12px 22px; border-radius: 24px; font-weight: 700; }
   .desktop-nav a:first-child { background: var(--accent); }
   .menu-toggle { display: none; }
