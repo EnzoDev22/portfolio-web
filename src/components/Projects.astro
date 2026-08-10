@@ -12,7 +12,7 @@ const visibleProjects = [...projects, ...projects];
         <div class="project-overlay">
           <h3><span class="lang-es">{project.title}</span><span class="lang-en">{project.titleEn}</span></h3>
         </div>
-        <button class="open-project" type="button" aria-label={`Ver ${project.title}`} data-project={index % projects.length}>↗</button>
+        <button class="open-project" type="button" aria-label={`Ver ${project.title}`} data-project={index % projects.length}></button>
       </article>
     ))}
   </div>
