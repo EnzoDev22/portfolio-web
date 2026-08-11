@@ -18,20 +18,22 @@ import Contact from '../components/Contact.astro';
       <Education />
       <Contact />
     </main>
-    <footer><span class="lang-es">Diseñado y desarrollado por Enzo · 2026</span><span class="lang-en">Designed and developed by Enzo · 2026</span></footer>
+    <footer>
+      <a class="back-to-top" href="#inicio" aria-label="Volver al inicio">
+        <span aria-hidden="true"></span>
+      </a>
+    </footer>
   </div>
 
   <script>
     const root = document.documentElement;
     const themeButton = document.querySelector<HTMLButtonElement>('.theme-toggle');
-    const themeIcon = document.querySelector<HTMLElement>('.theme-icon');
     const themeMeta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
 
     function syncTheme() {
       const dark = root.classList.contains('dark');
       themeButton?.setAttribute('aria-pressed', String(dark));
       themeButton?.setAttribute('aria-label', dark ? 'Activar tema claro' : 'Activar tema oscuro');
-      if (themeIcon) themeIcon.textContent = dark ? '☾' : '☼';
       themeMeta?.setAttribute('content', dark ? '#1d1d1d' : '#ffffff');
     }
     syncTheme();
@@ -41,15 +43,20 @@ import Contact from '../components/Contact.astro';
       syncTheme();
     });
 
+    // Language toggle
     const languageButton = document.querySelector<HTMLButtonElement>('.language-toggle');
+    const backToTopLink = document.querySelector<HTMLAnchorElement>('.back-to-top');
     languageButton?.addEventListener('click', () => {
       const next = root.dataset.lang === 'en' ? 'es' : 'en';
       root.dataset.lang = next;
       root.lang = next;
       languageButton.querySelector('span')!.textContent = next.toUpperCase();
       languageButton.setAttribute('aria-pressed', String(next === 'en'));
+      backToTopLink?.setAttribute('aria-label', next === 'en' ? 'Back to top' : 'Volver al inicio');
     });
+    //end Language toggle
 
+    // Mobile menu toggle
     const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
     const mobileMenu = document.querySelector<HTMLElement>('#mobile-menu');
     menuButton?.addEventListener('click', () => {
@@ -62,20 +69,17 @@ import Contact from '../components/Contact.astro';
       mobileMenu.hidden = true;
       menuButton?.setAttribute('aria-expanded', 'false');
     }));
+    //end Mobile menu toggle
 
-    const dialog = document.querySelector<HTMLDialogElement>('.project-dialog');
-    const projectTitles = ['Sistema de monopatines', 'Sitio de videojuegos', 'Tienda de mates'];
-    document.querySelectorAll<HTMLButtonElement>('.open-project').forEach((button) => button.addEventListener('click', () => {
-      const title = projectTitles[Number(button.dataset.project)];
-      const heading = dialog?.querySelector<HTMLElement>('[data-dialog-title]');
-      if (heading) heading.textContent = title;
-      dialog?.showModal();
-    }));
-    document.querySelector<HTMLButtonElement>('.dialog-close')?.addEventListener('click', () => dialog?.close());
-    dialog?.addEventListener('click', (event) => {
-      if (event.target === dialog) dialog.close();
+    document.querySelectorAll<HTMLAnchorElement>('.desktop-nav a[href="#inicio"], .mobile-nav a[href="#inicio"], .back-to-top[href="#inicio"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        history.pushState(null, '', '#inicio');
+        window.scrollTo({ top: 0 });
+      });
     });
 
+    //contact form submission
     document.querySelector<HTMLFormElement>('.contact-form')?.addEventListener('submit', (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget as HTMLFormElement);
@@ -83,5 +87,7 @@ import Contact from '../components/Contact.astro';
       const body = encodeURIComponent(`Nombre: ${data.get('name')}\nEmail: ${data.get('email')}\n\n${data.get('message')}`);
       window.location.href = `mailto:enzodelsole@gmail.com?subject=${subject}&body=${body}`;
     });
+    //end contact form submission
+    
   </script>
 </BaseLayout>

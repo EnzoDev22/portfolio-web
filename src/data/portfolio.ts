@@ -1,23 +1,4 @@
-export const projects = [
-  {
-    title: 'Sistema de monopatines',
-    titleEn: 'Scooter system',
-    image: '/assets/raw-7.jpg',
-    alt: 'Sistema de alquiler y guardado de monopatines eléctricos',
-  },
-  {
-    title: 'Sitio de videojuegos',
-    titleEn: 'Video game website',
-    image: '/assets/raw-8.png',
-    alt: 'Página principal de una tienda de videojuegos',
-  },
-  {
-    title: 'Tienda de mates',
-    titleEn: 'Mate shop',
-    image: '/assets/raw-9.png',
-    alt: 'Catálogo de una tienda online de mates',
-  },
-] as const;
+export { projects } from './projects';
 
 export const skills = [
   ['HTML', '/assets/tech-html.svg'],

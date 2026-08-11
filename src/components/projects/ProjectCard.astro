@@ -1,0 +1,28 @@
+---
+import type { Project } from '../../data/projects';
+
+interface Props {
+  project: Project;
+  repeated?: boolean;
+}
+
+const { project, repeated = false } = Astro.props;
+---
+
+<article class:list={['project-card', { 'desktop-repeat': repeated }]}>
+  <img src={project.image} alt={project.alt} loading="lazy" />
+  <div class="project-overlay">
+    <h3>
+      <span class="lang-es">{project.title}</span>
+      <span class="lang-en">{project.titleEn}</span>
+    </h3>
+  </div>
+  <button
+    class="open-project"
+    type="button"
+    aria-label={`Ver detalles de ${project.title}`}
+    aria-haspopup="dialog"
+    aria-controls="project-modal"
+    data-project-id={project.id}
+  ></button>
+</article>
