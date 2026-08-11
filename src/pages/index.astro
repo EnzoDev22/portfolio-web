@@ -18,7 +18,11 @@ import Contact from '../components/Contact.astro';
       <Education />
       <Contact />
     </main>
-    <footer><span class="lang-es">Diseñado y desarrollado por Enzo · 2026</span><span class="lang-en">Designed and developed by Enzo · 2026</span></footer>
+    <footer>
+      <a class="back-to-top" href="#inicio" aria-label="Volver al inicio">
+        <span aria-hidden="true"></span>
+      </a>
+    </footer>
   </div>
 
   <script>
@@ -41,12 +45,14 @@ import Contact from '../components/Contact.astro';
 
     // Language toggle
     const languageButton = document.querySelector<HTMLButtonElement>('.language-toggle');
+    const backToTopLink = document.querySelector<HTMLAnchorElement>('.back-to-top');
     languageButton?.addEventListener('click', () => {
       const next = root.dataset.lang === 'en' ? 'es' : 'en';
       root.dataset.lang = next;
       root.lang = next;
       languageButton.querySelector('span')!.textContent = next.toUpperCase();
       languageButton.setAttribute('aria-pressed', String(next === 'en'));
+      backToTopLink?.setAttribute('aria-label', next === 'en' ? 'Back to top' : 'Volver al inicio');
     });
     //end Language toggle
 
@@ -65,7 +71,7 @@ import Contact from '../components/Contact.astro';
     }));
     //end Mobile menu toggle
 
-    document.querySelectorAll<HTMLAnchorElement>('.desktop-nav a[href="#inicio"], .mobile-nav a[href="#inicio"]').forEach((link) => {
+    document.querySelectorAll<HTMLAnchorElement>('.desktop-nav a[href="#inicio"], .mobile-nav a[href="#inicio"], .back-to-top[href="#inicio"]').forEach((link) => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
         history.pushState(null, '', '#inicio');
