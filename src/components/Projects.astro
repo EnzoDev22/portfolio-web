@@ -12,8 +12,8 @@ const visibleProjects = [...projects, ...projects];
     <em><span class="lang-es">Destacados</span><span class="lang-en">Projects</span></em>
   </h2>
   <div class="projects-grid">
-    {visibleProjects.map((project, index) => (
-      <ProjectCard project={project} repeated={index >= projects.length} />
+    {projects.map((project) => (
+      <ProjectCard project={project} />
     ))}
   </div>
   <p class="mobile-hint">
