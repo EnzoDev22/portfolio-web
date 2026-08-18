@@ -26,6 +26,8 @@ import Contact from '../components/Contact.astro';
   </div>
 
   <script>
+    import '../scripts/section-reveal';
+
     const root = document.documentElement;
     const themeButton = document.querySelector<HTMLButtonElement>('.theme-toggle');
     const themeMeta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
