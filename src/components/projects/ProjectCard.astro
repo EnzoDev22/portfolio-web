@@ -16,13 +16,13 @@ const { project, repeated = false } = Astro.props;
       <span class="lang-es">{project.title}</span>
       <span class="lang-en">{project.titleEn}</span>
     </h3>
+    <button
+      class="open-project"
+      type="button"
+      aria-label={`Ver detalles de ${project.title}`}
+      aria-haspopup="dialog"
+      aria-controls="project-modal"
+      data-project-id={project.id}
+    ></button>
   </div>
-  <button
-    class="open-project"
-    type="button"
-    aria-label={`Ver detalles de ${project.title}`}
-    aria-haspopup="dialog"
-    aria-controls="project-modal"
-    data-project-id={project.id}
-  ></button>
 </article>

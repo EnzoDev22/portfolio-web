@@ -39,7 +39,13 @@
   const desktopNavSlot = document.querySelector<HTMLElement>('.desktop-nav-slot');
   const desktopNav = desktopNavSlot?.querySelector<HTMLElement>('.desktop-nav');
   const desktopMedia = matchMedia('(min-width: 900px)');
+  const scrollspyItems = Array.from(desktopNav?.querySelectorAll<HTMLAnchorElement>('a[href^="#"]') ?? []).flatMap((link) => {
+    const section = document.querySelector<HTMLElement>(link.hash);
+    return section ? [{ link, section }] : [];
+  });
   let navbarFrame = 0;
+  let scrollspyFrame = 0;
+  let scrollspyObserver: IntersectionObserver | null = null;
 
   function syncDesktopNavbarBlur() {
     desktopNav?.classList.toggle('is-scrolled', desktopMedia.matches && window.scrollY > 0);
@@ -76,12 +82,86 @@
     navbarFrame = requestAnimationFrame(positionDesktopNavbar);
   }
 
-  desktopMedia.addEventListener('change', scheduleNavbarPosition);
-  window.addEventListener('resize', scheduleNavbarPosition, { passive: true });
+  function setActiveSection(sectionId: string | null) {
+    scrollspyItems.forEach(({ link, section }) => {
+      const isActive = section.id === sectionId;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  function updateActiveSection() {
+    if (!desktopMedia.matches || !scrollspyItems.length) return;
+
+    if (window.scrollY <= 1) {
+      setActiveSection(scrollspyItems[0].section.id);
+      return;
+    }
+
+    const pageBottom = Math.ceil(window.scrollY + window.innerHeight);
+    if (pageBottom >= document.documentElement.scrollHeight - 1) {
+      setActiveSection(scrollspyItems.at(-1)?.section.id ?? null);
+      return;
+    }
+
+    const navbarBottom = desktopNav?.getBoundingClientRect().bottom ?? 0;
+    const activationPoint = Math.max(navbarBottom + 24, window.innerHeight * .32);
+    let activeSection = scrollspyItems[0].section;
+
+    for (const { section } of scrollspyItems) {
+      const bounds = section.getBoundingClientRect();
+      if (bounds.top <= activationPoint) activeSection = section;
+      if (bounds.top <= activationPoint && bounds.bottom > activationPoint) break;
+    }
+
+    setActiveSection(activeSection.id);
+  }
+
+  function stopScrollspy(clearActiveState = true) {
+    scrollspyObserver?.disconnect();
+    scrollspyObserver = null;
+    if (clearActiveState) setActiveSection(null);
+  }
+
+  function startScrollspy() {
+    stopScrollspy(false);
+    if (!desktopMedia.matches || !desktopNav || !scrollspyItems.length) return;
+
+    const navbarBottom = Math.ceil(desktopNav.getBoundingClientRect().bottom);
+    const activationPoint = Math.min(
+      window.innerHeight - 1,
+      Math.max(navbarBottom + 24, Math.round(window.innerHeight * .32)),
+    );
+    const bottomMargin = Math.max(0, window.innerHeight - activationPoint - 1);
+
+    scrollspyObserver = new IntersectionObserver(updateActiveSection, {
+      rootMargin: `-${activationPoint}px 0px -${bottomMargin}px 0px`,
+      threshold: 0,
+    });
+    scrollspyItems.forEach(({ section }) => scrollspyObserver?.observe(section));
+    updateActiveSection();
+  }
+
+  function scheduleScrollspy() {
+    cancelAnimationFrame(scrollspyFrame);
+    scrollspyFrame = requestAnimationFrame(() => {
+      if (desktopMedia.matches) startScrollspy();
+      else stopScrollspy();
+    });
+  }
+
+  function syncDesktopHeader() {
+    scheduleNavbarPosition();
+    scheduleScrollspy();
+  }
+
+  desktopMedia.addEventListener('change', syncDesktopHeader);
+  window.addEventListener('resize', syncDesktopHeader, { passive: true });
   window.addEventListener('scroll', syncDesktopNavbarBlur, { passive: true });
   new MutationObserver(scheduleNavbarPosition).observe(document.documentElement, {
     attributes: true,
     attributeFilter: ['data-lang'],
   });
-  scheduleNavbarPosition();
+  syncDesktopHeader();
 </script>
