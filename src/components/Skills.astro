@@ -10,8 +10,8 @@ const rail = [...skills, ...skills];
     <div class="skills-rail">
       {rail.map(([name, icon], index) => (
         <div class="skill-card" aria-hidden={index >= skills.length ? 'true' : undefined}>
-          <img src={icon} width="66" height="66" alt="" />
-          <span>{name}</span>
+          <span class="skill-icon" style={`--skill-icon: url("${icon}")`} aria-hidden="true"></span>
+          <span class="skill-name">{name}</span>
         </div>
       ))}
     </div>

@@ -1,28 +1,71 @@
 <section id="contacto" class="panel section-block contact-section" aria-labelledby="contact-title" data-reveal-section>
-  <h2 id="contact-title"><span class="lang-es">Hablemos</span><span class="lang-en">Let's talk</span></h2>
-  <p class="contact-lead"><span class="lang-es">¿Tenés una idea o una oportunidad? Me encantaría conocerla.</span><span class="lang-en">Have an idea or an opportunity? I would love to hear about it.</span></p>
   <div class="contact-grid">
     <aside class="contact-info">
-      <div class="contact-orbit" aria-hidden="true"><span></span></div>
-      <h3><span class="lang-es">Construyamos algo<br /><strong>juntos.</strong></span><span class="lang-en">Let's build something<br /><strong>together.</strong></span></h3>
-      <p><span class="lang-es">Disponible para oportunidades,<br />colaboraciones y nuevos desafíos.</span><span class="lang-en">Available for opportunities,<br />collaborations, and new challenges.</span></p>
-      <a class="email-pill" href="mailto:tu-email@dominio.com">tu-email@dominio.com</a>
+      <p class="contact-kicker"><span class="contact-kicker-dot" aria-hidden="true"></span><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></p>
+      <h2 id="contact-title">
+        <span class="lang-es">¿Tenés un proyecto o una <em>oportunidad</em> para conversar?</span>
+        <span class="lang-en">Have a project or an <em>opportunity</em> to discuss?</span>
+      </h2>
+      <p class="contact-copy">
+        <span class="lang-es">Estoy abierto a nuevas oportunidades, colaboraciones y desafíos donde pueda aportar soluciones claras y confiables.</span>
+        <span class="lang-en">I’m open to new opportunities, collaborations, and challenges where I can contribute clear and reliable solutions.</span>
+      </p>
+
       <div class="social-links">
         <a class="linkedin" href="https://linkedin.com/in/enzo-jesuan-del-sole" rel="noreferrer" target="_blank">LinkedIn</a>
         <a class="github" href="https://github.com/EnzoDev22" rel="noreferrer" target="_blank">GitHub</a>
       </div>
-      <small>● Buenos Aires · Argentina</small>
     </aside>
 
-    <form class="contact-form">
-      <h3><span class="lang-es">Contame sobre tu idea</span><span class="lang-en">Tell me about your idea</span></h3>
-      <div class="form-row">
-        <label><span><span class="lang-es">NOMBRE</span><span class="lang-en">NAME</span></span><input name="name" autocomplete="name" placeholder="Tu nombre" required /></label>
-        <label><span>EMAIL</span><input name="email" type="email" autocomplete="email" placeholder="tu@email.com" required /></label>
+    <form class="contact-form" action="/api/contact" method="post" novalidate>
+      <div class="contact-form-heading">
+        <p><span class="lang-es">Escribime</span><span class="lang-en">Get in touch</span></p>
+        <h3><span class="lang-es">Contame sobre tu idea</span><span class="lang-en">Tell me about your idea</span></h3>
       </div>
-      <label><span><span class="lang-es">ASUNTO</span><span class="lang-en">SUBJECT</span></span><input name="subject" placeholder="¿En qué podemos trabajar?" required /></label>
-      <label><span><span class="lang-es">MENSAJE</span><span class="lang-en">MESSAGE</span></span><textarea name="message" placeholder="Contame un poco más..." required></textarea></label>
-      <button type="submit"><span class="lang-es">Enviar mensaje</span><span class="lang-en">Send message</span></button>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="contact-name"><span class="lang-es">Nombre</span><span class="lang-en">Name</span></label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required data-placeholder-es="Tu nombre" data-placeholder-en="Your name" aria-describedby="contact-name-error" />
+          <p id="contact-name-error" class="field-error" data-error-for="name"></p>
+        </div>
+
+        <div class="form-field">
+          <label for="contact-email"><span class="lang-es">Correo electrónico</span><span class="lang-en">Email address</span></label>
+          <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required data-placeholder-es="tu@email.com" data-placeholder-en="you@email.com" aria-describedby="contact-email-error" />
+          <p id="contact-email-error" class="field-error" data-error-for="email"></p>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="contact-subject"><span class="lang-es">Asunto</span><span class="lang-en">Subject</span></label>
+        <input id="contact-subject" name="subject" type="text" minlength="3" maxlength="120" required data-placeholder-es="¿En qué podemos trabajar?" data-placeholder-en="What can we work on?" aria-describedby="contact-subject-error" />
+        <p id="contact-subject-error" class="field-error" data-error-for="subject"></p>
+      </div>
+
+      <div class="form-field">
+        <label for="contact-message"><span class="lang-es">Mensaje</span><span class="lang-en">Message</span></label>
+        <textarea id="contact-message" name="message" minlength="10" maxlength="3000" required data-placeholder-es="Contame un poco más..." data-placeholder-en="Tell me a little more..." aria-describedby="contact-message-error"></textarea>
+        <p id="contact-message-error" class="field-error" data-error-for="message"></p>
+      </div>
+
+      <div class="contact-honeypot" aria-hidden="true" hidden>
+        <label for="contact-website">Website</label>
+        <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="contact-form-footer">
+        <p class="contact-protection"><span aria-hidden="true">✓</span><span class="lang-es">Validación y protección antispam.</span><span class="lang-en">Validation and spam protection.</span></p>
+        <button type="submit">
+          <span class="lang-es">Enviar mensaje</span>
+          <span class="lang-en">Send message</span>
+        </button>
+      </div>
+      <p class="form-status" role="status" aria-live="polite" aria-atomic="true"></p>
     </form>
   </div>
 </section>
+
+<script>
+  import '../scripts/contact-form';
+</script>

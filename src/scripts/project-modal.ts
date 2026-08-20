@@ -44,13 +44,12 @@ if (dialogElement && dataNode && dialogElement.dataset.initialized !== 'true') {
     images.slice(0, 3).forEach((image, imageIndex) => {
       const button = document.createElement('button');
       button.type = 'button';
-      button.className = 'project-thumbnail h-[55px] min-w-0 overflow-hidden rounded-[11px] border border-[#bfbfbf] min-[900px]:h-[72px] min-[900px]:rounded-[14px]';
+      button.className = 'project-thumbnail';
       button.dataset.galleryIndex = String(imageIndex);
       button.setAttribute('aria-label', `${isEnglish() ? 'Show image' : 'Mostrar imagen'} ${imageIndex + 1}`);
       button.setAttribute('aria-current', String(imageIndex === activeImage));
 
       const imageElement = document.createElement('img');
-      imageElement.className = 'h-full w-full object-cover';
       imageElement.src = image;
       imageElement.alt = '';
       button.append(imageElement);
@@ -71,12 +70,13 @@ if (dialogElement && dataNode && dialogElement.dataset.initialized !== 'true') {
       technologies.replaceChildren();
       project.technologies.forEach((technology) => {
         const item = document.createElement('li');
-        item.className = 'grid size-10 shrink-0 place-items-center min-[900px]:size-[50px]';
-        const icon = document.createElement('img');
-        icon.className = 'size-full object-contain';
-        icon.src = technology.icon;
-        icon.alt = technology.name;
-        icon.title = technology.name;
+        item.setAttribute('aria-label', technology.name);
+        item.title = technology.name;
+
+        const icon = document.createElement('span');
+        icon.className = 'project-technology-icon';
+        icon.style.setProperty('--project-technology-icon', `url("${technology.icon}")`);
+        icon.setAttribute('aria-hidden', 'true');
         item.append(icon);
         technologies.append(item);
       });
