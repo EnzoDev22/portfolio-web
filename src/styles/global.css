@@ -811,7 +811,6 @@ main {
   animation: skills-scroll 46s linear infinite;
 }
 
-.skills-viewport:hover .skills-rail,
 .skills-viewport:focus-within .skills-rail { animation-play-state: paused; }
 
 .skill-card {

@@ -46,6 +46,7 @@
   let navbarFrame = 0;
   let scrollspyFrame = 0;
   let scrollspyObserver: IntersectionObserver | null = null;
+  let desktopHeaderInitialized = false;
 
   function syncDesktopNavbarBlur() {
     desktopNav?.classList.toggle('is-scrolled', desktopMedia.matches && window.scrollY > 0);
@@ -156,12 +157,26 @@
     scheduleScrollspy();
   }
 
-  desktopMedia.addEventListener('change', syncDesktopHeader);
-  window.addEventListener('resize', syncDesktopHeader, { passive: true });
-  window.addEventListener('scroll', syncDesktopNavbarBlur, { passive: true });
-  new MutationObserver(scheduleNavbarPosition).observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-lang'],
-  });
-  syncDesktopHeader();
+  async function initializeDesktopHeader() {
+    if (desktopHeaderInitialized) return;
+    desktopHeaderInitialized = true;
+
+    if ('fonts' in document) await document.fonts.ready;
+
+    desktopMedia.addEventListener('change', syncDesktopHeader);
+    window.addEventListener('resize', syncDesktopHeader, { passive: true });
+    window.addEventListener('scroll', syncDesktopNavbarBlur, { passive: true });
+    new MutationObserver(scheduleNavbarPosition).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-lang'],
+    });
+
+    syncDesktopHeader();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeDesktopHeader, { once: true });
+  } else {
+    initializeDesktopHeader();
+  }
 </script>
