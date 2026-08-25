@@ -314,10 +314,17 @@ main {
   gap: 36px;
 }
 
-.portrait-wrap {
+.hero-profile {
+  display: flex;
   width: min(78vw, 270px);
-  aspect-ratio: 1;
   align-self: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.portrait-wrap {
+  width: 100%;
+  aspect-ratio: 1;
   overflow: hidden;
   border: 1px solid var(--line-strong);
   border-radius: 3px 42px 3px 42px;
@@ -339,6 +346,44 @@ main {
   min-width: 0;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.availability-badge {
+  --availability-green: #22c55e;
+  display: inline-flex;
+  max-width: 100%;
+  margin-bottom: 12px;
+  padding: 7px 12px;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-size: clamp(.72rem, 2.8vw, .8rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.availability-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--availability-green);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--availability-green) 42%, transparent);
+  animation: availability-pulse 2.2s ease-out infinite;
+}
+
+@keyframes availability-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--availability-green) 42%, transparent);
+  }
+  50% {
+    transform: scale(1.16);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--availability-green) 0%, transparent);
+  }
 }
 
 .hero-copy .hero-intro {
@@ -390,8 +435,8 @@ main {
   gap: 10px;
 }
 
-.role,
-.cv-button {
+.cv-button,
+.hero-social-link {
   display: inline-flex;
   min-height: 48px;
   padding: 11px 15px;
@@ -403,39 +448,51 @@ main {
   font-weight: 600;
 }
 
-.role {
-  flex: 1 1 188px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.role::before {
-  width: 8px;
-  height: 8px;
-  flex: 0 0 auto;
-  border: 2px solid var(--text);
-  border-radius: 50%;
-  background: var(--accent);
-  content: '';
-}
-
-.cv-button {
+.cv-button,
+.hero-social-link {
   --cv-icon-color: currentColor;
-  flex: 1 1 140px;
   border: 1px solid var(--accent);
   background: var(--accent);
   color: var(--accent-ink);
   transition: background-color var(--transition), border-color var(--transition), transform var(--transition);
 }
 
+.cv-button { flex: 1 1 140px; }
+
+.hero-social-link {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  flex: 0 0 48px;
+}
+
 .cv-button:hover,
-.cv-button:focus-visible {
+.cv-button:focus-visible,
+.hero-social-link:hover,
+.hero-social-link:focus-visible {
   border-color: var(--accent-strong);
   background: var(--accent-strong);
   transform: translateY(-2px);
 }
 
 .cv-button-icon { width: 17px; height: 18px; flex: 0 0 auto; color: var(--cv-icon-color); }
+
+.hero-social-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  background: currentColor;
+}
+
+.hero-social-icon--linkedin {
+  -webkit-mask: url('/assets/brand-linkedin.svg') center / contain no-repeat;
+  mask: url('/assets/brand-linkedin.svg') center / contain no-repeat;
+}
+
+.hero-social-icon--github {
+  -webkit-mask: url('/assets/brand-github.svg') center / contain no-repeat;
+  mask: url('/assets/brand-github.svg') center / contain no-repeat;
+}
 
 .hero-copy > p {
   max-width: 54ch;
@@ -1244,7 +1301,7 @@ footer {
 @media (min-width: 640px) {
   .hero, .section-block { padding-inline: 12px; }
   .hero-actions { width: auto; }
-  .role, .cv-button { flex: 0 0 auto; }
+  .cv-button { flex: 0 0 auto; }
   .projects-grid { flex-flow: row wrap; }
   .project-card { flex: 1 1 calc(50% - 9px); }
   .education-card { padding-inline: 8px; }
@@ -1291,9 +1348,11 @@ footer {
     align-items: center;
     gap: clamp(48px, 6vw, 80px);
   }
-  .portrait-wrap {
+  .hero-profile {
     width: clamp(300px, 32vw, 400px);
     flex: 0 0 clamp(300px, 32vw, 400px);
+  }
+  .portrait-wrap {
     border-radius: 4px 68px 4px 68px;
     box-shadow: 14px 14px 0 var(--accent);
   }
@@ -1377,5 +1436,6 @@ footer {
     transition-duration: .01ms !important;
   }
   .skills-rail { animation: none; }
+  .availability-dot { animation: none; transform: none; }
   :root.section-reveal-enabled [data-reveal-section] { opacity: 1; transform: none; transition: none; }
 }
