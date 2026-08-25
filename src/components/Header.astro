@@ -12,15 +12,19 @@
   </div>
 
   <div class="header-controls">
-    <button class="language-toggle" type="button" aria-label="Cambiar idioma" aria-pressed="false">
-      <span aria-hidden="true">ES</span>
-    </button>
-    <button class="round-control theme-toggle" type="button" aria-label="Activar tema oscuro" aria-pressed="false">
-      <span class="theme-icon" aria-hidden="true">
-        <img class="theme-icon-light" src="/assets/theme-light.svg" width="22" height="22" alt="" />
-        <img class="theme-icon-dark" src="/assets/theme-dark.svg" width="18" height="18" alt="" />
-      </span>
-    </button>
+    <div class="persistent-controls-slot">
+      <div class="persistent-header-controls">
+        <button class="language-toggle" type="button" aria-label="Cambiar idioma" aria-pressed="false">
+          <span aria-hidden="true">ES</span>
+        </button>
+        <button class="round-control theme-toggle" type="button" aria-label="Activar tema oscuro" aria-pressed="false">
+          <span class="theme-icon" aria-hidden="true">
+            <img class="theme-icon-light" src="/assets/theme-light.svg" width="22" height="22" alt="" />
+            <img class="theme-icon-dark" src="/assets/theme-dark.svg" width="18" height="18" alt="" />
+          </span>
+        </button>
+      </div>
+    </div>
     <button class="round-control menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
       <span aria-hidden="true">☰</span>
     </button>
@@ -38,6 +42,9 @@
 <script>
   const desktopNavSlot = document.querySelector<HTMLElement>('.desktop-nav-slot');
   const desktopNav = desktopNavSlot?.querySelector<HTMLElement>('.desktop-nav');
+  const persistentControlsSlot = document.querySelector<HTMLElement>('.persistent-controls-slot');
+  const persistentControls = persistentControlsSlot?.querySelector<HTMLElement>('.persistent-header-controls');
+  const persistentControlsMedia = matchMedia('(min-width: 640px)');
   const desktopMedia = matchMedia('(min-width: 900px)');
   const scrollspyItems = Array.from(desktopNav?.querySelectorAll<HTMLAnchorElement>('a[href^="#"]') ?? []).flatMap((link) => {
     const section = document.querySelector<HTMLElement>(link.hash);
@@ -53,7 +60,7 @@
   }
 
   function positionDesktopNavbar() {
-    if (!desktopNavSlot || !desktopNav) return;
+    if (!desktopNavSlot || !desktopNav || !persistentControlsSlot || !persistentControls) return;
 
     desktopNav.classList.remove('is-fixed');
     desktopNav.style.removeProperty('left');
@@ -61,6 +68,23 @@
     desktopNav.style.removeProperty('width');
     desktopNavSlot.style.removeProperty('width');
     desktopNavSlot.style.removeProperty('height');
+    persistentControls.classList.remove('is-fixed');
+    persistentControls.style.removeProperty('left');
+    persistentControls.style.removeProperty('top');
+    persistentControls.style.removeProperty('width');
+    persistentControlsSlot.style.removeProperty('width');
+    persistentControlsSlot.style.removeProperty('height');
+
+    if (persistentControlsMedia.matches) {
+      const controlsBounds = persistentControls.getBoundingClientRect();
+      const controlsTop = controlsBounds.top + window.scrollY;
+      persistentControlsSlot.style.width = `${controlsBounds.width}px`;
+      persistentControlsSlot.style.height = `${controlsBounds.height}px`;
+      persistentControls.style.left = `${persistentControlsSlot.getBoundingClientRect().left}px`;
+      persistentControls.style.top = `${controlsTop}px`;
+      persistentControls.style.width = `${controlsBounds.width}px`;
+      persistentControls.classList.add('is-fixed');
+    }
 
     if (!desktopMedia.matches) {
       syncDesktopNavbarBlur();
