@@ -40,6 +40,23 @@ if (dialogElement && dataNode && dialogElement.dataset.initialized !== 'true') {
     mainImage.src = images[activeImage];
     mainImage.alt = isEnglish() ? activeProject.altEn : activeProject.alt;
 
+    thumbnails.querySelectorAll<HTMLButtonElement>('[data-gallery-index]').forEach((button, imageIndex) => {
+      button.setAttribute('aria-current', String(imageIndex === activeImage));
+      button.setAttribute('aria-label', `${isEnglish() ? 'Show image' : 'Mostrar imagen'} ${imageIndex + 1}`);
+    });
+  }
+
+  function loadThumbnailImages() {
+    thumbnails?.querySelectorAll<HTMLImageElement>('img[data-gallery-src]').forEach((imageElement) => {
+      const source = imageElement.dataset.gallerySrc;
+      if (source && !imageElement.hasAttribute('src')) imageElement.src = source;
+    });
+  }
+
+  function renderGallery() {
+    if (!activeProject || !thumbnails) return;
+    const images = activeProject.images.length ? activeProject.images : [activeProject.image];
+
     thumbnails.replaceChildren();
     images.slice(0, 3).forEach((image, imageIndex) => {
       const button = document.createElement('button');
@@ -50,11 +67,20 @@ if (dialogElement && dataNode && dialogElement.dataset.initialized !== 'true') {
       button.setAttribute('aria-current', String(imageIndex === activeImage));
 
       const imageElement = document.createElement('img');
-      imageElement.src = image;
+      imageElement.dataset.gallerySrc = image;
       imageElement.alt = '';
+      imageElement.loading = 'lazy';
+      imageElement.decoding = 'async';
+      imageElement.addEventListener('error', () => imageElement.removeAttribute('src'), { once: true });
       button.append(imageElement);
       button.addEventListener('click', () => updateGallery(imageIndex));
       thumbnails.append(button);
+    });
+
+    updateGallery(0);
+    const projectId = activeProject.id;
+    mainImage?.decode().catch(() => undefined).then(() => {
+      if (activeProject?.id === projectId) loadThumbnailImages();
     });
   }
 
@@ -87,8 +113,13 @@ if (dialogElement && dataNode && dialogElement.dataset.initialized !== 'true') {
       githubLink.setAttribute('aria-label', `${isEnglish() ? 'View' : 'Ver'} ${isEnglish() ? project.titleEn : project.title} en GitHub`);
     }
     if (projectLink) projectLink.href = project.projectUrl;
-    updateGallery(0);
+    renderGallery();
   }
+
+  mainImage?.addEventListener('error', () => {
+    mainImage.removeAttribute('src');
+    mainImage.alt = '';
+  });
 
   function lockDocumentScroll() {
     bodyOverflow = document.body.style.overflow;

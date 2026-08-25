@@ -1,18 +1,9 @@
----
-interface Props {
-  images: string[];
-  alt: string;
-}
-
-const { images, alt } = Astro.props;
-const galleryImages = images.slice(0, 3);
----
-
 <div class="project-modal__gallery">
   <figure class="project-modal__figure">
     <img
-      src={galleryImages[0]}
-      alt={alt}
+      alt=""
+      loading="lazy"
+      decoding="async"
       data-modal-main-image
     />
   </figure>
@@ -22,19 +13,7 @@ const galleryImages = images.slice(0, 3);
       <span aria-hidden="true"></span>
     </button>
 
-    <div class="project-modal__thumbnails" data-gallery-thumbnails>
-      {galleryImages.map((image, index) => (
-        <button
-          class="project-thumbnail"
-          type="button"
-          aria-label={`Mostrar imagen ${index + 1}`}
-          aria-current={index === 0 ? 'true' : 'false'}
-          data-gallery-index={index}
-        >
-          <img src={image} alt="" />
-        </button>
-      ))}
-    </div>
+    <div class="project-modal__thumbnails" data-gallery-thumbnails></div>
 
     <button class="carousel-arrow carousel-arrow--next" type="button" aria-label="Imagen siguiente" data-gallery-next>
       <span aria-hidden="true"></span>
