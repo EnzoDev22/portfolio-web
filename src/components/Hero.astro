@@ -3,50 +3,50 @@ import DownloadIcon from './icons/DownloadIcon.astro';
 ---
 
 <section id="inicio" class="panel hero" aria-labelledby="hero-title" data-reveal-section>
-  <div class="hero-profile">
-    <div class="portrait-wrap">
-      <img src="/assets/portrait-enzo.webp" width="1043" height="1043" alt="Retrato de Enzo Jesuan Del Sole" fetchpriority="high" />
+  <div class="hero-main">
+    <div class="hero-profile">
+      <div class="portrait-wrap">
+        <img src="/assets/portrait-enzo.webp" width="1043" height="1043" alt="Retrato de Enzo Jesuan Del Sole" fetchpriority="high" />
+      </div>
+    </div>
+    <div class="hero-copy">
+      <p class="hero-intro">
+        <span class="lang-es">Hola, soy <strong>Enzo Jesuan Del Sole</strong></span>
+        <span class="lang-en">Hi, I am <strong>Enzo Jesuan Del Sole</strong></span>
+      </p>
+      <h1 id="hero-title">
+        <span class="lang-es">Código sólido. <em>ADAPTABILIDAD</em> constante.</span>
+        <span class="lang-en">I develop software with <em>INTENT</em>.</span>
+      </h1>
+      <p class="lang-es">Construyo soluciones claras y confiables, adaptándome a las necesidades y tecnologías de cada proyecto.</p>
+      <p class="lang-en">I build clear, reliable solutions, adapting to the needs and technologies of each project.</p>
+      <div class="hero-actions">
+        <a class="cv-button" href="/cv-enzo-del-sole.pdf" download>
+          <DownloadIcon />
+          <span class="lang-es">Descargar CV</span><span class="lang-en">Download résumé</span>
+        </a>
+        <a
+          class="hero-social-link"
+          href="https://linkedin.com/in/enzo-jesuan-del-sole"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Visitar mi perfil de LinkedIn"
+        >
+          <span class="hero-social-icon hero-social-icon--linkedin" aria-hidden="true"></span>
+        </a>
+        <a
+          class="hero-social-link"
+          href="https://github.com/EnzoDev22"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Visitar mi perfil de GitHub"
+        >
+          <span class="hero-social-icon hero-social-icon--github" aria-hidden="true"></span>
+        </a>
+      </div>
     </div>
   </div>
-  <div class="hero-copy">
-    <div class="availability-badge">
-      <span class="availability-dot" aria-hidden="true"></span>
-      <span class="lang-es">Disponible para nuevas oportunidades</span>
-      <span class="lang-en">Available for new opportunities</span>
-    </div>
-    <p class="hero-intro">
-      <span class="lang-es">Hola, soy <strong>Enzo Jesuan Del Sole</strong></span>
-      <span class="lang-en">Hi, I am <strong>Enzo Jesuan Del Sole</strong></span>
-    </p>
-    <h1 id="hero-title">
-      <span class="lang-es">Código sólido. <em>ADAPTABILIDAD</em> constante.</span>
-      <span class="lang-en">I develop software with <em>INTENT</em>.</span>
-    </h1>
-    <p class="lang-es">Construyo soluciones claras y confiables, adaptándome a las necesidades y tecnologías de cada proyecto.</p>
-    <p class="lang-en">I build clear, reliable solutions, adapting to the needs and technologies of each project.</p>
-    <div class="hero-actions">
-      <a class="cv-button" href="/cv-enzo-del-sole.pdf" download>
-        <DownloadIcon />
-        <span class="lang-es">Descargar CV</span><span class="lang-en">Download résumé</span>
-      </a>
-      <a
-        class="hero-social-link"
-        href="https://linkedin.com/in/enzo-jesuan-del-sole"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Visitar mi perfil de LinkedIn"
-      >
-        <span class="hero-social-icon hero-social-icon--linkedin" aria-hidden="true"></span>
-      </a>
-      <a
-        class="hero-social-link"
-        href="https://github.com/EnzoDev22"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Visitar mi perfil de GitHub"
-      >
-        <span class="hero-social-icon hero-social-icon--github" aria-hidden="true"></span>
-      </a>
-    </div>
-  </div>
+  <a class="hero-scroll-indicator" href="#proyectos" aria-label="Ir a la sección Proyectos">
+    <span class="hero-scroll-indicator__mouse" aria-hidden="true"></span>
+  </a>
 </section>

@@ -32,6 +32,10 @@ import Contact from '../components/Contact.astro';
     const themeButton = document.querySelector<HTMLButtonElement>('.theme-toggle');
     const themeMeta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
 
+    addEventListener('scroll', () => {
+      console.log(window.scrollY);
+    });
+
     function syncTheme() {
       const dark = root.classList.contains('dark');
       themeButton?.setAttribute('aria-pressed', String(dark));
