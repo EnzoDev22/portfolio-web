@@ -1,22 +1,56 @@
-<div class="project-modal__gallery">
-  <figure class="project-modal__figure">
-    <img
-      alt=""
-      loading="lazy"
-      decoding="async"
-      data-modal-main-image
-    />
-  </figure>
+---
+import type { Project } from '../../data/projects';
 
-  <div class="project-modal__controls">
-    <button class="carousel-arrow carousel-arrow--previous" type="button" aria-label="Imagen anterior" data-gallery-prev>
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const images = project.images.length ? project.images : [project.image];
+---
+
+<section class="project-detail__gallery" aria-labelledby="project-gallery-title" data-project-gallery>
+  <h2 id="project-gallery-title">
+    <span class="lang-es">Galería</span>
+    <span class="lang-en">Gallery</span>
+  </h2>
+
+  <ul class="project-detail__thumbnails">
+    {images.map((image, index) => (
+      <li>
+        <button
+          class="project-thumbnail"
+          type="button"
+          aria-label={`Ampliar imagen ${index + 1} / Enlarge image ${index + 1}`}
+          data-gallery-open
+          data-index={index}
+          data-src={image}
+          data-alt-es={`${project.alt} — ${index + 1}`}
+          data-alt-en={`${project.altEn} — ${index + 1}`}
+        >
+          <img src={image} alt="" loading="lazy" decoding="async" />
+        </button>
+      </li>
+    ))}
+  </ul>
+
+  <dialog class="project-lightbox" aria-label="Galería de imágenes / Image gallery" data-gallery-lightbox>
+    <button class="project-lightbox__close" type="button" aria-label="Cerrar imagen" data-lightbox-close>
       <span aria-hidden="true"></span>
     </button>
-
-    <div class="project-modal__thumbnails" data-gallery-thumbnails></div>
-
-    <button class="carousel-arrow carousel-arrow--next" type="button" aria-label="Imagen siguiente" data-gallery-next>
+    <button class="project-lightbox__arrow project-lightbox__arrow--previous" type="button" aria-label="Imagen anterior" data-lightbox-prev>
       <span aria-hidden="true"></span>
     </button>
-  </div>
-</div>
+    <figure class="project-lightbox__figure">
+      <img alt="" data-lightbox-image />
+      <figcaption data-lightbox-counter></figcaption>
+    </figure>
+    <button class="project-lightbox__arrow project-lightbox__arrow--next" type="button" aria-label="Imagen siguiente" data-lightbox-next>
+      <span aria-hidden="true"></span>
+    </button>
+  </dialog>
+</section>
+
+<script>
+  import '../../scripts/project-gallery';
+</script>

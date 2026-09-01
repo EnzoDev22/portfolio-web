@@ -1,13 +1,22 @@
+---
+interface Props {
+  sectionPrefix?: string;
+}
+
+const { sectionPrefix = '' } = Astro.props;
+const sectionHref = (section: string) => `${sectionPrefix}#${section}`;
+---
+
 <header class="site-header" aria-label="Navegación principal">
-  <a class="logo" href="#inicio" aria-label="Ir al inicio">E N Z O</a>
+  <a class="logo" href={sectionHref('inicio')} aria-label="Ir al inicio">E N Z O</a>
 
   <div class="desktop-nav-slot">
     <nav class="desktop-nav" aria-label="Secciones del portfolio">
-      <a href="#inicio"><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
-      <a href="#proyectos"><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a>
-      <a href="#habilidades"><span class="lang-es">Habilidades</span><span class="lang-en">Skills</span></a>
-      <a href="#formacion"><span class="lang-es">Formación</span><span class="lang-en">Education</span></a>
-      <a href="#contacto"><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a>
+      <a href={sectionHref('inicio')}><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
+      <a href={sectionHref('proyectos')}><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a>
+      <a href={sectionHref('habilidades')}><span class="lang-es">Habilidades</span><span class="lang-en">Skills</span></a>
+      <a href={sectionHref('formacion')}><span class="lang-es">Formación</span><span class="lang-en">Education</span></a>
+      <a href={sectionHref('contacto')}><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a>
     </nav>
   </div>
 
@@ -31,11 +40,11 @@
   </div>
 
   <nav id="mobile-menu" class="mobile-nav" aria-label="Navegación mobile" hidden>
-    <a href="#inicio"><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
-    <a href="#proyectos"><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a>
-    <a href="#habilidades"><span class="lang-es">Habilidades</span><span class="lang-en">Skills</span></a>
-    <a href="#formacion"><span class="lang-es">Formación</span><span class="lang-en">Education</span></a>
-    <a href="#contacto"><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a>
+    <a href={sectionHref('inicio')}><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
+    <a href={sectionHref('proyectos')}><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a>
+    <a href={sectionHref('habilidades')}><span class="lang-es">Habilidades</span><span class="lang-en">Skills</span></a>
+    <a href={sectionHref('formacion')}><span class="lang-es">Formación</span><span class="lang-en">Education</span></a>
+    <a href={sectionHref('contacto')}><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a>
   </nav>
 </header>
 

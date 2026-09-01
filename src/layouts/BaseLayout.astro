@@ -26,6 +26,11 @@ const { title, description } = Astro.props;
       if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
         document.documentElement.classList.add('dark');
       }
+      const storedLanguage = localStorage.getItem('language');
+      if (storedLanguage === 'en') {
+        document.documentElement.dataset.lang = 'en';
+        document.documentElement.lang = 'en';
+      }
     </script>
   </head>
   <body>

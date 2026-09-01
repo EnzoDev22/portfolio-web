@@ -3,26 +3,66 @@ import type { Project } from '../../data/projects';
 
 interface Props {
   project: Project;
-  repeated?: boolean;
 }
 
-const { project, repeated = false } = Astro.props;
+const { project } = Astro.props;
 ---
 
-<article class:list={['project-card', { 'desktop-repeat': repeated }]}>
-  <img src={project.image} alt={project.alt} loading="lazy" decoding="async" />
-  <div class="project-overlay">
+<article class="project-card">
+  <div class="project-card__media">
+    <img src={project.image} alt={project.alt} loading="lazy" decoding="async" />
+  </div>
+
+  <div class="project-card__body">
     <h3>
-      <span class="lang-es">{project.title}</span>
-      <span class="lang-en">{project.titleEn}</span>
+      <a
+        class="open-project"
+        href={`/proyectos/${project.id}/`}
+        aria-label={`Ver detalles de ${project.title} / View details for ${project.titleEn}`}
+      >
+        <span class="lang-es">{project.title}</span>
+        <span class="lang-en">{project.titleEn}</span>
+      </a>
     </h3>
-    <button
-      class="open-project"
-      type="button"
-      aria-label={`Ver detalles de ${project.title}`}
-      aria-haspopup="dialog"
-      aria-controls="project-modal"
-      data-project-id={project.id}
-    ></button>
+
+    {project.inProduction && (
+      <p class="project-card__status">
+        <span class="lang-es">En producción</span>
+        <span class="lang-en">In production</span>
+      </p>
+    )}
+
+    <p class="project-card__subtitle">
+      <span class="lang-es">{project.subtitle}</span>
+      <span class="lang-en">{project.subtitleEn}</span>
+    </p>
+
+    <p class="project-card__description">
+      <span class="lang-es">{project.description}</span>
+      <span class="lang-en">{project.descriptionEn}</span>
+    </p>
+
+    <a
+      class="project-card__github"
+      href={project.githubUrl}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`Ver ${project.title} en GitHub / View ${project.titleEn} on GitHub`}
+    >
+      <span class="project-card__github-icon" aria-hidden="true"></span>
+      GitHub
+    </a>
+
+    <ul class="project-card__technologies" aria-label="Tecnologías / Technologies">
+      {project.technologies.map((technology) => (
+        <li>{technology.name}</li>
+      ))}
+    </ul>
+
+    <span class="project-card__cta" aria-hidden="true">
+      <span class="lang-es">Ver proyecto</span>
+      <span class="lang-en">View project</span>
+      <span class="project-card__arrow">→</span>
+    </span>
   </div>
 </article>

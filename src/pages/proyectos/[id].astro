@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import ProjectGallery from '../../components/projects/ProjectGallery.astro';
+import { projects, type Project } from '../../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout title={`${project.title} · Enzo Jesuan Del Sole`} description={project.description}>
+  <div class="page-shell">
+    <Header sectionPrefix="/" />
+
+    <main class="project-detail-page">
+      <article class="project-detail">
+        <a class="project-detail__back" href="/#proyectos">
+          <span aria-hidden="true"></span>
+          <span class="lang-es">Volver a proyectos</span>
+          <span class="lang-en">Back to projects</span>
+        </a>
+
+        <header class="project-detail__intro">
+          <h1>
+            <span class="lang-es">{project.title}</span>
+            <span class="lang-en">{project.titleEn}</span>
+          </h1>
+
+          <p class="project-detail__subtitle">
+            <span class="lang-es">{project.subtitle}</span>
+            <span class="lang-en">{project.subtitleEn}</span>
+          </p>
+
+          <div class="project-detail__technology-group">
+            <p class="project-detail__label">
+              <span class="lang-es">Tecnologías</span>
+              <span class="lang-en">Technologies</span>
+            </p>
+            <ul class="project-detail__technologies">
+              {project.technologies.map((technology) => <li>{technology.name}</li>)}
+            </ul>
+          </div>
+
+          <div class="project-detail__actions">
+            {project.videoUrl && (
+              <a class="modal-video" href={project.videoUrl} target="_blank" rel="noreferrer">
+                <span class="modal-video__icon" aria-hidden="true"></span>
+                <span class="lang-es">Ver en YouTube</span>
+                <span class="lang-en">Watch on YouTube</span>
+              </a>
+            )}
+            <a class="modal-github" href={project.githubUrl} target="_blank" rel="noreferrer" aria-label={`Ver ${project.title} en GitHub`}>
+              <span class="modal-github__icon" aria-hidden="true"></span>
+              GitHub
+            </a>
+            {project.projectUrl && (
+              <a class="modal-project-link" href={project.projectUrl} target="_blank" rel="noreferrer">
+                <span class="lang-es">Ver proyecto</span>
+                <span class="lang-en">View project</span>
+                <span class="modal-project-link__arrow" aria-hidden="true"></span>
+              </a>
+            )}
+          </div>
+        </header>
+
+        <div class="project-detail__narrative">
+          <section>
+            <h2><span class="lang-es">El problema</span><span class="lang-en">The problem</span></h2>
+            <p><span class="lang-es">{project.problem}</span><span class="lang-en">{project.problemEn}</span></p>
+          </section>
+          <section>
+            <h2><span class="lang-es">Qué construí</span><span class="lang-en">What I built</span></h2>
+            <p><span class="lang-es">{project.built}</span><span class="lang-en">{project.builtEn}</span></p>
+          </section>
+          <section>
+            <h2><span class="lang-es">Decisiones técnicas</span><span class="lang-en">Technical decisions</span></h2>
+            <p><span class="lang-es">{project.technicalDecisions}</span><span class="lang-en">{project.technicalDecisionsEn}</span></p>
+          </section>
+          <section>
+            <h2><span class="lang-es">El resultado</span><span class="lang-en">The result</span></h2>
+            <p><span class="lang-es">{project.result}</span><span class="lang-en">{project.resultEn}</span></p>
+          </section>
+        </div>
+
+        <ProjectGallery project={project} />
+      </article>
+    </main>
+  </div>
+
+  <script>
+    import '../../scripts/site-controls';
+  </script>
+</BaseLayout>
