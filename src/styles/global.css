@@ -1843,6 +1843,7 @@ footer {
 
   .section-block { padding: 92px clamp(34px, 5vw, 68px); }
   .section-block > p { font-size: .98rem; }
+  .skills-section > p { max-width: none; }
   .projects-grid,
   .education-grid { margin-top: 46px; }
   .mobile-hint { display: none; }
