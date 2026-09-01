@@ -22,36 +22,3 @@ export const skills = [
   ['Figma', '/assets/tech/tech-figma.svg'],
   ['Codex', '/assets/tech/tech-codex.svg'],
 ] as const;
-
-export const education = [
-  {
-    eyebrow: '2022 · 2026',
-    eyebrowEn: '2022 · 2026',
-    title: 'Tecnicatura Universitaria en Desarrollo de Aplicaciones Informáticas',
-    titleEn: 'University Technical Degree in Software Development',
-    source: 'Universidad Nacional del Centro de la Provincia de Buenos Aires',
-    sourceEn: 'National University of Central Buenos Aires Province',
-    body: 'Aprendí a sobre el ciclo de vida del desarrollo de software, desde la planificación hasta la implementación y mantenimiento de aplicaciones.',
-    bodyEn: 'I learned about the software development life cycle, from planning to implementation and maintenance of applications.',
-  },
-  {
-    eyebrow: '2026 · 2026',
-    eyebrowEn: '2026 · 2026',
-    title: 'Spring Boot y Angular',
-    titleEn: 'Spring Boot and Angular',
-    source: 'Udemy',
-    sourceEn: 'Udemy',
-    body: 'Desarrollé habilidades en el desarrollo de aplicaciones web utilizando Spring Boot y Angular, incluyendo la creación de APIs RESTful y la construcción de interfaces de usuario interactivas.',
-    bodyEn: 'I developed skills in web application development using Spring Boot and Angular, including creating RESTful APIs and building interactive user interfaces.',
-  },
-  {
-    eyebrow: 'Actualidad',
-    eyebrowEn: 'Currently',
-    title: 'Aprendizaje continuo',
-    titleEn: 'Continuous learning',
-    source: 'Cursos · Práctica · Proyectos',
-    sourceEn: 'Courses · Practice · Projects',
-    body: 'Enfoque en profundizar conocimientos y habilidades en el desarrollo con Angular y Spring Boot, así como en la exploración de nuevas tecnologías y herramientas para mejorar la eficiencia y calidad del desarrollo de software.',
-    bodyEn: 'Focus on deepening knowledge and skills in development with Angular and Spring Boot, as well as exploring new technologies and tools to improve efficiency and quality in software development.',
-  },
-] as const;

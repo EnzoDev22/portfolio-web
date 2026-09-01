@@ -1,0 +1,140 @@
+---
+import { academicExperience, courses, workExperience } from '../data/experience';
+
+const hasCertificates = courses.some((course) => Boolean(course.certificateImage));
+---
+
+<section id="experiencia" class="panel section-block experience-section" aria-labelledby="experience-title" data-reveal-section data-certificate-viewer>
+  <h2 id="experience-title">
+    <span class="lang-es">Mi</span><span class="lang-en">My</span>
+    <em><span class="lang-es">experiencia</span><span class="lang-en">experience</span></em>
+  </h2>
+  <p>
+    <span class="lang-es">Un recorrido por los roles, aprendizajes y espacios de formación que impulsan mi crecimiento profesional.</span>
+    <span class="lang-en">A journey through the roles, learning experiences and education that drive my professional growth.</span>
+  </p>
+
+  <div class="experience-content">
+    <section class="experience-group" aria-labelledby="work-experience-title">
+      <header class="experience-group__heading">
+        <p class="experience-kicker" aria-hidden="true">01</p>
+        <h3 id="work-experience-title">
+          <span class="lang-es">Experiencia laboral</span>
+          <span class="lang-en">Work experience</span>
+        </h3>
+      </header>
+
+      <div class="experience-grid experience-grid--work">
+        {workExperience.map((item) => (
+          <article class="experience-card experience-card--work">
+            <div class="experience-card__identity">
+              <p class="experience-period">
+                <span class="dot" aria-hidden="true">●</span>
+                <span class="lang-es">{item.startYear} · {item.current ? 'Actualidad' : item.endYear}</span>
+                <span class="lang-en">{item.startYear} · {item.current ? 'Present' : item.endYear}</span>
+              </p>
+              <h4><span class="lang-es">{item.role}</span><span class="lang-en">{item.roleEn}</span></h4>
+              <p class="experience-source">{item.company}</p>
+              {item.description && item.descriptionEn && (
+                <p class="experience-description"><span class="lang-es">{item.description}</span><span class="lang-en">{item.descriptionEn}</span></p>
+              )}
+            </div>
+
+            <div class="experience-card__skills">
+              <p class="experience-label"><span class="lang-es">Aptitudes</span><span class="lang-en">Skills</span></p>
+              <ul class="experience-skills">
+                {item.skills.map((skill) => (
+                  <li><span class="lang-es">{skill.label}</span><span class="lang-en">{skill.labelEn}</span></li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <aside class="experience-bridge">
+      <span class="experience-bridge__quote experience-bridge__quote--open" aria-hidden="true">“</span>
+      <p>
+        <span class="lang-es">La <strong class="experience-bridge__emphasis">experiencia</strong> no se construye solo desde un puesto: también nace de la curiosidad, la <strong class="experience-bridge__emphasis">práctica</strong> y la decisión de seguir <strong class="experience-bridge__emphasis">mejorando</strong>.</span>
+        <span class="lang-en"><strong class="experience-bridge__emphasis">Experience</strong> is built not only through a role, but also through curiosity, <strong class="experience-bridge__emphasis">practice</strong> and the decision to keep <strong class="experience-bridge__emphasis">improving</strong>.</span>
+      </p>
+      <span class="experience-bridge__quote experience-bridge__quote--close" aria-hidden="true">”</span>
+    </aside>
+
+    <section class="experience-group" aria-labelledby="courses-title">
+      <header class="experience-group__heading">
+        <p class="experience-kicker" aria-hidden="true">02</p>
+        <h3 id="courses-title">
+          <span class="lang-es">Cursos y certificaciones</span>
+          <span class="lang-en">Courses and certifications</span>
+        </h3>
+      </header>
+
+      <div class="experience-grid">
+        {courses.map((course) => (
+          <article class="experience-card experience-card--course">
+            <p class="experience-period"><span class="dot" aria-hidden="true">●</span>{course.durationHours} <span class="lang-es">horas</span><span class="lang-en">hours</span></p>
+            <h4><span class="lang-es">{course.title}</span><span class="lang-en">{course.titleEn}</span></h4>
+            <div class="course-card__footer">
+              <p class="experience-source">{course.institution}</p>
+              {course.certificateImage && (
+                <button
+                  class="certificate-button"
+                  type="button"
+                  data-certificate-open
+                  data-certificate-src={course.certificateImage}
+                  data-certificate-alt-es={course.certificateAlt ?? `Certificado de ${course.title}`}
+                  data-certificate-alt-en={course.certificateAltEn ?? `${course.titleEn} certificate`}
+                  data-certificate-title-es={course.title}
+                  data-certificate-title-en={course.titleEn}
+                >
+                  <span class="certificate-button__label lang-es">Ver certificado</span>
+                  <span class="certificate-button__label lang-en">View certificate</span>
+                  <span class="certificate-button__icon" aria-hidden="true"></span>
+                </button>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="experience-group" aria-labelledby="academic-title">
+      <header class="experience-group__heading">
+        <p class="experience-kicker" aria-hidden="true">03</p>
+        <h3 id="academic-title">
+          <span class="lang-es">Formación académica</span>
+          <span class="lang-en">Academic background</span>
+        </h3>
+      </header>
+
+      <div class="experience-grid">
+        {academicExperience.map((item) => (
+          <article class="experience-card">
+            <p class="experience-period"><span class="dot" aria-hidden="true">●</span>{item.startYear} · {item.endYear}</p>
+            <h4><span class="lang-es">{item.title}</span><span class="lang-en">{item.titleEn}</span></h4>
+            <p class="experience-source"><span class="lang-es">{item.institution}</span><span class="lang-en">{item.institutionEn}</span></p>
+            <p class="experience-description"><span class="lang-es">{item.description}</span><span class="lang-en">{item.descriptionEn}</span></p>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  {hasCertificates && (
+    <dialog class="project-lightbox certificate-lightbox" aria-label="Certificado del curso / Course certificate" data-certificate-dialog>
+      <button class="project-lightbox__close" type="button" aria-label="Cerrar certificado" data-certificate-close>
+        <span aria-hidden="true"></span>
+      </button>
+      <figure class="project-lightbox__figure certificate-lightbox__figure">
+        <img alt="" data-certificate-image />
+        <figcaption data-certificate-caption></figcaption>
+      </figure>
+    </dialog>
+  )}
+</section>
+
+<script>
+  import '../scripts/certificate-viewer';
+</script>
