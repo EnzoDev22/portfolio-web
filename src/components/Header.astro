@@ -1,9 +1,10 @@
 ---
 interface Props {
   sectionPrefix?: string;
+  activeSection?: string;
 }
 
-const { sectionPrefix = '' } = Astro.props;
+const { sectionPrefix = '', activeSection } = Astro.props;
 const sectionHref = (section: string) => `${sectionPrefix}#${section}`;
 ---
 
@@ -13,7 +14,7 @@ const sectionHref = (section: string) => `${sectionPrefix}#${section}`;
   <div class="desktop-nav-slot">
     <nav class="desktop-nav" aria-label="Secciones del portfolio">
       <a href={sectionHref('inicio')}><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
-      <a href={sectionHref('proyectos')}><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a>
+      <a href={sectionHref('proyectos')} class:list={{ 'is-active': activeSection === 'proyectos' }} aria-current={activeSection === 'proyectos' ? 'page' : undefined}><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a>
       <a href={sectionHref('habilidades')}><span class="lang-es">Habilidades</span><span class="lang-en">Skills</span></a>
       <a href={sectionHref('formacion')}><span class="lang-es">Formación</span><span class="lang-en">Education</span></a>
       <a href={sectionHref('contacto')}><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a>
@@ -41,7 +42,7 @@ const sectionHref = (section: string) => `${sectionPrefix}#${section}`;
 
   <nav id="mobile-menu" class="mobile-nav" aria-label="Navegación mobile" hidden>
     <a href={sectionHref('inicio')}><span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
-    <a href={sectionHref('proyectos')}><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a>
+    <a href={sectionHref('proyectos')} class:list={{ 'is-active': activeSection === 'proyectos' }} aria-current={activeSection === 'proyectos' ? 'page' : undefined}><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a>
     <a href={sectionHref('habilidades')}><span class="lang-es">Habilidades</span><span class="lang-en">Skills</span></a>
     <a href={sectionHref('formacion')}><span class="lang-es">Formación</span><span class="lang-en">Education</span></a>
     <a href={sectionHref('contacto')}><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a>
