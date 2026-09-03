@@ -11,8 +11,11 @@ import DownloadIcon from './icons/DownloadIcon.astro';
     </div>
     <div class="hero-copy">
       <p class="hero-intro">
-        <span class="lang-es">Hola, soy <strong>Enzo Jesuan Del Sole</strong></span>
-        <span class="lang-en">Hi, I am <strong>Enzo Jesuan Del Sole</strong></span>
+        <span class="lang-es">Hola, soy </span><span class="lang-en">Hi, I am </span>
+        <strong class="hero-typewriter">
+          <span aria-hidden="true" data-hero-typewriter data-text-es-first="Desarrollador Full Stack" data-text-en-first="Full Stack Developer" data-text-second="Enzo Jesuan Del Sole"></span>
+          <span class="hero-typewriter__accessible" data-hero-typewriter-label>Desarrollador Full Stack</span>
+        </strong>
       </p>
       <h1 id="hero-title">
         <span class="lang-es">Código sólido. <em>ADAPTABILIDAD</em> constante.</span>
@@ -50,3 +53,65 @@ import DownloadIcon from './icons/DownloadIcon.astro';
     <span class="hero-scroll-indicator__mouse" aria-hidden="true"></span>
   </a>
 </section>
+
+<script>
+  const typewriter = document.querySelector<HTMLElement>('[data-hero-typewriter]');
+  const typewriterLabel = document.querySelector<HTMLElement>('[data-hero-typewriter-label]');
+
+  if (typewriter) {
+    const root = document.documentElement;
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let timer: number | undefined;
+    let cycle = 0;
+
+    const restart = () => {
+      cycle += 1;
+      window.clearTimeout(timer);
+
+      const currentCycle = cycle;
+      const texts = root.dataset.lang === 'en'
+        ? [typewriter.dataset.textEnFirst!, typewriter.dataset.textSecond!]
+        : [typewriter.dataset.textEsFirst!, typewriter.dataset.textSecond!];
+      let textIndex = 0;
+
+      if (reducedMotion.matches) {
+        typewriter.textContent = texts[0];
+        if (typewriterLabel) typewriterLabel.textContent = texts[0];
+        return;
+      }
+
+      let index = 0;
+      const type = () => {
+        if (currentCycle !== cycle) return;
+        const text = texts[textIndex];
+        if (index === 0 && typewriterLabel) typewriterLabel.textContent = text;
+        typewriter.textContent = text.slice(0, index);
+        if (index < text.length) {
+          index += 1;
+          timer = window.setTimeout(type, 70);
+          return;
+        }
+        timer = window.setTimeout(erase, 1500);
+      };
+
+      const erase = () => {
+        if (currentCycle !== cycle) return;
+        const text = texts[textIndex];
+        typewriter.textContent = text.slice(0, index);
+        if (index > 0) {
+          index -= 1;
+          timer = window.setTimeout(erase, 40);
+          return;
+        }
+        textIndex = (textIndex + 1) % texts.length;
+        timer = window.setTimeout(type, 450);
+      };
+
+      type();
+    };
+
+    new MutationObserver(restart).observe(root, { attributes: true, attributeFilter: ['data-lang'] });
+    reducedMotion.addEventListener('change', restart);
+    restart();
+  }
+</script>
