@@ -1,0 +1,11 @@
+{
+  "meta": { "title": "Enzo Jesuan Del Sole · Desarrollador Full Stack", "description": "Portfolio de Enzo Jesuan Del Sole, desarrollador Full Stack." },
+  "nav": { "label": "Navegación principal", "home": "Inicio", "projects": "Proyectos", "skills": "Habilidades", "experience": "Experiencia", "contact": "Contacto" },
+  "actions": { "backToTop": "Volver al inicio", "language": "Cambiar a inglés", "openMenu": "Abrir menú", "closeMenu": "Cerrar menú", "lightTheme": "Activar tema claro", "darkTheme": "Activar tema oscuro", "viewProject": "Ver proyecto", "backProjects": "Volver a proyectos", "technologies": "Tecnologías", "gallery": "Galería", "problem": "El problema", "built": "Qué construí", "decisions": "Decisiones técnicas", "result": "El resultado" },
+  "hero": { "intro": "Hola, soy", "first": "Desarrollador Full Stack", "second": "Enzo Jesuan Del Sole", "title": "Código sólido. ADAPTABILIDAD constante.", "copy": "Construyo soluciones claras y confiables, adaptándome a las necesidades y tecnologías de cada proyecto.", "download": "Descargar CV", "portraitAlt": "Retrato de Enzo Jesuan Del Sole" },
+  "projects": { "title": "Proyectos Destacados", "hint": "Tocá un proyecto para conocerlo", "production": "En producción" },
+  "skills": { "title": "Mis Habilidades", "copy": "Tecnologías y herramientas que uso para convertir ideas en productos digitales.", "label": "Tecnologías" },
+  "experience": { "title": "Mi experiencia", "copy": "Un recorrido por los roles, aprendizajes y espacios de formación que impulsan mi crecimiento profesional.", "work": "Experiencia laboral", "courses": "Cursos y certificaciones", "academic": "Formación académica", "current": "Actualidad", "skills": "Aptitudes", "hours": "horas", "certificate": "Ver certificado" },
+  "contact": { "kicker": "Contacto", "title": "¿Tenés un proyecto o una oportunidad para conversar?", "copy": "Estoy abierto a nuevas oportunidades, colaboraciones y desafíos donde pueda aportar soluciones claras y confiables.", "write": "Escribime", "idea": "Contame sobre tu idea", "name": "Nombre", "email": "Correo electrónico", "subject": "Asunto", "message": "Mensaje", "protection": "Validación y protección antispam.", "send": "Enviar mensaje" },
+  "footer": { "role": "Desarrollador Full Stack", "social": "Redes sociales" }
+}

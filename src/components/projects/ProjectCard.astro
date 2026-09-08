@@ -1,45 +1,44 @@
 ---
 import type { Project } from '../../data/projects';
+import { t } from 'i18next';
 
 interface Props {
   project: Project;
+  locale: 'es' | 'en';
 }
 
-const { project } = Astro.props;
+const { project, locale } = Astro.props;
+const value = (es: string, en: string) => locale === 'en' ? en : es;
 ---
 
 <article class="project-card">
   <div class="project-card__media">
-    <img src={project.image} alt={project.alt} loading="lazy" decoding="async" />
+    <img src={project.image} alt={value(project.alt, project.altEn)} loading="lazy" decoding="async" />
   </div>
 
   <div class="project-card__body">
     <h3>
       <a
         class="open-project"
-        href={`/proyectos/${project.id}/`}
-        aria-label={`Ver detalles de ${project.title} / View details for ${project.titleEn}`}
+        href={`${locale === 'en' ? '/en' : ''}/proyectos/${project.id}/`}
+        aria-label={`${t('actions.viewProject')}: ${value(project.title, project.titleEn)}`}
       >
-        <span class="lang-es">{project.title}</span>
-        <span class="lang-en">{project.titleEn}</span>
+        {value(project.title, project.titleEn)}
       </a>
     </h3>
 
     {project.inProduction && (
       <p class="project-card__status">
-        <span class="lang-es">En producción</span>
-        <span class="lang-en">In production</span>
+        {t('projects.production')}
       </p>
     )}
 
     <p class="project-card__subtitle">
-      <span class="lang-es">{project.subtitle}</span>
-      <span class="lang-en">{project.subtitleEn}</span>
+      {value(project.subtitle, project.subtitleEn)}
     </p>
 
     <p class="project-card__description">
-      <span class="lang-es">{project.description}</span>
-      <span class="lang-en">{project.descriptionEn}</span>
+      {value(project.description, project.descriptionEn)}
     </p>
 
     <a
@@ -47,21 +46,20 @@ const { project } = Astro.props;
       href={project.githubUrl}
       target="_blank"
       rel="noreferrer"
-      aria-label={`Ver ${project.title} en GitHub / View ${project.titleEn} on GitHub`}
+      aria-label={`GitHub: ${value(project.title, project.titleEn)}`}
     >
       <span class="project-card__github-icon" aria-hidden="true"></span>
       GitHub
     </a>
 
-    <ul class="project-card__technologies" aria-label="Tecnologías / Technologies">
+    <ul class="project-card__technologies" aria-label={t('actions.technologies')}>
       {project.technologies.map((technology) => (
         <li>{technology.name}</li>
       ))}
     </ul>
 
     <span class="project-card__cta" aria-hidden="true">
-      <span class="lang-es">Ver proyecto</span>
-      <span class="lang-en">View project</span>
+      {t('actions.viewProject')}
       <span class="project-card__arrow">→</span>
     </span>
   </div>

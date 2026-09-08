@@ -54,7 +54,7 @@ if (form) {
   let isSubmitting = false;
   let currentState: FormState = 'idle';
 
-  const getLanguage = (): Language => root.dataset.lang === 'en' ? 'en' : 'es';
+  const getLanguage = (): Language => root.lang === 'en' ? 'en' : 'es';
 
   const setButtonText = () => {
     if (!submitButton) return;
@@ -126,7 +126,6 @@ if (form) {
     });
   }
 
-  new MutationObserver(updateLocalizedContent).observe(root, { attributes: true, attributeFilter: ['data-lang'] });
   updateLocalizedContent();
 
   form.addEventListener('submit', async (event) => {

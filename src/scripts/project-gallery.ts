@@ -17,21 +17,17 @@ document.querySelectorAll<HTMLElement>('[data-project-gallery]').forEach((galler
 
   let activeIndex = 0;
   let previousFocus: HTMLButtonElement | null = null;
-  const isEnglish = () => document.documentElement.dataset.lang === 'en';
 
   function updateImage(index: number) {
     activeIndex = (index + thumbnails.length) % thumbnails.length;
     const thumbnail = thumbnails[activeIndex];
     fullImage.src = thumbnail.dataset.src || '';
-    fullImage.alt = isEnglish() ? thumbnail.dataset.altEn || '' : thumbnail.dataset.altEs || '';
+    fullImage.alt = thumbnail.dataset.alt || '';
     if (lightboxCounter) lightboxCounter.textContent = `${activeIndex + 1} / ${thumbnails.length}`;
 
     const hasMultipleImages = thumbnails.length > 1;
     if (previousButton) previousButton.hidden = !hasMultipleImages;
     if (nextButton) nextButton.hidden = !hasMultipleImages;
-    dismissButton.setAttribute('aria-label', isEnglish() ? 'Close image' : 'Cerrar imagen');
-    previousButton?.setAttribute('aria-label', isEnglish() ? 'Previous image' : 'Imagen anterior');
-    nextButton?.setAttribute('aria-label', isEnglish() ? 'Next image' : 'Imagen siguiente');
   }
 
   function closeLightbox() {
@@ -77,7 +73,4 @@ document.querySelectorAll<HTMLElement>('[data-project-gallery]').forEach((galler
     fullImage.alt = '';
   });
 
-  new MutationObserver(() => {
-    if (galleryDialog.open) updateImage(activeIndex);
-  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
 });

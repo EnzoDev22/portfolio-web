@@ -15,7 +15,7 @@ document.querySelectorAll<HTMLElement>('[data-certificate-viewer]').forEach((vie
   const dismissButton = closeButton;
   let previousFocus: HTMLButtonElement | null = null;
   let activeButton: HTMLButtonElement | null = null;
-  const isEnglish = () => document.documentElement.dataset.lang === 'en';
+  const isEnglish = () => document.documentElement.lang === 'en';
 
   function updateCertificate() {
     if (!activeButton) return;
@@ -62,7 +62,4 @@ document.querySelectorAll<HTMLElement>('[data-certificate-viewer]').forEach((vie
     certificateImage.alt = '';
   });
 
-  new MutationObserver(() => {
-    if (certificateDialog.open) updateCertificate();
-  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
 });

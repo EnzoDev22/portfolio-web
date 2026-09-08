@@ -5,13 +5,14 @@ import ScrollProgress from '../components/ScrollProgress.astro';
 interface Props {
   title: string;
   description: string;
+  locale: 'es' | 'en';
 }
 
-const { title, description } = Astro.props;
+const { title, description, locale } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" data-lang="es">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,11 +26,6 @@ const { title, description } = Astro.props;
       const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
       if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
         document.documentElement.classList.add('dark');
-      }
-      const storedLanguage = localStorage.getItem('language');
-      if (storedLanguage === 'en') {
-        document.documentElement.dataset.lang = 'en';
-        document.documentElement.lang = 'en';
       }
     </script>
   </head>

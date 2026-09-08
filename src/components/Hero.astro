@@ -1,5 +1,6 @@
 ---
 import DownloadIcon from './icons/DownloadIcon.astro';
+import { t } from 'i18next';
 ---
 
 <section id="inicio" class="panel hero" aria-labelledby="hero-title" data-reveal-section>
@@ -11,29 +12,27 @@ import DownloadIcon from './icons/DownloadIcon.astro';
     </div>
     <div class="hero-copy">
       <p class="hero-intro">
-        <span class="lang-es">Hola, soy </span><span class="lang-en">Hi, I am </span>
+        {t('hero.intro')}{' '}
         <strong class="hero-typewriter">
-          <span aria-hidden="true" data-hero-typewriter data-text-es-first="Desarrollador Full Stack" data-text-en-first="Full Stack Developer" data-text-second="Enzo Jesuan Del Sole"></span>
-          <span class="hero-typewriter__accessible" data-hero-typewriter-label>Desarrollador Full Stack</span>
+          <span aria-hidden="true" data-hero-typewriter data-text-first={t('hero.first')} data-text-second={t('hero.second')}></span>
+          <span class="hero-typewriter__accessible" data-hero-typewriter-label>{t('hero.first')}</span>
         </strong>
       </p>
       <h1 id="hero-title">
-        <span class="lang-es">Código sólido. <em>ADAPTABILIDAD</em> constante.</span>
-        <span class="lang-en">I develop software with <em>INTENT</em>.</span>
+        {t('hero.title')}
       </h1>
-      <p class="lang-es">Construyo soluciones claras y confiables, adaptándome a las necesidades y tecnologías de cada proyecto.</p>
-      <p class="lang-en">I build clear, reliable solutions, adapting to the needs and technologies of each project.</p>
+      <p>{t('hero.copy')}</p>
       <div class="hero-actions">
         <a class="cv-button" href="/cv-enzo-del-sole.pdf" download>
           <DownloadIcon />
-          <span class="lang-es">Descargar CV</span><span class="lang-en">Download résumé</span>
+          {t('hero.download')}
         </a>
         <a
           class="hero-social-link"
           href="https://linkedin.com/in/enzo-jesuan-del-sole"
           target="_blank"
           rel="noreferrer"
-          aria-label="Visitar mi perfil de LinkedIn"
+        aria-label="LinkedIn"
         >
           <span class="hero-social-icon hero-social-icon--linkedin" aria-hidden="true"></span>
         </a>
@@ -42,14 +41,14 @@ import DownloadIcon from './icons/DownloadIcon.astro';
           href="https://github.com/EnzoDev22"
           target="_blank"
           rel="noreferrer"
-          aria-label="Visitar mi perfil de GitHub"
+        aria-label="GitHub"
         >
           <span class="hero-social-icon hero-social-icon--github" aria-hidden="true"></span>
         </a>
       </div>
     </div>
   </div>
-  <a class="hero-scroll-indicator" href="#proyectos" aria-label="Ir a la sección Proyectos">
+  <a class="hero-scroll-indicator" href="#proyectos" aria-label={t('nav.projects')}>
     <span class="hero-scroll-indicator__mouse" aria-hidden="true"></span>
   </a>
 </section>
@@ -59,7 +58,6 @@ import DownloadIcon from './icons/DownloadIcon.astro';
   const typewriterLabel = document.querySelector<HTMLElement>('[data-hero-typewriter-label]');
 
   if (typewriter) {
-    const root = document.documentElement;
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
     let timer: number | undefined;
     let cycle = 0;
@@ -69,9 +67,7 @@ import DownloadIcon from './icons/DownloadIcon.astro';
       window.clearTimeout(timer);
 
       const currentCycle = cycle;
-      const texts = root.dataset.lang === 'en'
-        ? [typewriter.dataset.textEnFirst!, typewriter.dataset.textSecond!]
-        : [typewriter.dataset.textEsFirst!, typewriter.dataset.textSecond!];
+      const texts = [typewriter.dataset.textFirst!, typewriter.dataset.textSecond!];
       let textIndex = 0;
 
       if (reducedMotion.matches) {
@@ -110,7 +106,6 @@ import DownloadIcon from './icons/DownloadIcon.astro';
       type();
     };
 
-    new MutationObserver(restart).observe(root, { attributes: true, attributeFilter: ['data-lang'] });
     reducedMotion.addEventListener('change', restart);
     restart();
   }

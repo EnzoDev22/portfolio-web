@@ -1,18 +1,19 @@
 ---
 import type { Project } from '../../data/projects';
+import { t } from 'i18next';
 
 interface Props {
   project: Project;
+  locale: 'es' | 'en';
 }
 
-const { project } = Astro.props;
+const { project, locale } = Astro.props;
 const images = project.images.length ? project.images : [project.image];
 ---
 
 <section class="project-detail__gallery" aria-labelledby="project-gallery-title" data-project-gallery>
   <h2 id="project-gallery-title">
-    <span class="lang-es">Galería</span>
-    <span class="lang-en">Gallery</span>
+    {t('actions.gallery')}
   </h2>
 
   <ul class="project-detail__thumbnails">
@@ -21,12 +22,11 @@ const images = project.images.length ? project.images : [project.image];
         <button
           class="project-thumbnail"
           type="button"
-          aria-label={`Ampliar imagen ${index + 1} / Enlarge image ${index + 1}`}
+          aria-label={`${t('actions.gallery')} ${index + 1}`}
           data-gallery-open
           data-index={index}
           data-src={image}
-          data-alt-es={`${project.alt} — ${index + 1}`}
-          data-alt-en={`${project.altEn} — ${index + 1}`}
+          data-alt={`${locale === 'en' ? project.altEn : project.alt} — ${index + 1}`}
         >
           <img src={image} alt="" loading="lazy" decoding="async" />
         </button>
@@ -34,8 +34,8 @@ const images = project.images.length ? project.images : [project.image];
     ))}
   </ul>
 
-  <dialog class="project-lightbox" aria-label="Galería de imágenes / Image gallery" data-gallery-lightbox>
-    <button class="project-lightbox__close" type="button" aria-label="Cerrar imagen" data-lightbox-close>
+  <dialog class="project-lightbox" aria-label={t('actions.gallery')} data-gallery-lightbox>
+    <button class="project-lightbox__close" type="button" aria-label={t('actions.gallery')} data-lightbox-close>
       <span aria-hidden="true"></span>
     </button>
     <button class="project-lightbox__arrow project-lightbox__arrow--previous" type="button" aria-label="Imagen anterior" data-lightbox-prev>
