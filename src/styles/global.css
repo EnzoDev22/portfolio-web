@@ -1413,6 +1413,10 @@ main {
 
 .skills-viewport:focus-within .skills-rail { animation-play-state: paused; }
 
+@media (hover: hover) {
+  .skills-rail:has(.skill-card:hover) { animation-play-state: paused; }
+}
+
 .skill-card {
   display: flex;
   width: 112px;

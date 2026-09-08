@@ -1,5 +1,9 @@
 # Repository Guidelines
 
+## Default Skill: Ponytail
+
+Use the `ponytail:ponytail` skill at `full` intensity for every user prompt in this repository, without requiring an explicit mention. Read its `SKILL.md` from the available skills catalog before applying it; do not hardcode a versioned plugin-cache path. This repository preference explicitly includes non-coding prompts. Honor explicit user requests to change intensity or disable Ponytail (`stop ponytail` / `normal mode`). If the skill is unavailable, briefly report that and follow its minimal-change principles without claiming the skill was loaded. Never sacrifice requested functionality, correctness, security, or accessibility for brevity.
+
 ## Project Structure & Module Organization
 
 This portfolio is an Astro 6 static site. Route entry points live in `src/pages/`, shared page shells in `src/layouts/`, and reusable UI in `src/components/`. Project-specific component groups belong in subfolders such as `src/components/projects/`. Keep structured portfolio content in `src/data/`, browser behavior in `src/scripts/`, and shared tokens and responsive rules in `src/styles/global.css`.
