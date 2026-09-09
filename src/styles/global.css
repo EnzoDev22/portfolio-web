@@ -45,7 +45,7 @@
 
 :root {
   color-scheme: light;
-  --page: #f4f6f3;
+  --page: #edfff1;
   --page-alt: #e9ece7;
   --surface: #fff;
   --surface-soft: #eef1ed;
@@ -54,7 +54,7 @@
   --quiet: #71776d;
   --silver: #bebebe;
   --blue: #698696;
-  --accent: #79ed91;
+  --accent: #5fb571;
   --accent-strong: #4dbe55;
   --accent-ink: #0b1a0d;
   --line: #d6dbd4;
