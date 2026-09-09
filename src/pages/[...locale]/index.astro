@@ -17,7 +17,7 @@ const locale = Astro.params.locale === 'en' ? 'en' : 'es';
 <BaseLayout title={t('meta.title')} description={t('meta.description')} locale={locale}>
   <div class="page-shell">
     <Header locale={locale} />
-    <main><Hero /><Projects locale={locale} /><Skills /><Experience locale={locale} /><Contact /></main>
+    <main><Hero locale={locale} /><Projects locale={locale} /><Skills /><Experience locale={locale} /><Contact /></main>
     <div class="back-to-top-wrap"><a class="back-to-top" href="#inicio" aria-label={t('actions.backToTop')}><span aria-hidden="true"></span></a></div>
     <Footer />
   </div>

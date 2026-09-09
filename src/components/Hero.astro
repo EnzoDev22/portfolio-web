@@ -3,6 +3,13 @@ import DownloadIcon from './icons/DownloadIcon.astro';
 import { Image } from 'astro:assets';
 import { t } from 'i18next';
 import portraitEnzo from '../assets/portrait-enzo.webp';
+
+interface Props {
+  locale: 'es' | 'en';
+}
+
+const { locale } = Astro.props;
+const cvHref = `/cv-enzo-del-sole-${locale}.pdf`;
 ---
 
 <section id="inicio" class="panel hero" aria-labelledby="hero-title" data-reveal-section>
@@ -32,7 +39,7 @@ import portraitEnzo from '../assets/portrait-enzo.webp';
       </h1>
       <p>{t('hero.copy')}</p>
       <div class="hero-actions">
-        <a class="cv-button" href="/cv-enzo-del-sole.pdf" download>
+        <a class="cv-button" href={cvHref} download>
           <DownloadIcon />
           {t('hero.download')}
         </a>
