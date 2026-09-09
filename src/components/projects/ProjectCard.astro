@@ -1,5 +1,6 @@
 ---
 import type { Project } from '../../data/projects';
+import { Image } from 'astro:assets';
 import { t } from 'i18next';
 
 interface Props {
@@ -13,7 +14,7 @@ const value = (es: string, en: string) => locale === 'en' ? en : es;
 
 <article class="project-card">
   <div class="project-card__media">
-    <img src={project.image} alt={value(project.alt, project.altEn)} loading="lazy" decoding="async" />
+    <Image src={project.image} alt={value(project.alt, project.altEn)} layout="full-width" loading="lazy" decoding="async" />
   </div>
 
   <div class="project-card__body">

@@ -1,5 +1,6 @@
 ---
 import type { Project } from '../../data/projects';
+import { Image } from 'astro:assets';
 import { t } from 'i18next';
 
 interface Props {
@@ -25,10 +26,10 @@ const images = project.images.length ? project.images : [project.image];
           aria-label={`${t('actions.gallery')} ${index + 1}`}
           data-gallery-open
           data-index={index}
-          data-src={image}
+          data-src={image.src}
           data-alt={`${locale === 'en' ? project.altEn : project.alt} — ${index + 1}`}
         >
-          <img src={image} alt="" loading="lazy" decoding="async" />
+          <Image src={image} alt="" layout="full-width" loading="lazy" decoding="async" />
         </button>
       </li>
     ))}

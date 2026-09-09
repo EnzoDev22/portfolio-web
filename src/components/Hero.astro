@@ -1,13 +1,22 @@
 ---
 import DownloadIcon from './icons/DownloadIcon.astro';
+import { Image } from 'astro:assets';
 import { t } from 'i18next';
+import portraitEnzo from '../assets/portrait-enzo.webp';
 ---
 
 <section id="inicio" class="panel hero" aria-labelledby="hero-title" data-reveal-section>
   <div class="hero-main">
     <div class="hero-profile">
       <div class="portrait-wrap">
-        <img src="/assets/portrait-enzo.webp" width="1043" height="1043" alt="Retrato de Enzo Jesuan Del Sole" fetchpriority="high" />
+        <Image
+          src={portraitEnzo}
+          alt={t('hero.portraitAlt')}
+          layout="full-width"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
       </div>
     </div>
     <div class="hero-copy">

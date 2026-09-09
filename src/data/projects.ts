@@ -1,3 +1,18 @@
+import type { ImageMetadata } from 'astro';
+import scooterDiagram from '../assets/screenshots-proyect/api-monopatines/diagram.webp';
+import vehiclesDiagram from '../assets/screenshots-proyect/api-vehicles/diagram.webp';
+import inventoryAddCategory from '../assets/screenshots-proyect/inventory-system/add-category.webp';
+import inventoryAddProduct from '../assets/screenshots-proyect/inventory-system/add-product.webp';
+import inventoryCategories from '../assets/screenshots-proyect/inventory-system/categories.webp';
+import inventoryLogin from '../assets/screenshots-proyect/inventory-system/login.webp';
+import matesHome from '../assets/screenshots-proyect/mates-shop/home.webp';
+import numberBlocksFirst from '../assets/screenshots-proyect/number-blocks/first.webp';
+import numberBlocksSecond from '../assets/screenshots-proyect/number-blocks/second.webp';
+import numberBlocksThird from '../assets/screenshots-proyect/number-blocks/third.webp';
+import videogamesGame from '../assets/screenshots-proyect/videogames-site/game.webp';
+import videogamesHome from '../assets/screenshots-proyect/videogames-site/home.webp';
+import videogamesLogin from '../assets/screenshots-proyect/videogames-site/login.webp';
+
 export interface ProjectTechnology {
   name: string;
   icon: string;
@@ -20,8 +35,8 @@ export interface Project {
   technicalDecisionsEn: string;
   result: string;
   resultEn: string;
-  image: string;
-  images: string[];
+  image: ImageMetadata;
+  images: ImageMetadata[];
   alt: string;
   altEn: string;
   githubUrl: string;
@@ -54,8 +69,8 @@ export const projects: Project[] = [
     technicalDecisionsEn: 'I separated the frontend and backend with Angular 16 and Spring Boot 3, used PostgreSQL for persistence, and Keycloak for identity. The solution was containerized with Docker and deployed using Google Cloud Platform services.',
     result: 'El resultado es una solución desplegada en la nube que reúne la gestión del inventario, el control de acceso y las pruebas de API y backend en un mismo producto.',
     resultEn: 'The result is a cloud-deployed solution that brings inventory management, access control, and API and backend testing together in one product.',
-    image: '/assets/screenshots-proyect/inventory-system/categories.webp',
-    images: ['/assets/screenshots-proyect/inventory-system/categories.webp','/assets/screenshots-proyect/inventory-system/add-category.webp','/assets/screenshots-proyect/inventory-system/add-product.webp','/assets/screenshots-proyect/inventory-system/login.webp'],  
+    image: inventoryCategories,
+    images: [inventoryCategories, inventoryAddCategory, inventoryAddProduct, inventoryLogin],
     alt: 'Sistema de control de inventario para gestionar categorías y productos',
     altEn: 'Inventory management system for managing categories and products',
     githubUrl: 'https://github.com/EnzoDev22/inventory-frontend',
@@ -91,7 +106,7 @@ export const projects: Project[] = [
     technicalDecisionsEn: 'The distributed version uses Eureka Server for discovery, an API Gateway as its entry point, and JWT for authentication. PostgreSQL and MongoDB address different persistence needs, with Docker standardizing execution.',
     result: 'El resultado es un backend que cubre el ciclo operativo de una flota y documenta la evolución de una arquitectura monolítica hacia servicios independientes y comprobables.',
     resultEn: 'The result is a backend that covers a fleet’s operational lifecycle and demonstrates the evolution from a monolithic architecture to independent, testable services.',
-    image: '/assets/screenshots-proyect/api-monopatines/diagram.webp',
+    image: scooterDiagram,
     images: [],  
     alt: 'Arquitectura de la API para la gestión de una flota de monopatines',
     altEn: 'API architecture for managing a scooter fleet',
@@ -127,8 +142,8 @@ export const projects: Project[] = [
     technicalDecisionsEn: 'We applied a Mobile First approach, semantic HTML, JavaScript, and CSS Keyframe animations. The interface was defined in Figma through a design system, prototypes, and interactive models.',
     result: 'El resultado es una experiencia publicada y jugable que se adapta a distintos dispositivos y combina diseño UX/UI con interacción en tiempo real.',
     resultEn: 'The result is a published, playable experience that adapts to different devices and combines UX/UI design with real-time interaction.',
-    image: '/assets/screenshots-proyect/videogames-site/home.webp',
-    images: ['/assets/screenshots-proyect/videogames-site/home.webp','/assets/screenshots-proyect/videogames-site/game.webp','/assets/screenshots-proyect/videogames-site/login.webp'],  
+    image: videogamesHome,
+    images: [videogamesHome, videogamesGame, videogamesLogin],
     alt: 'Página principal responsive de un sitio web de videojuegos',
     altEn: 'Responsive home page of a video game website',
     githubUrl: 'https://github.com/EnzoDev22/Tpe_Interfaces_Grupo_15/tree/master/TP4/EntregaFinal',
@@ -159,7 +174,7 @@ export const projects: Project[] = [
     technicalDecisionsEn: 'I organized the backend with the MVC pattern, used Smarty for templates, and Bootstrap for a consistent interface. The API boundary keeps presentation and data management decoupled.',
     result: 'El resultado es un catálogo administrable de vehículos y categorías, con operaciones expuestas por API y una experiencia web dinámica para utilizarlas.',
     resultEn: 'The result is a manageable vehicle and category catalogue, with operations exposed through an API and a dynamic web experience for using them.',
-    image: '/assets/screenshots-proyect/api-vehicles/diagram.webp',
+    image: vehiclesDiagram,
     images: [],  
     alt: 'Interfaz del catálogo de vehículos y categorías',
     altEn: 'Vehicle and category catalogue interface',
@@ -191,8 +206,8 @@ export const projects: Project[] = [
     technicalDecisionsEn: 'I used HTML, CSS, and JavaScript without UI dependencies, CSS Keyframes for animation, and Figma to define and validate the visual direction.',
     result: 'El resultado es una experiencia publicada que combina fidelidad visual, animaciones y adaptación responsive en una implementación web liviana.',
     resultEn: 'The result is a published experience combining visual fidelity, animation, and responsive behavior in a lightweight web implementation.',
-    image: '/assets/screenshots-proyect/number-blocks/first.webp',
-    images: ['/assets/screenshots-proyect/number-blocks/first.webp', '/assets/screenshots-proyect/number-blocks/second.webp', '/assets/screenshots-proyect/number-blocks/third.webp'],  
+    image: numberBlocksFirst,
+    images: [numberBlocksFirst, numberBlocksSecond, numberBlocksThird],
     alt: 'Imagen deNumber Blocks',
     altEn: 'Image of Number Blocks',
     githubUrl: 'https://github.com/EnzoDev22/Tpe_Interfaces_Grupo_15/tree/tp4/TP4/EntregaFinal',
@@ -223,7 +238,7 @@ export const projects: Project[] = [
     technicalDecisionsEn: 'The application uses a module-based architecture to separate responsibilities and SCSS to maintain its styles. Its evolution includes improving the interface and migrating to Angular 21.',
     result: 'El resultado es una base funcional y publicada para comercio electrónico, preparada para continuar mejorando su experiencia y actualizar su stack tecnológico.',
     resultEn: 'The result is a functional, published e-commerce foundation prepared for continued experience improvements and a future technology-stack update.',
-    image: '/assets/screenshots-proyect/mates-shop/home.webp',
+    image: matesHome,
     images: [],  
     alt: 'Catálogo de productos de una tienda online de mates',
     altEn: 'Product catalogue of an online mate shop',
