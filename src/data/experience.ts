@@ -32,7 +32,7 @@ export const courses: Course[] = [
   {
     id: 'springBootAngular',
     durationHours: 35,
-    certificateImage: '/assets/certificates/Springboot-Angular.jpg',
+    certificateImage: '/assets/certificates/Springboot-Angular.webp',
   },
 ];
 

@@ -17,7 +17,7 @@ const englishPath = spanishPath === '/' ? '/en/' : `/en${spanishPath}`;
 const canonicalUrl = new URL(pathname, site);
 const spanishUrl = new URL(spanishPath, site);
 const englishUrl = new URL(englishPath, site);
-const socialImageUrl = new URL(`/assets/og/portfolio-${locale}.png`, site);
+const socialImageUrl = new URL(`/assets/og/portfolio-${locale}.webp`, site);
 const openGraphLocale = locale === 'en' ? 'en_US' : 'es_AR';
 const alternateOpenGraphLocale = locale === 'en' ? 'es_AR' : 'en_US';
 ---
