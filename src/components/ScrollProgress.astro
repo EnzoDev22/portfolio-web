@@ -1,7 +1,11 @@
+---
+import { t } from 'i18next';
+---
+
 <div
   class="scroll-progress"
   role="progressbar"
-  aria-label="Progreso de lectura"
+  aria-label={t('actions.readingProgress')}
   aria-valuemin="0"
   aria-valuemax="100"
   aria-valuenow="0"
@@ -31,9 +35,7 @@
     if (!scrollProgress) return;
 
     const scrollableHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
-    const progress = scrollableHeight === 0
-      ? 0
-      : Math.min(Math.max(window.scrollY / scrollableHeight, 0), 1);
+    const progress = scrollableHeight === 0 ? 0 : Math.min(Math.max(window.scrollY / scrollableHeight, 0), 1);
     const percentage = progress * 100;
 
     scrollProgress.style.width = `${percentage}%`;

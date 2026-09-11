@@ -6,7 +6,7 @@ Use the `ponytail:ponytail` skill at `full` intensity for every user prompt in t
 
 ## Project Structure & Module Organization
 
-This portfolio is an Astro 6 static site. Route entry points live in `src/pages/`, shared page shells in `src/layouts/`, and reusable UI in `src/components/`. Project-specific component groups belong in subfolders such as `src/components/projects/`. Keep structured portfolio content in `src/data/`, browser behavior in `src/scripts/`, and shared tokens and responsive rules in `src/styles/global.css`.
+This portfolio is an Astro 7 static site. Route entry points live in `src/pages/`, shared page shells in `src/layouts/`, and reusable UI in `src/components/`. Project-specific component groups belong in subfolders such as `src/components/projects/`. Keep structured portfolio content in `src/data/`, browser behavior in `src/scripts/`, and shared tokens and responsive rules in `src/styles/global.css`.
 
 Static files are served from `public/`: use `public/assets/` for images and icons and `public/fonts/` for local fonts. The contact endpoint is implemented separately in `api/contact.ts`. Generated output (`dist/`), dependencies (`node_modules/`), and review artifacts under `tmp/` are not source files.
 

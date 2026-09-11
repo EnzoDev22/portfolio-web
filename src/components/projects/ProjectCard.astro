@@ -9,54 +9,33 @@ interface Props {
 }
 
 const { project, locale } = Astro.props;
-const value = (es: string, en: string) => locale === 'en' ? en : es;
+const projectKey = (field: string) => `projects.items.${project.id}.${field}`;
+const title = t(projectKey('title'));
 ---
 
 <article class="project-card">
   <div class="project-card__media">
-    <Image src={project.image} alt={value(project.alt, project.altEn)} layout="full-width" loading="lazy" decoding="async" />
+    <Image src={project.image} alt={t(projectKey('alt'))} layout="full-width" loading="lazy" decoding="async" />
   </div>
 
   <div class="project-card__body">
     <h3>
-      <a
-        class="open-project"
-        href={`${locale === 'en' ? '/en' : ''}/proyectos/${project.id}/`}
-        aria-label={`${t('actions.viewProject')}: ${value(project.title, project.titleEn)}`}
-      >
-        {value(project.title, project.titleEn)}
+      <a class="open-project" href={`${locale === 'en' ? '/en' : ''}/proyectos/${project.id}/`} aria-label={`${t('actions.viewProject')}: ${title}`}>
+        {title}
       </a>
     </h3>
 
-    {project.inProduction && (
-      <p class="project-card__status">
-        {t('projects.production')}
-      </p>
-    )}
+    {project.inProduction && <p class="project-card__status">{t('projects.production')}</p>}
+    <p class="project-card__subtitle">{t(projectKey('subtitle'))}</p>
+    <p class="project-card__description">{t(projectKey('description'))}</p>
 
-    <p class="project-card__subtitle">
-      {value(project.subtitle, project.subtitleEn)}
-    </p>
-
-    <p class="project-card__description">
-      {value(project.description, project.descriptionEn)}
-    </p>
-
-    <a
-      class="project-card__github"
-      href={project.githubUrl}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={`GitHub: ${value(project.title, project.titleEn)}`}
-    >
+    <a class="project-card__github" href={project.githubUrl} target="_blank" rel="noreferrer" aria-label={`GitHub: ${title}`}>
       <span class="project-card__github-icon" aria-hidden="true"></span>
       GitHub
     </a>
 
     <ul class="project-card__technologies" aria-label={t('actions.technologies')}>
-      {project.technologies.map((technology) => (
-        <li>{technology.name}</li>
-      ))}
+      {project.technologies.map((technology) => <li>{technology.name}</li>)}
     </ul>
 
     <span class="project-card__cta" aria-hidden="true">

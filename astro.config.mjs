@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import i18next from '@gutenye/astro-i18next/integration';
 
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://portfolio-enzo-delsole.vercel.app',
   compressHTML: true,
   security: {
     csp: {

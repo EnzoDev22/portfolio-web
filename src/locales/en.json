@@ -1,11 +1,209 @@
 {
-  "meta": { "title": "Enzo Jesuan Del Sole · Full Stack Developer", "description": "Portfolio of Enzo Jesuan Del Sole, Full Stack Developer." },
-  "nav": { "label": "Main navigation", "home": "Home", "projects": "Projects", "skills": "Skills", "experience": "Experience", "contact": "Contact" },
-  "actions": { "backToTop": "Back to top", "language": "Switch to Spanish", "openMenu": "Open menu", "closeMenu": "Close menu", "lightTheme": "Enable light theme", "darkTheme": "Enable dark theme", "viewProject": "View project", "backProjects": "Back to projects", "technologies": "Technologies", "gallery": "Gallery", "problem": "The problem", "built": "What I built", "decisions": "Technical decisions", "result": "The result" },
-  "hero": { "intro": "Hi, I am", "first": "Full Stack Developer", "second": "Enzo Jesuan Del Sole", "title": "I develop software with INTENT.", "copy": "I build clear, reliable solutions, adapting to the needs and technologies of each project.", "download": "Download résumé", "portraitAlt": "Portrait of Enzo Jesuan Del Sole" },
-  "projects": { "title": "Featured Projects", "hint": "Tap a project to learn more", "production": "In production" },
-  "skills": { "title": "My Skills", "copy": "Technologies and tools I use to turn ideas into digital products.", "label": "Technologies" },
-  "experience": { "title": "My experience", "copy": "A journey through the roles, learning experiences and education that drive my professional growth.", "work": "Work experience", "courses": "Courses and certifications", "academic": "Academic background", "current": "Present", "skills": "Skills", "hours": "hours", "certificate": "View certificate" },
-  "contact": { "kicker": "Contact", "title": "Have a project or an opportunity to discuss?", "copy": "I’m open to new opportunities, collaborations, and challenges where I can contribute clear and reliable solutions.", "write": "Get in touch", "idea": "Tell me about your idea", "name": "Name", "email": "Email address", "subject": "Subject", "message": "Message", "protection": "Validation and spam protection.", "send": "Send message" },
-  "footer": { "role": "Full Stack Developer", "social": "Social media" }
+  "meta": {
+    "title": "Enzo Jesuan Del Sole · Full Stack Developer",
+    "description": "Portfolio of Enzo Jesuan Del Sole, Full Stack Developer.",
+    "siteName": "Enzo Jesuan Del Sole",
+    "socialImageAlt": "Preview of Enzo Jesuan Del Sole’s portfolio"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "actions": {
+    "backToTop": "Back to top",
+    "language": "Switch to Spanish",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "lightTheme": "Enable light theme",
+    "darkTheme": "Enable dark theme",
+    "viewProject": "View project",
+    "backProjects": "Back to projects",
+    "technologies": "Technologies",
+    "gallery": "Gallery",
+    "problem": "The problem",
+    "built": "What I built",
+    "decisions": "Technical decisions",
+    "result": "The result",
+    "video": "Watch on YouTube",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "closeGallery": "Close gallery",
+    "closeCertificate": "Close certificate",
+    "readingProgress": "Reading progress"
+  },
+  "hero": {
+    "intro": "Hi, I am",
+    "first": "Full Stack Developer",
+    "second": "Enzo Jesuan Del Sole",
+    "title": "I develop software with INTENT.",
+    "copy": "I build clear, reliable solutions, adapting to the needs and technologies of each project.",
+    "download": "Download résumé",
+    "portraitAlt": "Portrait of Enzo Jesuan Del Sole"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "hint": "Tap a project to learn more",
+    "production": "In production",
+    "items": {
+      "sistema-inventario": {
+        "title": "Inventory Management System",
+        "subtitle": "Cloud-deployed full-stack inventory management",
+        "description": "A full-stack application for managing categories and products, featuring Keycloak authentication, a Spring Boot 3 backend, a PostgreSQL database, and an Angular 16 frontend. It was deployed on Google Cloud Platform using Kubernetes Engine, Cloud SQL, and App Engine, and includes API and backend testing.",
+        "problem": "Category and product management needed a centralized inventory and protected operations so each user could access only the appropriate features.",
+        "built": "I built a full-stack application for managing categories and products, with authentication, a business API, and a web interface for inventory operations.",
+        "technicalDecisions": "I separated the frontend and backend with Angular 16 and Spring Boot 3, used PostgreSQL for persistence, and Keycloak for identity. The solution was containerized with Docker and deployed using Google Cloud Platform services.",
+        "result": "The result is a cloud-deployed solution that brings inventory management, access control, and API and backend testing together in one product.",
+        "alt": "Inventory management system for managing categories and products"
+      },
+      "sistema-monopatines": {
+        "title": "Scooter Fleet Management API",
+        "subtitle": "Monolithic and microservices architecture for urban mobility",
+        "description": "A system for managing an urban scooter fleet, developed in both monolithic and microservices-based versions. It includes services for scooters, users, customers, parking stations, administration, maintenance, and trips, with Eureka Server service discovery, an API Gateway, and JWT authentication.",
+        "problem": "Managing an urban fleet requires coordinating scooters, users, customers, parking stations, maintenance, and trips without losing consistency or security across operations.",
+        "built": "I built the system in both monolithic and microservices-based versions, covering the fleet’s core services, administration, maintenance, and trips.",
+        "technicalDecisions": "The distributed version uses Eureka Server for discovery, an API Gateway as its entry point, and JWT for authentication. PostgreSQL and MongoDB address different persistence needs, with Docker standardizing execution.",
+        "result": "The result is a backend that covers a fleet’s operational lifecycle and demonstrates the evolution from a monolithic architecture to independent, testable services.",
+        "alt": "API architecture for managing a scooter fleet"
+      },
+      "sito-videojuegos": {
+        "title": "Video Game Website with an Interactive Game",
+        "subtitle": "Responsive experience with an interactive game and UX/UI design",
+        "description": "A responsive video game website developed collaboratively using a Mobile First approach. It includes CSS Keyframe animations and a game built with Canvas. The interface was designed in Figma using a design system, prototypes, and interactive models while applying UX/UI principles.",
+        "problem": "The challenge was to create an engaging video game experience that worked from small screens upward, combining content, animation, and playable mechanics in one website.",
+        "built": "We built a responsive website with navigation, sign-in screens, and an interactive Canvas game, supported by animations that reinforce its visual identity.",
+        "technicalDecisions": "We applied a Mobile First approach, semantic HTML, JavaScript, and CSS Keyframe animations. The interface was defined in Figma through a design system, prototypes, and interactive models.",
+        "result": "The result is a published, playable experience that adapts to different devices and combines UX/UI design with real-time interaction.",
+        "alt": "Responsive home page of a video game website"
+      },
+      "api-vehiculos": {
+        "title": "Vehicle Catalogue API",
+        "subtitle": "Manageable catalogue powered by a PHP REST API",
+        "description": "An application for managing a catalogue of vehicles and categories through a PHP API. It uses the MVC pattern, Smarty as its template engine, and Bootstrap for the interface. The frontend consumes the API through asynchronous JavaScript requests.",
+        "problem": "Vehicle and category management required a centralized data source and an interface capable of querying and updating the catalogue without reloading every screen.",
+        "built": "I built a PHP API for managing the catalogue and a web interface that consumes its resources through asynchronous JavaScript requests.",
+        "technicalDecisions": "I organized the backend with the MVC pattern, used Smarty for templates, and Bootstrap for a consistent interface. The API boundary keeps presentation and data management decoupled.",
+        "result": "The result is a manageable vehicle and category catalogue, with operations exposed through an API and a dynamic web experience for using them.",
+        "alt": "Vehicle and category catalogue interface"
+      },
+      "number-blocks": {
+        "title": "Number Blocks",
+        "subtitle": "Pixel-perfect experience with CSS animations",
+        "description": "Number Blocks website, focusing on pixel-perfect design and CSS animations with Keyframes. The project was developed using HTML, CSS, and JavaScript, emphasizing user experience and visual aesthetics.",
+        "problem": "The project required translating a highly recognizable visual universe to the web with precision while keeping the experience clear, animated, and adaptable.",
+        "built": "I built a Number Blocks website focused on pixel-perfect composition, visual interaction, and navigation that preserves the character of the original design.",
+        "technicalDecisions": "I used HTML, CSS, and JavaScript without UI dependencies, CSS Keyframes for animation, and Figma to define and validate the visual direction.",
+        "result": "The result is a published experience combining visual fidelity, animation, and responsive behavior in a lightweight web implementation.",
+        "alt": "Image of Number Blocks"
+      },
+      "tienda-mates": {
+        "title": "Mate Shop",
+        "subtitle": "Modular Angular catalogue built for e-commerce",
+        "description": "A product catalogue developed with Angular 16 and TypeScript. It uses MockAPI for product storage, a module-based architecture, and SCSS for styling. The project is currently evolving, with a focus on improving its interface and migrating to Angular 21.",
+        "problem": "The shop needed to organize and present a product catalogue with remotely persisted data and a foundation that could evolve without concentrating all logic in one screen.",
+        "built": "I built a mate catalogue with Angular and TypeScript, connected to MockAPI to store and retrieve products through a web interface.",
+        "technicalDecisions": "The application uses a module-based architecture to separate responsibilities and SCSS to maintain its styles. Its evolution includes improving the interface and migrating to Angular 21.",
+        "result": "The result is a functional, published e-commerce foundation prepared for continued experience improvements and a future technology-stack update.",
+        "alt": "Product catalogue of an online mate shop"
+      }
+    }
+  },
+  "skills": {
+    "copy": "Technologies and tools I use to turn ideas into digital products.",
+    "label": "Technologies",
+    "titlePrefix": "My",
+    "titleAccent": "Skills"
+  },
+  "experience": {
+    "copy": "A journey through the roles, learning experiences and education that drive my professional growth.",
+    "work": "Work experience",
+    "courses": "Courses and certifications",
+    "academic": "Academic background",
+    "current": "Present",
+    "skills": "Skills",
+    "hours": "hours",
+    "certificate": "View certificate",
+    "titlePrefix": "My",
+    "titleAccent": "experience",
+    "bridge": {
+      "beforeFirst": "",
+      "first": "Experience",
+      "betweenFirstSecond": " is built not only through a role, but also through curiosity, ",
+      "second": "practice",
+      "betweenSecondThird": " and the decision to keep ",
+      "third": "improving",
+      "afterThird": "."
+    },
+    "items": {
+      "work": {
+        "kelsoftMeli": {
+          "company": "Grupo Kelsoft",
+          "role": "E-commerce Analyst · MELI Catalogue Project",
+          "skills": {
+            "catalogue": "Mercado Libre catalogue management and improvement",
+            "products": "Product creation, updates and removal",
+            "quality": "Listing quality",
+            "teamwork": "Teamwork",
+            "learning": "Continuous learning",
+            "adaptability": "Adaptability"
+          }
+        }
+      },
+      "courses": {
+        "springBootAngular": {
+          "title": "Spring Boot and Angular: Building Full Stack Applications",
+          "institution": "Udemy",
+          "certificateAlt": "Certificate of completion for Spring Boot and Angular course"
+        }
+      },
+      "academic": {
+        "softwareDevelopment": {
+          "title": "University Technical Degree in Software Development",
+          "institution": "National University of Central Buenos Aires Province",
+          "description": "Comprehensive training in application analysis, design, development, testing and maintenance throughout the software development life cycle."
+        }
+      }
+    }
+  },
+  "contact": {
+    "kicker": "Contact",
+    "copy": "I’m open to new opportunities, collaborations, and challenges where I can contribute clear and reliable solutions.",
+    "write": "Get in touch",
+    "idea": "Tell me about your idea",
+    "name": "Name",
+    "email": "Email address",
+    "subject": "Subject",
+    "message": "Message",
+    "protection": "Validation and spam protection.",
+    "send": "Send message",
+    "titleStart": "Have a project or an ",
+    "titleAccent": "opportunity",
+    "titleEnd": " to discuss?",
+    "placeholders": {
+      "name": "Your name",
+      "email": "you@email.com",
+      "subject": "What can we work on?",
+      "message": "Tell me a little more..."
+    },
+    "form": {
+      "sending": "Sending…",
+      "success": "Your message was sent. Thank you for reaching out.",
+      "validation": "Please review the highlighted fields before sending.",
+      "server": "I could not send your message right now. Please try again.",
+      "required": "This field is required.",
+      "name": "Enter a name between 2 and 80 characters.",
+      "email": "Enter a valid email address.",
+      "subject": "Enter a subject between 3 and 120 characters.",
+      "message": "The message must be between 10 and 3000 characters."
+    }
+  },
+  "footer": {
+    "role": "Full Stack Developer",
+    "social": "Social media",
+    "github": "Visit Enzo Jesuan Del Sole's GitHub",
+    "linkedin": "Visit Enzo Jesuan Del Sole's LinkedIn"
+  }
 }

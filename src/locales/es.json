@@ -1,11 +1,209 @@
 {
-  "meta": { "title": "Enzo Jesuan Del Sole · Desarrollador Full Stack", "description": "Portfolio de Enzo Jesuan Del Sole, desarrollador Full Stack." },
-  "nav": { "label": "Navegación principal", "home": "Inicio", "projects": "Proyectos", "skills": "Habilidades", "experience": "Experiencia", "contact": "Contacto" },
-  "actions": { "backToTop": "Volver al inicio", "language": "Cambiar a inglés", "openMenu": "Abrir menú", "closeMenu": "Cerrar menú", "lightTheme": "Activar tema claro", "darkTheme": "Activar tema oscuro", "viewProject": "Ver proyecto", "backProjects": "Volver a proyectos", "technologies": "Tecnologías", "gallery": "Galería", "problem": "El problema", "built": "Qué construí", "decisions": "Decisiones técnicas", "result": "El resultado" },
-  "hero": { "intro": "Hola, soy", "first": "Desarrollador Full Stack", "second": "Enzo Jesuan Del Sole", "title": "Código sólido. ADAPTABILIDAD constante.", "copy": "Construyo soluciones claras y confiables, adaptándome a las necesidades y tecnologías de cada proyecto.", "download": "Descargar CV", "portraitAlt": "Retrato de Enzo Jesuan Del Sole" },
-  "projects": { "title": "Proyectos Destacados", "hint": "Tocá un proyecto para conocerlo", "production": "En producción" },
-  "skills": { "title": "Mis Habilidades", "copy": "Tecnologías y herramientas que uso para convertir ideas en productos digitales.", "label": "Tecnologías" },
-  "experience": { "title": "Mi experiencia", "copy": "Un recorrido por los roles, aprendizajes y espacios de formación que impulsan mi crecimiento profesional.", "work": "Experiencia laboral", "courses": "Cursos y certificaciones", "academic": "Formación académica", "current": "Actualidad", "skills": "Aptitudes", "hours": "horas", "certificate": "Ver certificado" },
-  "contact": { "kicker": "Contacto", "title": "¿Tenés un proyecto o una oportunidad para conversar?", "copy": "Estoy abierto a nuevas oportunidades, colaboraciones y desafíos donde pueda aportar soluciones claras y confiables.", "write": "Escribime", "idea": "Contame sobre tu idea", "name": "Nombre", "email": "Correo electrónico", "subject": "Asunto", "message": "Mensaje", "protection": "Validación y protección antispam.", "send": "Enviar mensaje" },
-  "footer": { "role": "Desarrollador Full Stack", "social": "Redes sociales" }
+  "meta": {
+    "title": "Enzo Jesuan Del Sole · Desarrollador Full Stack",
+    "description": "Portfolio de Enzo Jesuan Del Sole, desarrollador Full Stack.",
+    "siteName": "Enzo Jesuan Del Sole",
+    "socialImageAlt": "Vista previa del portfolio de Enzo Jesuan Del Sole"
+  },
+  "nav": {
+    "label": "Navegación principal",
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "contact": "Contacto"
+  },
+  "actions": {
+    "backToTop": "Volver al inicio",
+    "language": "Cambiar a inglés",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "lightTheme": "Activar tema claro",
+    "darkTheme": "Activar tema oscuro",
+    "viewProject": "Ver proyecto",
+    "backProjects": "Volver a proyectos",
+    "technologies": "Tecnologías",
+    "gallery": "Galería",
+    "problem": "El problema",
+    "built": "Qué construí",
+    "decisions": "Decisiones técnicas",
+    "result": "El resultado",
+    "video": "Ver en YouTube",
+    "previousImage": "Imagen anterior",
+    "nextImage": "Imagen siguiente",
+    "closeGallery": "Cerrar galería",
+    "closeCertificate": "Cerrar certificado",
+    "readingProgress": "Progreso de lectura"
+  },
+  "hero": {
+    "intro": "Hola, soy",
+    "first": "Desarrollador Full Stack",
+    "second": "Enzo Jesuan Del Sole",
+    "title": "Código sólido. ADAPTABILIDAD constante.",
+    "copy": "Construyo soluciones claras y confiables, adaptándome a las necesidades y tecnologías de cada proyecto.",
+    "download": "Descargar CV",
+    "portraitAlt": "Retrato de Enzo Jesuan Del Sole"
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "hint": "Tocá un proyecto para conocerlo",
+    "production": "En producción",
+    "items": {
+      "sistema-inventario": {
+        "title": "Sistema de Control de Inventario",
+        "subtitle": "Gestión full stack de inventario desplegada en la nube",
+        "description": "Aplicación full stack para gestionar categorías y productos, con autenticación mediante Keycloak, backend en Spring Boot 3, base de datos PostgreSQL y frontend en Angular 16. Fue desplegada en Google Cloud Platform utilizando Kubernetes Engine, Cloud SQL y App Engine, e incluye pruebas de API y backend.",
+        "problem": "La gestión de categorías y productos necesitaba centralizar el inventario y proteger las operaciones para que cada usuario accediera únicamente a las funciones correspondientes.",
+        "built": "Construí una aplicación full stack para administrar categorías y productos, con autenticación, una API de negocio y una interfaz web para las operaciones del inventario.",
+        "technicalDecisions": "Separé frontend y backend con Angular 16 y Spring Boot 3, utilicé PostgreSQL para la persistencia y Keycloak para la identidad. La solución se contenedorizó con Docker y se desplegó sobre servicios de Google Cloud Platform.",
+        "result": "El resultado es una solución desplegada en la nube que reúne la gestión del inventario, el control de acceso y las pruebas de API y backend en un mismo producto.",
+        "alt": "Sistema de control de inventario para gestionar categorías y productos"
+      },
+      "sistema-monopatines": {
+        "title": "API de Gestión de Monopatines",
+        "subtitle": "Arquitectura monolítica y de microservicios para movilidad urbana",
+        "description": "Sistema para gestionar una flota de monopatines de uso urbano, desarrollado en versiones monolítica y de microservicios. Está compuesto por servicios para monopatines, usuarios, clientes, estacionamientos, administración, mantenimiento y viajes, con descubrimiento de servicios mediante Eureka Server, API Gateway y autenticación JWT.",
+        "problem": "Administrar una flota urbana exige coordinar monopatines, usuarios, clientes, estacionamientos, mantenimiento y viajes sin perder consistencia ni seguridad entre las operaciones.",
+        "built": "Construí el sistema en una versión monolítica y otra basada en microservicios, cubriendo los servicios centrales de la flota, la administración, el mantenimiento y los viajes.",
+        "technicalDecisions": "La versión distribuida utiliza Eureka Server para descubrimiento, API Gateway como punto de entrada y JWT para autenticación. PostgreSQL y MongoDB resuelven distintas necesidades de persistencia, con Docker para estandarizar la ejecución.",
+        "result": "El resultado es un backend que cubre el ciclo operativo de una flota y documenta la evolución de una arquitectura monolítica hacia servicios independientes y comprobables.",
+        "alt": "Arquitectura de la API para la gestión de una flota de monopatines"
+      },
+      "sito-videojuegos": {
+        "title": "Sitio de Videojuegos con Juego Interactivo",
+        "subtitle": "Experiencia responsive con juego interactivo y diseño UX/UI",
+        "description": "Sitio web responsive de videojuegos desarrollado en equipo con un enfoque Mobile First. Incluye animaciones mediante CSS Keyframes y un juego creado con Canvas. El diseño fue trabajado en Figma mediante un sistema de diseño, prototipos y modelos interactivos, aplicando principios de UX/UI.",
+        "problem": "El desafío era crear una experiencia de videojuegos atractiva y usable desde pantallas pequeñas, integrando contenido, animaciones y una mecánica jugable dentro del mismo sitio.",
+        "built": "Construimos un sitio responsive con navegación, pantallas de acceso y un juego interactivo desarrollado con Canvas, acompañado por animaciones que refuerzan la identidad visual.",
+        "technicalDecisions": "Aplicamos Mobile First, HTML semántico, JavaScript y animaciones con CSS Keyframes. El diseño se definió en Figma mediante un sistema de diseño, prototipos y modelos interactivos.",
+        "result": "El resultado es una experiencia publicada y jugable que se adapta a distintos dispositivos y combina diseño UX/UI con interacción en tiempo real.",
+        "alt": "Página principal responsive de un sitio web de videojuegos"
+      },
+      "api-vehiculos": {
+        "title": "API de Catálogo de Vehículos",
+        "subtitle": "Catálogo administrable respaldado por una API REST en PHP",
+        "description": "Aplicación para administrar un catálogo de vehículos y categorías mediante una API desarrollada en PHP. Utiliza el patrón MVC, Smarty como motor de plantillas y Bootstrap para la interfaz. El frontend consume la API mediante solicitudes asíncronas con JavaScript.",
+        "problem": "La administración de vehículos y categorías requería una fuente de datos centralizada y una interfaz capaz de consultar y actualizar el catálogo sin recargar cada pantalla.",
+        "built": "Construí una API en PHP para administrar el catálogo y una interfaz web que consume sus recursos mediante solicitudes asíncronas con JavaScript.",
+        "technicalDecisions": "Organicé el backend con el patrón MVC, utilicé Smarty para las plantillas y Bootstrap para una interfaz consistente. La separación mediante API mantiene desacopladas la presentación y la gestión de datos.",
+        "result": "El resultado es un catálogo administrable de vehículos y categorías, con operaciones expuestas por API y una experiencia web dinámica para utilizarlas.",
+        "alt": "Interfaz del catálogo de vehículos y categorías"
+      },
+      "number-blocks": {
+        "title": "Number Blocks",
+        "subtitle": "Experiencia pixel perfect con animaciones CSS",
+        "description": "Sitio web de Number Blocks, con enfoque en diseño pixel perfect y animaciones CSS con Keyframes. El proyecto fue desarrollado con HTML, CSS y JavaScript, y se centra en la experiencia del usuario y la estética visual.",
+        "problem": "El proyecto requería trasladar un universo visual muy reconocible a la web con precisión, manteniendo una experiencia clara, animada y adaptable.",
+        "built": "Construí un sitio de Number Blocks centrado en la composición pixel perfect, la interacción visual y una navegación que conserva el carácter del diseño original.",
+        "technicalDecisions": "Utilicé HTML, CSS y JavaScript sin dependencias de interfaz, con CSS Keyframes para las animaciones y Figma para definir y validar la propuesta visual.",
+        "result": "El resultado es una experiencia publicada que combina fidelidad visual, animaciones y adaptación responsive en una implementación web liviana.",
+        "alt": "Imagen deNumber Blocks"
+      },
+      "tienda-mates": {
+        "title": "Tienda de Mates",
+        "subtitle": "Catálogo modular en Angular orientado a comercio electrónico",
+        "description": "Catálogo de productos desarrollado con Angular 16 y TypeScript. Utiliza MockAPI para el almacenamiento de los productos, una arquitectura basada en módulos y SCSS para los estilos. El proyecto se encuentra en evolución, con foco en mejorar su interfaz y migrar hacia Angular 21.",
+        "problem": "La tienda necesitaba organizar y presentar un catálogo de productos con datos persistidos de forma remota y una base que pudiera evolucionar sin concentrar toda la lógica en una sola pantalla.",
+        "built": "Construí un catálogo de mates con Angular y TypeScript, conectado a MockAPI para almacenar y recuperar los productos desde una interfaz web.",
+        "technicalDecisions": "La aplicación utiliza una arquitectura basada en módulos para separar responsabilidades y SCSS para mantener los estilos. Su evolución contempla mejorar la interfaz y migrar hacia Angular 21.",
+        "result": "El resultado es una base funcional y publicada para comercio electrónico, preparada para continuar mejorando su experiencia y actualizar su stack tecnológico.",
+        "alt": "Catálogo de productos de una tienda online de mates"
+      }
+    }
+  },
+  "skills": {
+    "copy": "Tecnologías y herramientas que uso para convertir ideas en productos digitales.",
+    "label": "Tecnologías",
+    "titlePrefix": "Mis",
+    "titleAccent": "Habilidades"
+  },
+  "experience": {
+    "copy": "Un recorrido por los roles, aprendizajes y espacios de formación que impulsan mi crecimiento profesional.",
+    "work": "Experiencia laboral",
+    "courses": "Cursos y certificaciones",
+    "academic": "Formación académica",
+    "current": "Actualidad",
+    "skills": "Aptitudes",
+    "hours": "horas",
+    "certificate": "Ver certificado",
+    "titlePrefix": "Mi",
+    "titleAccent": "experiencia",
+    "bridge": {
+      "beforeFirst": "La ",
+      "first": "experiencia",
+      "betweenFirstSecond": " no se construye solo desde un puesto: también nace de la curiosidad, la ",
+      "second": "práctica",
+      "betweenSecondThird": " y la decisión de seguir ",
+      "third": "mejorando",
+      "afterThird": "."
+    },
+    "items": {
+      "work": {
+        "kelsoftMeli": {
+          "company": "Grupo Kelsoft",
+          "role": "Analista E-commerce · Proyecto Catálogo MELI",
+          "skills": {
+            "catalogue": "Gestión y mejora del catálogo de Mercado Libre",
+            "products": "Creación, modificación y eliminación de productos",
+            "quality": "Calidad de publicaciones",
+            "teamwork": "Trabajo en equipo",
+            "learning": "Aprendizaje continuo",
+            "adaptability": "Adaptabilidad"
+          }
+        }
+      },
+      "courses": {
+        "springBootAngular": {
+          "title": "Spring Boot y Angular: Creando aplicaciones como Full Stack",
+          "institution": "Udemy",
+          "certificateAlt": "Certificado de finalización del curso de Spring Boot y Angular"
+        }
+      },
+      "academic": {
+        "softwareDevelopment": {
+          "title": "Tecnicatura Universitaria en Desarrollo de Aplicaciones Informáticas",
+          "institution": "Universidad Nacional del Centro de la Provincia de Buenos Aires",
+          "description": "Formación integral en análisis, diseño, desarrollo, pruebas y mantenimiento de aplicaciones a lo largo del ciclo de vida del software."
+        }
+      }
+    }
+  },
+  "contact": {
+    "kicker": "Contacto",
+    "copy": "Estoy abierto a nuevas oportunidades, colaboraciones y desafíos donde pueda aportar soluciones claras y confiables.",
+    "write": "Escribime",
+    "idea": "Contame sobre tu idea",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "subject": "Asunto",
+    "message": "Mensaje",
+    "protection": "Validación y protección antispam.",
+    "send": "Enviar mensaje",
+    "titleStart": "¿Tenés un proyecto o una ",
+    "titleAccent": "oportunidad",
+    "titleEnd": " para conversar?",
+    "placeholders": {
+      "name": "Tu nombre",
+      "email": "tu@email.com",
+      "subject": "¿En qué podemos trabajar?",
+      "message": "Contame un poco más..."
+    },
+    "form": {
+      "sending": "Enviando…",
+      "success": "Tu mensaje fue enviado. Gracias por escribirme.",
+      "validation": "Revisá los campos indicados antes de enviar.",
+      "server": "No pude enviar el mensaje en este momento. Intentá nuevamente.",
+      "required": "Este campo es obligatorio.",
+      "name": "Ingresá un nombre de entre 2 y 80 caracteres.",
+      "email": "Ingresá un correo electrónico válido.",
+      "subject": "Ingresá un asunto de entre 3 y 120 caracteres.",
+      "message": "El mensaje debe tener entre 10 y 3000 caracteres."
+    }
+  },
+  "footer": {
+    "role": "Desarrollador Full Stack",
+    "social": "Redes sociales",
+    "github": "Visitar GitHub de Enzo Jesuan Del Sole",
+    "linkedin": "Visitar LinkedIn de Enzo Jesuan Del Sole"
+  }
 }
