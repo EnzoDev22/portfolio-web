@@ -1,7 +1,9 @@
 {
   "meta": {
     "title": "Enzo Jesuan Del Sole · Full Stack Developer",
-    "description": "Portfolio of Enzo Jesuan Del Sole, Full Stack Developer."
+    "description": "Portfolio of Enzo Jesuan Del Sole, Full Stack Developer.",
+    "siteName": "Enzo Jesuan Del Sole",
+    "socialImageAlt": "Preview of Enzo Jesuan Del Sole’s portfolio"
   },
   "nav": {
     "label": "Main navigation",
