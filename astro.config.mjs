@@ -4,6 +4,7 @@ import i18next from '@gutenye/astro-i18next/integration';
 
 export default defineConfig({
   site: 'https://example.com',
+  compressHTML: true,
   integrations: [i18next({ lng: 'es', preload: ['es', 'en'] })],
   vite: {
     plugins: [tailwindcss()],

@@ -12,7 +12,7 @@
   "dependencies": {
     "@gutenye/astro-i18next": "^1.0.9",
     "@tailwindcss/vite": "4.1.18",
-    "astro": "^6.4.0",
+    "astro": "^7.3.2",
     "i18next": "^26.4.2",
     "resend": "^6.20.0",
     "tailwindcss": "4.1.18"
