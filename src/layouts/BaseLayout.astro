@@ -5,27 +5,23 @@ import ScrollProgress from '../components/ScrollProgress.astro';
 interface Props {
   title: string;
   description: string;
+  locale: 'es' | 'en';
 }
 
-const { title, description } = Astro.props;
+const { title, description, locale } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" data-lang="es">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href="/fonts/poppins-800-latin.woff2" as="font" type="font/woff2" crossorigin />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f4f6f3" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>E</text></svg>" />
     <title>{title}</title>
-    <script is:inline>
-      const storedTheme = localStorage.getItem('theme');
-      const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
-      if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
-        document.documentElement.classList.add('dark');
-      }
-    </script>
+    <script is:inline src="/theme-init.js"></script>
   </head>
   <body>
     <ScrollProgress />

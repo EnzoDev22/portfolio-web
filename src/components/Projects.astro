@@ -1,23 +1,21 @@
 ---
 import { projects } from '../data/projects';
 import ProjectCard from './projects/ProjectCard.astro';
-import ProjectModal from './projects/ProjectModal.astro';
+import { t } from 'i18next';
+interface Props { locale: 'es' | 'en'; }
+const { locale } = Astro.props;
 ---
 
 <section id="proyectos" class="panel section-block projects-section" aria-labelledby="projects-title" data-reveal-section>
   <h2 id="projects-title">
-    <span class="lang-es">Proyectos</span><span class="lang-en">Featured</span>
-    <em><span class="lang-es">Destacados</span><span class="lang-en">Projects</span></em>
+    {t('projects.title')}
   </h2>
   <div class="projects-grid">
     {projects.map((project) => (
-      <ProjectCard project={project} />
+      <ProjectCard project={project} locale={locale} />
     ))}
   </div>
   <p class="mobile-hint">
-    <span class="lang-es">Tocá un proyecto para conocerlo</span>
-    <span class="lang-en">Tap a project to learn more</span>
+    {t('projects.hint')}
   </p>
 </section>
-
-<ProjectModal projects={projects} />

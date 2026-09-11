@@ -1,28 +1,128 @@
 ---
 import DownloadIcon from './icons/DownloadIcon.astro';
+import { Image } from 'astro:assets';
+import { t } from 'i18next';
+import portraitEnzo from '../assets/portrait-enzo.webp';
+
+interface Props {
+  locale: 'es' | 'en';
+}
+
+const { locale } = Astro.props;
+const cvHref = `/cv-enzo-del-sole-${locale}.pdf`;
 ---
 
 <section id="inicio" class="panel hero" aria-labelledby="hero-title" data-reveal-section>
-  <div class="portrait-wrap">
-    <img src="/assets/portrait-enzo.png" width="720" height="720" alt="Retrato de Enzo Jesuan Del Sole" />
-  </div>
-  <div class="hero-copy">
-    <p class="hero-intro">
-      <span class="lang-es">Hola, soy <strong>Enzo Jesuan Del Sole</strong></span>
-      <span class="lang-en">Hi, I am <strong>Enzo Jesuan Del Sole</strong></span>
-    </p>
-    <h1 id="hero-title">
-      <span class="lang-es">Código sólido. <em>ADAPTABILIDAD</em> constante.</span>
-      <span class="lang-en">I develop software with <em>INTENT</em>.</span>
-    </h1>
-    <p class="lang-es">Construyo soluciones claras y confiables, adaptándome a las necesidades y tecnologías de cada proyecto.</p>
-    <p class="lang-en">I build clear, reliable solutions, adapting to the needs and technologies of each project.</p>
-    <div class="hero-actions">
-      <span class="role"><span class="lang-es">Desarrollador Full Stack</span><span class="lang-en">Full Stack Developer</span></span>
-      <a class="cv-button" href="/cv-enzo-del-sole.pdf" download>
-        <DownloadIcon />
-        <span class="lang-es">Descargar CV</span><span class="lang-en">Download résumé</span>
-      </a>
+  <div class="hero-main">
+    <div class="hero-profile">
+      <div class="portrait-wrap">
+        <Image
+          src={portraitEnzo}
+          alt={t('hero.portraitAlt')}
+          layout="full-width"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+    <div class="hero-copy">
+      <p class="hero-intro">
+        {t('hero.intro')}{' '}
+        <strong class="hero-typewriter">
+          <span aria-hidden="true" data-hero-typewriter data-text-first={t('hero.first')} data-text-second={t('hero.second')}></span>
+          <span class="hero-typewriter__accessible" data-hero-typewriter-label>{t('hero.first')}</span>
+        </strong>
+      </p>
+      <h1 id="hero-title">
+        {t('hero.title')}
+      </h1>
+      <p>{t('hero.copy')}</p>
+      <div class="hero-actions">
+        <a class="cv-button" href={cvHref} download>
+          <DownloadIcon />
+          {t('hero.download')}
+        </a>
+        <a
+          class="hero-social-link"
+          href="https://linkedin.com/in/enzo-jesuan-del-sole"
+          target="_blank"
+          rel="noreferrer"
+        aria-label="LinkedIn"
+        >
+          <span class="hero-social-icon hero-social-icon--linkedin" aria-hidden="true"></span>
+        </a>
+        <a
+          class="hero-social-link"
+          href="https://github.com/EnzoDev22"
+          target="_blank"
+          rel="noreferrer"
+        aria-label="GitHub"
+        >
+          <span class="hero-social-icon hero-social-icon--github" aria-hidden="true"></span>
+        </a>
+      </div>
     </div>
   </div>
+  <a class="hero-scroll-indicator" href="#proyectos" aria-label={t('nav.projects')}>
+    <span class="hero-scroll-indicator__mouse" aria-hidden="true"></span>
+  </a>
 </section>
+
+<script>
+  const typewriter = document.querySelector<HTMLElement>('[data-hero-typewriter]');
+  const typewriterLabel = document.querySelector<HTMLElement>('[data-hero-typewriter-label]');
+
+  if (typewriter) {
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    let timer: number | undefined;
+    let cycle = 0;
+
+    const restart = () => {
+      cycle += 1;
+      window.clearTimeout(timer);
+
+      const currentCycle = cycle;
+      const texts = [typewriter.dataset.textFirst!, typewriter.dataset.textSecond!];
+      let textIndex = 0;
+
+      if (reducedMotion.matches) {
+        typewriter.textContent = texts[0];
+        if (typewriterLabel) typewriterLabel.textContent = texts[0];
+        return;
+      }
+
+      let index = 0;
+      const type = () => {
+        if (currentCycle !== cycle) return;
+        const text = texts[textIndex];
+        if (index === 0 && typewriterLabel) typewriterLabel.textContent = text;
+        typewriter.textContent = text.slice(0, index);
+        if (index < text.length) {
+          index += 1;
+          timer = window.setTimeout(type, 70);
+          return;
+        }
+        timer = window.setTimeout(erase, 1500);
+      };
+
+      const erase = () => {
+        if (currentCycle !== cycle) return;
+        const text = texts[textIndex];
+        typewriter.textContent = text.slice(0, index);
+        if (index > 0) {
+          index -= 1;
+          timer = window.setTimeout(erase, 40);
+          return;
+        }
+        textIndex = (textIndex + 1) % texts.length;
+        timer = window.setTimeout(type, 450);
+      };
+
+      type();
+    };
+
+    reducedMotion.addEventListener('change', restart);
+    restart();
+  }
+</script>

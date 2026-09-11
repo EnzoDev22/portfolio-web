@@ -1,43 +1,57 @@
 ---
+import type { Project } from '../../data/projects';
+import { Image } from 'astro:assets';
+import { t } from 'i18next';
+
 interface Props {
-  images: string[];
-  alt: string;
+  project: Project;
+  locale: 'es' | 'en';
 }
 
-const { images, alt } = Astro.props;
-const galleryImages = images.slice(0, 3);
+const { project, locale } = Astro.props;
+const images = project.images.length ? project.images : [project.image];
 ---
 
-<div class="project-modal__gallery">
-  <figure class="project-modal__figure">
-    <img
-      src={galleryImages[0]}
-      alt={alt}
-      data-modal-main-image
-    />
-  </figure>
+<section class="project-detail__gallery" aria-labelledby="project-gallery-title" data-project-gallery>
+  <h2 id="project-gallery-title">
+    {t('actions.gallery')}
+  </h2>
 
-  <div class="project-modal__controls">
-    <button class="carousel-arrow carousel-arrow--previous" type="button" aria-label="Imagen anterior" data-gallery-prev>
-      <span aria-hidden="true"></span>
-    </button>
-
-    <div class="project-modal__thumbnails" data-gallery-thumbnails>
-      {galleryImages.map((image, index) => (
+  <ul class="project-detail__thumbnails">
+    {images.map((image, index) => (
+      <li>
         <button
           class="project-thumbnail"
           type="button"
-          aria-label={`Mostrar imagen ${index + 1}`}
-          aria-current={index === 0 ? 'true' : 'false'}
-          data-gallery-index={index}
+          aria-label={`${t('actions.gallery')} ${index + 1}`}
+          data-gallery-open
+          data-index={index}
+          data-src={image.src}
+          data-alt={`${locale === 'en' ? project.altEn : project.alt} — ${index + 1}`}
         >
-          <img src={image} alt="" />
+          <Image src={image} alt="" layout="full-width" loading="lazy" decoding="async" />
         </button>
-      ))}
-    </div>
+      </li>
+    ))}
+  </ul>
 
-    <button class="carousel-arrow carousel-arrow--next" type="button" aria-label="Imagen siguiente" data-gallery-next>
+  <dialog class="project-lightbox" aria-label={t('actions.gallery')} data-gallery-lightbox>
+    <button class="project-lightbox__close" type="button" aria-label={t('actions.gallery')} data-lightbox-close>
       <span aria-hidden="true"></span>
     </button>
-  </div>
-</div>
+    <button class="project-lightbox__arrow project-lightbox__arrow--previous" type="button" aria-label="Imagen anterior" data-lightbox-prev>
+      <span aria-hidden="true"></span>
+    </button>
+    <figure class="project-lightbox__figure">
+      <img alt="" data-lightbox-image />
+      <figcaption data-lightbox-counter></figcaption>
+    </figure>
+    <button class="project-lightbox__arrow project-lightbox__arrow--next" type="button" aria-label="Imagen siguiente" data-lightbox-next>
+      <span aria-hidden="true"></span>
+    </button>
+  </dialog>
+</section>
+
+<script>
+  import '../../scripts/project-gallery';
+</script>

@@ -1,0 +1,11 @@
+{
+  "meta": { "title": "Enzo Jesuan Del Sole · Full Stack Developer", "description": "Portfolio of Enzo Jesuan Del Sole, Full Stack Developer." },
+  "nav": { "label": "Main navigation", "home": "Home", "projects": "Projects", "skills": "Skills", "experience": "Experience", "contact": "Contact" },
+  "actions": { "backToTop": "Back to top", "language": "Switch to Spanish", "openMenu": "Open menu", "closeMenu": "Close menu", "lightTheme": "Enable light theme", "darkTheme": "Enable dark theme", "viewProject": "View project", "backProjects": "Back to projects", "technologies": "Technologies", "gallery": "Gallery", "problem": "The problem", "built": "What I built", "decisions": "Technical decisions", "result": "The result" },
+  "hero": { "intro": "Hi, I am", "first": "Full Stack Developer", "second": "Enzo Jesuan Del Sole", "title": "I develop software with INTENT.", "copy": "I build clear, reliable solutions, adapting to the needs and technologies of each project.", "download": "Download résumé", "portraitAlt": "Portrait of Enzo Jesuan Del Sole" },
+  "projects": { "title": "Featured Projects", "hint": "Tap a project to learn more", "production": "In production" },
+  "skills": { "title": "My Skills", "copy": "Technologies and tools I use to turn ideas into digital products.", "label": "Technologies" },
+  "experience": { "title": "My experience", "copy": "A journey through the roles, learning experiences and education that drive my professional growth.", "work": "Work experience", "courses": "Courses and certifications", "academic": "Academic background", "current": "Present", "skills": "Skills", "hours": "hours", "certificate": "View certificate" },
+  "contact": { "kicker": "Contact", "title": "Have a project or an opportunity to discuss?", "copy": "I’m open to new opportunities, collaborations, and challenges where I can contribute clear and reliable solutions.", "write": "Get in touch", "idea": "Tell me about your idea", "name": "Name", "email": "Email address", "subject": "Subject", "message": "Message", "protection": "Validation and spam protection.", "send": "Send message" },
+  "footer": { "role": "Full Stack Developer", "social": "Social media" }
+}
