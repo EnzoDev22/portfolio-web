@@ -1,7 +1,5 @@
-type Language = 'es' | 'en';
 type FieldName = 'name' | 'email' | 'subject' | 'message';
 type FormState = 'idle' | 'sending' | 'success' | 'validation' | 'server';
-
 type ContactPayload = Record<FieldName | 'website', string>;
 
 type ApiResponse = {
@@ -9,36 +7,8 @@ type ApiResponse = {
   errors?: Partial<Record<FieldName, string>>;
 };
 
-const copy = {
-  es: {
-    button: 'Enviar mensaje',
-    sending: 'Enviando…',
-    success: 'Tu mensaje fue enviado. Gracias por escribirme.',
-    validation: 'Revisá los campos indicados antes de enviar.',
-    server: 'No pude enviar el mensaje en este momento. Intentá nuevamente.',
-    required: 'Este campo es obligatorio.',
-    name: 'Ingresá un nombre de entre 2 y 80 caracteres.',
-    email: 'Ingresá un correo electrónico válido.',
-    subject: 'Ingresá un asunto de entre 3 y 120 caracteres.',
-    message: 'El mensaje debe tener entre 10 y 3000 caracteres.',
-  },
-  en: {
-    button: 'Send message',
-    sending: 'Sending…',
-    success: 'Your message was sent. Thank you for reaching out.',
-    validation: 'Please review the highlighted fields before sending.',
-    server: 'I could not send your message right now. Please try again.',
-    required: 'This field is required.',
-    name: 'Enter a name between 2 and 80 characters.',
-    email: 'Enter a valid email address.',
-    subject: 'Enter a subject between 3 and 120 characters.',
-    message: 'The message must be between 10 and 3000 characters.',
-  },
-} as const;
-
 const fieldNames: FieldName[] = ['name', 'email', 'subject', 'message'];
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const root = document.documentElement;
 const form = document.querySelector<HTMLFormElement>('.contact-form');
 
 if (form) {
@@ -50,59 +20,50 @@ if (form) {
   const errorElements = Object.fromEntries(
     fieldNames.map((name) => [name, form.querySelector<HTMLElement>(`[data-error-for="${name}"]`)]),
   ) as Record<FieldName, HTMLElement | null>;
+  const copy = {
+    button: form.dataset.button ?? '',
+    sending: form.dataset.sending ?? '',
+    success: form.dataset.success ?? '',
+    validation: form.dataset.validation ?? '',
+    server: form.dataset.server ?? '',
+    required: form.dataset.required ?? '',
+    name: form.dataset.errorName ?? '',
+    email: form.dataset.errorEmail ?? '',
+    subject: form.dataset.errorSubject ?? '',
+    message: form.dataset.errorMessage ?? '',
+  };
 
   let isSubmitting = false;
   let currentState: FormState = 'idle';
 
-  const getLanguage = (): Language => root.lang === 'en' ? 'en' : 'es';
-
   const setButtonText = () => {
-    if (!submitButton) return;
-    const language = getLanguage();
-    const value = isSubmitting ? copy[language].sending : copy[language].button;
-    submitButton.querySelector<HTMLElement>(`.lang-${language}`)!.textContent = value;
-  };
-
-  const updateLocalizedContent = () => {
-    const language = getLanguage();
-    form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[data-placeholder-es]').forEach((field) => {
-      field.placeholder = field.dataset[language === 'en' ? 'placeholderEn' : 'placeholderEs'] ?? '';
-    });
-    for (const name of fieldNames) {
-      if (fields[name].hasAttribute('aria-invalid')) {
-        const error = validateField(name) ?? copy[language][name];
-        if (errorElements[name]) errorElements[name]!.textContent = error;
-      }
-    }
-    setButtonText();
-    if (status && currentState !== 'idle') status.textContent = copy[language][currentState];
+    if (submitButton) submitButton.textContent = isSubmitting ? copy.sending : copy.button;
   };
 
   const setStatus = (state: FormState) => {
     currentState = state;
     if (!status) return;
     status.dataset.state = state;
-    status.textContent = state === 'idle' ? '' : copy[getLanguage()][state];
+    status.textContent = state === 'idle' ? '' : copy[state];
   };
 
   const clearFieldError = (name: FieldName) => {
     fields[name].removeAttribute('aria-invalid');
-    if (errorElements[name]) errorElements[name]!.textContent = '';
+    if (errorElements[name]) errorElements[name].textContent = '';
   };
 
   const setFieldError = (name: FieldName, message: string) => {
     fields[name].setAttribute('aria-invalid', 'true');
-    if (errorElements[name]) errorElements[name]!.textContent = message;
+    if (errorElements[name]) errorElements[name].textContent = message;
   };
 
   const validateField = (name: FieldName): string | null => {
-    const language = getLanguage();
     const value = fields[name].value.trim();
-    if (!value) return copy[language].required;
-    if (name === 'name' && (value.length < 2 || value.length > 80)) return copy[language].name;
-    if (name === 'email' && (value.length > 254 || !emailPattern.test(value))) return copy[language].email;
-    if (name === 'subject' && (value.length < 3 || value.length > 120)) return copy[language].subject;
-    if (name === 'message' && (value.length < 10 || value.length > 3000)) return copy[language].message;
+    if (!value) return copy.required;
+    if (name === 'name' && (value.length < 2 || value.length > 80)) return copy.name;
+    if (name === 'email' && (value.length > 254 || !emailPattern.test(value))) return copy.email;
+    if (name === 'subject' && (value.length < 3 || value.length > 120)) return copy.subject;
+    if (name === 'message' && (value.length < 10 || value.length > 3000)) return copy.message;
     return null;
   };
 
@@ -125,8 +86,6 @@ if (form) {
       if (currentState === 'validation') setStatus('idle');
     });
   }
-
-  updateLocalizedContent();
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -159,7 +118,7 @@ if (form) {
       if (!response.ok || result.success !== true) {
         if (response.status === 400 && result.errors) {
           for (const name of fieldNames) {
-            if (result.errors[name]) setFieldError(name, copy[getLanguage()][name]);
+            if (result.errors[name]) setFieldError(name, copy[name]);
           }
           setStatus('validation');
         } else {
@@ -170,7 +129,6 @@ if (form) {
 
       form.reset();
       fieldNames.forEach(clearFieldError);
-      updateLocalizedContent();
       setStatus('success');
     } catch {
       setStatus('server');

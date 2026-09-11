@@ -15,18 +15,12 @@ document.querySelectorAll<HTMLElement>('[data-certificate-viewer]').forEach((vie
   const dismissButton = closeButton;
   let previousFocus: HTMLButtonElement | null = null;
   let activeButton: HTMLButtonElement | null = null;
-  const isEnglish = () => document.documentElement.lang === 'en';
 
   function updateCertificate() {
     if (!activeButton) return;
     certificateImage.src = activeButton.dataset.certificateSrc ?? '';
-    certificateImage.alt = isEnglish()
-      ? activeButton.dataset.certificateAltEn ?? ''
-      : activeButton.dataset.certificateAltEs ?? '';
-    certificateCaption.textContent = isEnglish()
-      ? activeButton.dataset.certificateTitleEn ?? ''
-      : activeButton.dataset.certificateTitleEs ?? '';
-    dismissButton.setAttribute('aria-label', isEnglish() ? 'Close certificate' : 'Cerrar certificado');
+    certificateImage.alt = activeButton.dataset.certificateAlt ?? '';
+    certificateCaption.textContent = activeButton.dataset.certificateTitle ?? '';
   }
 
   function closeCertificate() {
@@ -61,5 +55,4 @@ document.querySelectorAll<HTMLElement>('[data-certificate-viewer]').forEach((vie
     certificateImage.removeAttribute('src');
     certificateImage.alt = '';
   });
-
 });

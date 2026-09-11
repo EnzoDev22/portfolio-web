@@ -5,17 +5,15 @@ import { t } from 'i18next';
 
 interface Props {
   project: Project;
-  locale: 'es' | 'en';
 }
 
-const { project, locale } = Astro.props;
+const { project } = Astro.props;
 const images = project.images.length ? project.images : [project.image];
+const alt = t(`projects.items.${project.id}.alt`);
 ---
 
 <section class="project-detail__gallery" aria-labelledby="project-gallery-title" data-project-gallery>
-  <h2 id="project-gallery-title">
-    {t('actions.gallery')}
-  </h2>
+  <h2 id="project-gallery-title">{t('actions.gallery')}</h2>
 
   <ul class="project-detail__thumbnails">
     {images.map((image, index) => (
@@ -27,7 +25,7 @@ const images = project.images.length ? project.images : [project.image];
           data-gallery-open
           data-index={index}
           data-src={image.src}
-          data-alt={`${locale === 'en' ? project.altEn : project.alt} — ${index + 1}`}
+          data-alt={`${alt} — ${index + 1}`}
         >
           <Image src={image} alt="" layout="full-width" loading="lazy" decoding="async" />
         </button>
@@ -36,17 +34,17 @@ const images = project.images.length ? project.images : [project.image];
   </ul>
 
   <dialog class="project-lightbox" aria-label={t('actions.gallery')} data-gallery-lightbox>
-    <button class="project-lightbox__close" type="button" aria-label={t('actions.gallery')} data-lightbox-close>
+    <button class="project-lightbox__close" type="button" aria-label={t('actions.closeGallery')} data-lightbox-close>
       <span aria-hidden="true"></span>
     </button>
-    <button class="project-lightbox__arrow project-lightbox__arrow--previous" type="button" aria-label="Imagen anterior" data-lightbox-prev>
+    <button class="project-lightbox__arrow project-lightbox__arrow--previous" type="button" aria-label={t('actions.previousImage')} data-lightbox-prev>
       <span aria-hidden="true"></span>
     </button>
     <figure class="project-lightbox__figure">
       <img alt="" data-lightbox-image />
       <figcaption data-lightbox-counter></figcaption>
     </figure>
-    <button class="project-lightbox__arrow project-lightbox__arrow--next" type="button" aria-label="Imagen siguiente" data-lightbox-next>
+    <button class="project-lightbox__arrow project-lightbox__arrow--next" type="button" aria-label={t('actions.nextImage')} data-lightbox-next>
       <span aria-hidden="true"></span>
     </button>
   </dialog>

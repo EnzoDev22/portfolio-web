@@ -6,36 +6,65 @@ import Header from '../../../components/Header.astro';
 import ProjectGallery from '../../../components/projects/ProjectGallery.astro';
 import { projects, type Project } from '../../../data/projects';
 
-interface Props { project: Project; }
+interface Props {
+  project: Project;
+}
+
 export function getStaticPaths() {
   return projects.flatMap((project) => ['es', 'en'].map((locale) => ({
-    params: { locale: locale === 'es' ? undefined : locale, id: project.id }, props: { project },
+    params: { locale: locale === 'es' ? undefined : locale, id: project.id },
+    props: { project },
   })));
 }
+
 const { project } = Astro.props;
 const locale = Astro.params.locale === 'en' ? 'en' : 'es';
-const value = (es: string, en: string) => locale === 'en' ? en : es;
+const projectKey = (field: string) => `projects.items.${project.id}.${field}`;
+const title = t(projectKey('title'));
 ---
 
-<BaseLayout title={`${value(project.title, project.titleEn)} · Enzo Jesuan Del Sole`} description={value(project.description, project.descriptionEn)} locale={locale}>
+<BaseLayout title={`${title} · Enzo Jesuan Del Sole`} description={t(projectKey('description'))} locale={locale}>
   <div class="page-shell">
     <Header sectionPrefix={locale === 'en' ? '/en/' : '/'} activeSection="proyectos" locale={locale} />
     <main class="project-detail-page">
       <article class="project-detail">
-        <a class="project-detail__back" href={`${locale === 'en' ? '/en/' : '/'}#proyectos`}><span aria-hidden="true"></span>{t('actions.backProjects')}</a>
+        <a class="project-detail__back" href={`${locale === 'en' ? '/en/' : '/'}#proyectos`}>
+          <span aria-hidden="true"></span>
+          {t('actions.backProjects')}
+        </a>
         <header class="project-detail__intro">
-          <h1>{value(project.title, project.titleEn)}</h1><p class="project-detail__subtitle">{value(project.subtitle, project.subtitleEn)}</p>
-          <div class="project-detail__technology-group"><p class="project-detail__label">{t('actions.technologies')}</p><ul class="project-detail__technologies">{project.technologies.map((technology) => <li>{technology.name}</li>)}</ul></div>
+          <h1>{title}</h1>
+          <p class="project-detail__subtitle">{t(projectKey('subtitle'))}</p>
+          <div class="project-detail__technology-group">
+            <p class="project-detail__label">{t('actions.technologies')}</p>
+            <ul class="project-detail__technologies">{project.technologies.map((technology) => <li>{technology.name}</li>)}</ul>
+          </div>
           <div class="project-detail__actions">
-            {project.videoUrl && <a class="modal-video" href={project.videoUrl} target="_blank" rel="noreferrer"><span class="modal-video__icon" aria-hidden="true"></span>Watch on YouTube</a>}
-            <a class="modal-github" href={project.githubUrl} target="_blank" rel="noreferrer"><span class="modal-github__icon" aria-hidden="true"></span>GitHub</a>
-            {project.projectUrl && <a class="modal-project-link" href={project.projectUrl} target="_blank" rel="noreferrer">{t('actions.viewProject')}<span class="modal-project-link__arrow" aria-hidden="true"></span></a>}
+            {project.videoUrl && (
+              <a class="modal-video" href={project.videoUrl} target="_blank" rel="noreferrer">
+                <span class="modal-video__icon" aria-hidden="true"></span>
+                {t('actions.video')}
+              </a>
+            )}
+            <a class="modal-github" href={project.githubUrl} target="_blank" rel="noreferrer">
+              <span class="modal-github__icon" aria-hidden="true"></span>
+              GitHub
+            </a>
+            {project.projectUrl && (
+              <a class="modal-project-link" href={project.projectUrl} target="_blank" rel="noreferrer">
+                {t('actions.viewProject')}
+                <span class="modal-project-link__arrow" aria-hidden="true"></span>
+              </a>
+            )}
           </div>
         </header>
         <div class="project-detail__narrative">
-          <section><h2>{t('actions.problem')}</h2><p>{value(project.problem, project.problemEn)}</p></section><section><h2>{t('actions.built')}</h2><p>{value(project.built, project.builtEn)}</p></section><section><h2>{t('actions.decisions')}</h2><p>{value(project.technicalDecisions, project.technicalDecisionsEn)}</p></section><section><h2>{t('actions.result')}</h2><p>{value(project.result, project.resultEn)}</p></section>
+          <section><h2>{t('actions.problem')}</h2><p>{t(projectKey('problem'))}</p></section>
+          <section><h2>{t('actions.built')}</h2><p>{t(projectKey('built'))}</p></section>
+          <section><h2>{t('actions.decisions')}</h2><p>{t(projectKey('technicalDecisions'))}</p></section>
+          <section><h2>{t('actions.result')}</h2><p>{t(projectKey('result'))}</p></section>
         </div>
-        <ProjectGallery project={project} locale={locale} />
+        <ProjectGallery project={project} />
       </article>
     </main>
     <Footer />
