@@ -1,3 +1,9 @@
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
@@ -1970,92 +1976,6 @@ main {
   mask: url('/assets/arrow-up.svg') center / contain no-repeat;
 }
 
-.site-footer {
-  padding: 26px 16px 38px;
-  border-top: 1px solid var(--line);
-}
-
-.site-footer__inner {
-  display: flex;
-  width: 100%;
-  margin: 0 auto;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.site-footer__signature {
-  display: flex;
-  margin: 0;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 4px 8px;
-  color: var(--quiet);
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  line-height: 1.6;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.site-footer__signature a {
-  color: var(--accent-strong);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
-:root.dark .site-footer__signature a { color: var(--accent); }
-
-.site-footer__signature a:hover,
-.site-footer__signature a:focus-visible { color: var(--text); }
-
-.site-footer__socials {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.site-footer__socials a {
-  display: inline-flex;
-  width: 38px;
-  height: 38px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid transparent;
-  border-radius: 9999px;
-  color: var(--quiet);
-  transition: border-color var(--transition), color var(--transition), background-color var(--transition), transform var(--transition);
-}
-
-.site-footer__socials a:hover,
-.site-footer__socials a:focus-visible {
-  border-color: var(--line);
-  background: var(--surface-soft);
-  color: var(--accent-strong);
-  transform: translateY(-2px);
-}
-
-:root.dark .site-footer__socials a:hover,
-:root.dark .site-footer__socials a:focus-visible { color: var(--accent); }
-
-.site-footer__social-icon {
-  width: 19px;
-  height: 19px;
-  background: currentColor;
-}
-
-.site-footer__social-icon--github {
-  -webkit-mask: url('/assets/brand-github.svg') center / contain no-repeat;
-  mask: url('/assets/brand-github.svg') center / contain no-repeat;
-}
-
-.site-footer__social-icon--linkedin {
-  -webkit-mask: url('/assets/brand-linkedin.svg') center / contain no-repeat;
-  mask: url('/assets/brand-linkedin.svg') center / contain no-repeat;
-}
-
 @media (max-width: 639px) and (max-height: 700px) {
   .hero { padding-block: 8px; }
   .hero-main { gap: 10px; }
@@ -2077,8 +1997,6 @@ main {
     font-size: clamp(.95rem, 2.5vw, 1.35rem);
     white-space: nowrap;
   }
-  .site-footer__inner { max-width: 1180px; flex-direction: row; justify-content: space-between; }
-  .site-footer__signature { justify-content: flex-start; text-align: left; }
   .form-row { flex-direction: row; }
   .project-detail { padding-block: 52px 84px; }
   .project-detail__thumbnails { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }

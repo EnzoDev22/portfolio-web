@@ -4,24 +4,24 @@ import { t } from 'i18next';
 const year = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <p class="site-footer__signature">
+<footer class="border-0 border-t border-solid [border-color:var(--line)] px-4 pt-[26px] pb-[38px]">
+  <div class="mx-auto flex w-full flex-col items-center gap-4 sm:max-w-[1180px] sm:flex-row sm:justify-between">
+    <p class="m-0 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-[.68rem] leading-[1.6] font-bold tracking-[.12em] [color:var(--quiet)] uppercase sm:justify-start sm:text-left">
       <span>{year}</span>
       <span aria-hidden="true">/</span>
       <span>Enzo Jesuan Del Sole</span>
       <span aria-hidden="true">/</span>
       <span>{t('footer.role')}</span>
       <span aria-hidden="true">/</span>
-      <a href="https://github.com/EnzoDev22" target="_blank" rel="noreferrer">@EnzoDev22</a>
+      <a class="[color:var(--accent-strong)]! no-underline transition-colors duration-[180ms] ease-[ease] hover:[color:var(--text)]! focus-visible:[color:var(--text)]! dark:[color:var(--accent)]!" href="https://github.com/EnzoDev22" target="_blank" rel="noreferrer">@EnzoDev22</a>
     </p>
 
-    <nav class="site-footer__socials" aria-label={t('footer.social')}>
-      <a href="https://github.com/EnzoDev22" target="_blank" rel="noreferrer" aria-label={t('footer.github')}>
-        <span class="site-footer__social-icon site-footer__social-icon--github" aria-hidden="true"></span>
+    <nav class="flex items-center gap-4" aria-label={t('footer.social')}>
+      <a class="inline-flex size-[38px] items-center justify-center rounded-full border border-solid border-transparent [color:var(--quiet)]! transition-[border-color,color,background-color,transform] duration-[180ms] ease-[ease] hover:-translate-y-0.5 hover:[border-color:var(--line)] hover:[background-color:var(--surface-soft)] hover:[color:var(--accent-strong)]! focus-visible:-translate-y-0.5 focus-visible:[border-color:var(--line)] focus-visible:[background-color:var(--surface-soft)] focus-visible:[color:var(--accent-strong)]! dark:hover:[color:var(--accent)]! dark:focus-visible:[color:var(--accent)]!" href="https://github.com/EnzoDev22" target="_blank" rel="noreferrer" aria-label={t('footer.github')}>
+        <span class="size-[19px] bg-current [mask:url('/assets/brand-github.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/brand-github.svg')_center/contain_no-repeat]" aria-hidden="true"></span>
       </a>
-      <a href="https://linkedin.com/in/enzo-jesuan-del-sole" target="_blank" rel="noreferrer" aria-label={t('footer.linkedin')}>
-        <span class="site-footer__social-icon site-footer__social-icon--linkedin" aria-hidden="true"></span>
+      <a class="inline-flex size-[38px] items-center justify-center rounded-full border border-solid border-transparent [color:var(--quiet)]! transition-[border-color,color,background-color,transform] duration-[180ms] ease-[ease] hover:-translate-y-0.5 hover:[border-color:var(--line)] hover:[background-color:var(--surface-soft)] hover:[color:var(--accent-strong)]! focus-visible:-translate-y-0.5 focus-visible:[border-color:var(--line)] focus-visible:[background-color:var(--surface-soft)] focus-visible:[color:var(--accent-strong)]! dark:hover:[color:var(--accent)]! dark:focus-visible:[color:var(--accent)]!" href="https://linkedin.com/in/enzo-jesuan-del-sole" target="_blank" rel="noreferrer" aria-label={t('footer.linkedin')}>
+        <span class="size-[19px] bg-current [mask:url('/assets/brand-linkedin.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/brand-linkedin.svg')_center/contain_no-repeat]" aria-hidden="true"></span>
       </a>
     </nav>
   </div>
