@@ -13,34 +13,34 @@ const projectKey = (field: string) => `projects.items.${project.id}.${field}`;
 const title = t(projectKey('title'));
 ---
 
-<article class="project-card">
-  <div class="project-card__media">
-    <Image src={project.image} alt={t(projectKey('alt'))} layout="full-width" loading="lazy" decoding="async" />
+<article class="group relative flex h-full w-full min-w-0 flex-col overflow-hidden rounded-[var(--radius-md)] border border-solid [border-color:var(--line)] bg-[var(--surface)] transition-[border-color,box-shadow,transform] duration-[180ms] ease-[ease] hover:-translate-y-1 hover:[border-color:var(--accent-strong)] hover:[box-shadow:var(--shadow-raised)] supports-[background:color-mix(in_srgb,white_50%,black)]:hover:[border-color:color-mix(in_srgb,var(--accent-strong)_58%,var(--line))]">
+  <div class="aspect-[2.4/1] overflow-hidden bg-[var(--page-alt)]">
+    <Image class="h-full w-full object-cover transition-[transform,filter] duration-[500ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105 group-hover:[filter:saturate(1.05)]" src={project.image} alt={t(projectKey('alt'))} layout="full-width" loading="lazy" decoding="async" />
   </div>
 
-  <div class="project-card__body">
-    <h3>
-      <a class="open-project" href={`${locale === 'en' ? '/en' : ''}/proyectos/${project.id}/`} aria-label={`${t('actions.viewProject')}: ${title}`}>
+  <div class="flex min-w-0 flex-1 flex-col p-[18px] min-[1280px]:p-5">
+    <h3 class="m-0 [font-size:clamp(1rem,2vw,1.12rem)] font-bold tracking-[-.02em] leading-[1.3]">
+      <a class="static inline cursor-pointer border-0 bg-transparent p-0 text-left [color:var(--text)]! transition-colors duration-[180ms] ease-[ease] after:absolute after:inset-0 after:z-[1] after:content-[''] group-hover:[color:var(--accent-strong)]! dark:group-hover:[color:var(--accent)]! focus-visible:outline-none focus-visible:after:rounded-[var(--radius-md)] focus-visible:after:[outline:3px_solid_var(--accent)] focus-visible:after:[outline-offset:-3px]" href={`${locale === 'en' ? '/en' : ''}/proyectos/${project.id}/`} aria-label={`${t('actions.viewProject')}: ${title}`}>
         {title}
       </a>
     </h3>
 
-    {project.inProduction && <p class="project-card__status">{t('projects.production')}</p>}
-    <p class="project-card__subtitle">{t(projectKey('subtitle'))}</p>
-    <p class="project-card__description">{t(projectKey('description'))}</p>
+    {project.inProduction && <p class="m-0 mt-1 text-[.72rem] font-semibold [color:var(--accent-strong)] dark:[color:var(--accent)]">{t('projects.production')}</p>}
+    <p class="m-0 mt-2 text-[.86rem] font-semibold leading-[1.45] [color:var(--text)]">{t(projectKey('subtitle'))}</p>
+    <p class="m-0 mt-[7px] overflow-hidden text-[.8rem] leading-[1.6] [color:var(--muted)] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">{t(projectKey('description'))}</p>
 
-    <a class="project-card__github" href={project.githubUrl} target="_blank" rel="noreferrer" aria-label={`GitHub: ${title}`}>
-      <span class="project-card__github-icon" aria-hidden="true"></span>
+    <a class="relative z-[2] mt-[11px] inline-flex w-fit min-h-[30px] items-center gap-[6px] rounded-[7px] border border-solid [border-color:var(--line)] px-[9px] py-[5px] text-[.72rem] font-semibold [color:var(--text)]! transition-[border-color,color,background-color] duration-[180ms] ease-[ease] hover:[border-color:var(--accent-strong)] hover:[background-color:var(--surface-soft)] hover:[color:var(--accent-strong)]! focus-visible:[border-color:var(--accent-strong)] focus-visible:[background-color:var(--surface-soft)] focus-visible:[color:var(--accent-strong)]!" href={project.githubUrl} target="_blank" rel="noreferrer" aria-label={`GitHub: ${title}`}>
+      <span class="size-[14px] flex-none bg-current [mask:url('/assets/brand-github.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/brand-github.svg')_center/contain_no-repeat]" aria-hidden="true"></span>
       GitHub
     </a>
 
-    <ul class="project-card__technologies" aria-label={t('actions.technologies')}>
-      {project.technologies.map((technology) => <li>{technology.name}</li>)}
+    <ul class="m-0 mt-[14px] flex list-none flex-wrap gap-[6px] p-0" aria-label={t('actions.technologies')}>
+      {project.technologies.map((technology) => <li class="rounded-[5px] bg-[var(--surface-soft)] px-[7px] py-[2px] text-[.68rem] font-semibold leading-[1.5] [color:var(--accent-strong)] supports-[background:color-mix(in_srgb,white_50%,black)]:[background:color-mix(in_srgb,var(--accent)_14%,transparent)] dark:[color:var(--accent)]">{technology.name}</li>)}
     </ul>
 
-    <span class="project-card__cta" aria-hidden="true">
+    <span class="mt-auto inline-flex items-center gap-[6px] pt-4 text-[.78rem] font-semibold [color:var(--accent-strong)] dark:[color:var(--accent)]" aria-hidden="true">
       {t('actions.viewProject')}
-      <span class="project-card__arrow">→</span>
+      <span class="inline-block text-base leading-none transition-transform duration-[180ms] ease-[ease] group-hover:translate-x-1">→</span>
     </span>
   </div>
 </article>

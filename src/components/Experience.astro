@@ -6,34 +6,34 @@ const hasCertificates = courses.some((course) => Boolean(course.certificateImage
 const experienceKey = (group: string, id: string, field: string) => `experience.items.${group}.${id}.${field}`;
 ---
 
-<section id="experiencia" class="panel section-block experience-section" aria-labelledby="experience-title" data-reveal-section data-certificate-viewer>
+<section id="experiencia" class="panel section-block" aria-labelledby="experience-title" data-reveal-section data-certificate-viewer>
   <h2 id="experience-title">{t('experience.titlePrefix')} <em>{t('experience.titleAccent')}</em></h2>
-  <p>{t('experience.copy')}</p>
+  <p class="max-w-[72ch]!">{t('experience.copy')}</p>
 
-  <div class="experience-content">
-    <section class="experience-group" aria-labelledby="work-experience-title">
-      <header class="experience-group__heading">
-        <p class="experience-kicker" aria-hidden="true">01</p>
-        <h3 id="work-experience-title">{t('experience.work')}</h3>
+  <div class="mt-[34px] flex w-full flex-col gap-[46px] min-[900px]:mt-[46px] min-[900px]:gap-16">
+    <section class="min-w-0" aria-labelledby="work-experience-title">
+      <header class="flex items-baseline gap-3">
+        <p class="m-0 text-[.7rem] font-extrabold tracking-[.12em] [color:var(--accent-strong)] dark:[color:var(--accent)]" aria-hidden="true">01</p>
+        <h3 id="work-experience-title" class="m-0 [font-size:clamp(1.28rem,5.5vw,1.75rem)] font-bold tracking-[-.035em] leading-[1.25]">{t('experience.work')}</h3>
       </header>
 
-      <div class="experience-grid experience-grid--work">
+      <div class="mt-5 grid w-full grid-cols-[minmax(0,1fr)] gap-4 sm:grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
         {workExperience.map((item) => (
-          <article class="experience-card experience-card--work">
-            <div class="experience-card__identity">
-              <p class="experience-period">
-                <span class="dot" aria-hidden="true">●</span>
+          <article class="flex w-full min-w-0 flex-col gap-[26px] rounded-[var(--radius-md)] border border-solid [border-color:var(--line)] bg-[var(--surface)] px-5 py-6 [box-shadow:var(--shadow)] sm:p-7 min-[900px]:gap-[30px] min-[900px]:p-[30px]">
+            <div class="w-full min-w-0">
+              <p class="m-0 text-[.72rem] font-bold tracking-[.06em] leading-[1.5] [color:var(--blue)]">
+                <span class="mr-2 [color:var(--accent-strong)] dark:[color:var(--accent)]" aria-hidden="true">●</span>
                 {item.startYear} · {item.current ? t('experience.current') : item.endYear}
               </p>
-              <h4>{t(experienceKey('work', item.id, 'role'))}</h4>
-              <p class="experience-source">{t(experienceKey('work', item.id, 'company'))}</p>
-              {item.hasDescription && <p class="experience-description">{t(experienceKey('work', item.id, 'description'))}</p>}
+              <h4 class="m-0 mt-[18px] mb-2 w-full max-w-none [font-size:clamp(1.12rem,4.8vw,1.35rem)] font-bold tracking-[-.03em] leading-[1.3] sm:whitespace-nowrap sm:[font-size:clamp(.95rem,2.5vw,1.35rem)]">{t(experienceKey('work', item.id, 'role'))}</h4>
+              <p class="m-0 min-w-0 text-[.84rem] leading-[1.55] [color:var(--quiet)]">{t(experienceKey('work', item.id, 'company'))}</p>
+              {item.hasDescription && <p class="m-0 mt-5 text-[.86rem] leading-[1.7] [color:var(--muted)]">{t(experienceKey('work', item.id, 'description'))}</p>}
             </div>
 
-            <div class="experience-card__skills">
-              <p class="experience-label">{t('experience.skills')}</p>
-              <ul class="experience-skills">
-                {item.skillIds.map((skillId) => <li>{t(experienceKey('work', item.id, `skills.${skillId}`))}</li>)}
+            <div class="w-full min-w-0">
+              <p class="m-0 mb-3 text-[.72rem] font-bold [color:var(--muted)]">{t('experience.skills')}</p>
+              <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
+                {item.skillIds.map((skillId) => <li class="max-w-full rounded-full border border-solid [border-color:var(--accent)] bg-[var(--accent)] px-[10px] py-[7px] text-[.69rem] font-bold leading-[1.4] [color:var(--accent-strong)] [overflow-wrap:anywhere] supports-[background:color-mix(in_srgb,white_50%,black)]:[border-color:color-mix(in_srgb,var(--accent)_42%,var(--line))] supports-[background:color-mix(in_srgb,white_50%,black)]:[background:color-mix(in_srgb,var(--accent)_14%,var(--surface))] dark:[color:var(--accent)]">{t(experienceKey('work', item.id, `skills.${skillId}`))}</li>)}
               </ul>
             </div>
           </article>
@@ -41,29 +41,29 @@ const experienceKey = (group: string, id: string, field: string) => `experience.
       </div>
     </section>
 
-    <aside class="experience-bridge">
-      <span class="experience-bridge__quote experience-bridge__quote--open" aria-hidden="true">“</span>
-      <p>
-        {t('experience.bridge.beforeFirst')}<strong class="experience-bridge__emphasis">{t('experience.bridge.first')}</strong>{t('experience.bridge.betweenFirstSecond')}<strong class="experience-bridge__emphasis">{t('experience.bridge.second')}</strong>{t('experience.bridge.betweenSecondThird')}<strong class="experience-bridge__emphasis">{t('experience.bridge.third')}</strong>{t('experience.bridge.afterThird')}
+    <aside class="relative flex items-center justify-center overflow-hidden rounded-[var(--radius-sm)] border border-solid [border-color:var(--line)] [background:linear-gradient(135deg,var(--accent),var(--surface-soft))] px-[22px] pt-7 pb-[26px] [box-shadow:var(--shadow)] supports-[background:color-mix(in_srgb,white_50%,black)]:[background:linear-gradient(135deg,color-mix(in_srgb,var(--accent)_10%,var(--surface)),var(--surface-soft))] min-[900px]:px-10 min-[900px]:pt-[34px] min-[900px]:pb-8">
+      <span class="pointer-events-none absolute z-0 top-[-8px] left-[10px] opacity-[.32] [font-size:clamp(5.5rem,26vw,8.5rem)] font-extrabold leading-[.75] [color:var(--accent-strong)] dark:[color:var(--accent)] min-[900px]:top-[-12px] min-[900px]:left-5" aria-hidden="true">“</span>
+      <p class="relative z-[1] m-0 w-full px-4 text-center [font-size:clamp(.98rem,4.2vw,1.08rem)] font-semibold leading-[1.68] [color:var(--text)] min-[900px]:px-7">
+        {t('experience.bridge.beforeFirst')}<strong class="text-[1.055em] font-extrabold tracking-[-.02em] [color:var(--accent-strong)] dark:[color:var(--accent)]">{t('experience.bridge.first')}</strong>{t('experience.bridge.betweenFirstSecond')}<strong class="text-[1.055em] font-extrabold tracking-[-.02em] [color:var(--accent-strong)] dark:[color:var(--accent)]">{t('experience.bridge.second')}</strong>{t('experience.bridge.betweenSecondThird')}<strong class="text-[1.055em] font-extrabold tracking-[-.02em] [color:var(--accent-strong)] dark:[color:var(--accent)]">{t('experience.bridge.third')}</strong>{t('experience.bridge.afterThird')}
       </p>
-      <span class="experience-bridge__quote experience-bridge__quote--close" aria-hidden="true">”</span>
+      <span class="pointer-events-none absolute z-0 right-[10px] bottom-[-20px] opacity-[.32] [font-size:clamp(5.5rem,26vw,8.5rem)] font-extrabold leading-[.75] [color:var(--accent-strong)] dark:[color:var(--accent)] min-[900px]:right-6 min-[900px]:bottom-[-28px]" aria-hidden="true">”</span>
     </aside>
 
-    <section class="experience-group" aria-labelledby="courses-title">
-      <header class="experience-group__heading">
-        <p class="experience-kicker" aria-hidden="true">02</p>
-        <h3 id="courses-title">{t('experience.courses')}</h3>
+    <section class="min-w-0" aria-labelledby="courses-title">
+      <header class="flex items-baseline gap-3">
+        <p class="m-0 text-[.7rem] font-extrabold tracking-[.12em] [color:var(--accent-strong)] dark:[color:var(--accent)]" aria-hidden="true">02</p>
+        <h3 id="courses-title" class="m-0 [font-size:clamp(1.28rem,5.5vw,1.75rem)] font-bold tracking-[-.035em] leading-[1.25]">{t('experience.courses')}</h3>
       </header>
 
-      <div class="experience-grid">
+      <div class="mt-5 grid w-full grid-cols-[minmax(0,1fr)] gap-4 sm:grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
         {courses.map((course) => {
           const title = t(experienceKey('courses', course.id, 'title'));
           return (
-            <article class="experience-card experience-card--course">
-              <p class="experience-period"><span class="dot" aria-hidden="true">●</span>{course.durationHours} {t('experience.hours')}</p>
-              <h4>{title}</h4>
-              <div class="course-card__footer">
-                <p class="experience-source">{t(experienceKey('courses', course.id, 'institution'))}</p>
+            <article class="flex min-w-0 flex-col rounded-[var(--radius-md)] border border-solid [border-color:var(--line)] bg-[var(--surface)] px-5 py-6 [box-shadow:var(--shadow)] sm:p-7 min-[900px]:p-[30px]">
+              <p class="m-0 text-[.72rem] font-bold tracking-[.06em] leading-[1.5] [color:var(--blue)]"><span class="mr-2 [color:var(--accent-strong)] dark:[color:var(--accent)]" aria-hidden="true">●</span>{course.durationHours} {t('experience.hours')}</p>
+              <h4 class="m-0 mt-[18px] mb-2 [font-size:clamp(1.12rem,4.8vw,1.35rem)] font-bold tracking-[-.03em] leading-[1.3]">{title}</h4>
+              <div class="mt-2 flex items-center justify-between gap-4">
+                <p class="m-0 min-w-0 text-[.84rem] leading-[1.55] [color:var(--quiet)]">{t(experienceKey('courses', course.id, 'institution'))}</p>
                 {course.certificateImage && (
                   <button
                     class="certificate-button"
@@ -84,19 +84,19 @@ const experienceKey = (group: string, id: string, field: string) => `experience.
       </div>
     </section>
 
-    <section class="experience-group" aria-labelledby="academic-title">
-      <header class="experience-group__heading">
-        <p class="experience-kicker" aria-hidden="true">03</p>
-        <h3 id="academic-title">{t('experience.academic')}</h3>
+    <section class="min-w-0" aria-labelledby="academic-title">
+      <header class="flex items-baseline gap-3">
+        <p class="m-0 text-[.7rem] font-extrabold tracking-[.12em] [color:var(--accent-strong)] dark:[color:var(--accent)]" aria-hidden="true">03</p>
+        <h3 id="academic-title" class="m-0 [font-size:clamp(1.28rem,5.5vw,1.75rem)] font-bold tracking-[-.035em] leading-[1.25]">{t('experience.academic')}</h3>
       </header>
 
-      <div class="experience-grid">
+      <div class="mt-5 grid w-full grid-cols-[minmax(0,1fr)] gap-4 sm:grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
         {academicExperience.map((item) => (
-          <article class="experience-card">
-            <p class="experience-period"><span class="dot" aria-hidden="true">●</span>{item.startYear} · {item.endYear}</p>
-            <h4>{t(experienceKey('academic', item.id, 'title'))}</h4>
-            <p class="experience-source">{t(experienceKey('academic', item.id, 'institution'))}</p>
-            <p class="experience-description">{t(experienceKey('academic', item.id, 'description'))}</p>
+          <article class="flex min-w-0 flex-col rounded-[var(--radius-md)] border border-solid [border-color:var(--line)] bg-[var(--surface)] px-5 py-6 [box-shadow:var(--shadow)] sm:p-7 min-[900px]:p-[30px]">
+            <p class="m-0 text-[.72rem] font-bold tracking-[.06em] leading-[1.5] [color:var(--blue)]"><span class="mr-2 [color:var(--accent-strong)] dark:[color:var(--accent)]" aria-hidden="true">●</span>{item.startYear} · {item.endYear}</p>
+            <h4 class="m-0 mt-[18px] mb-2 [font-size:clamp(1.12rem,4.8vw,1.35rem)] font-bold tracking-[-.03em] leading-[1.3]">{t(experienceKey('academic', item.id, 'title'))}</h4>
+            <p class="m-0 min-w-0 text-[.84rem] leading-[1.55] [color:var(--quiet)]">{t(experienceKey('academic', item.id, 'institution'))}</p>
+            <p class="m-0 mt-5 text-[.86rem] leading-[1.7] [color:var(--muted)]">{t(experienceKey('academic', item.id, 'description'))}</p>
           </article>
         ))}
       </div>

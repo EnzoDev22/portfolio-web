@@ -6,16 +6,16 @@ interface Props { locale: 'es' | 'en'; }
 const { locale } = Astro.props;
 ---
 
-<section id="proyectos" class="panel section-block projects-section" aria-labelledby="projects-title" data-reveal-section>
-  <h2 id="projects-title">
+<section id="proyectos" class="panel section-block" aria-labelledby="projects-title" data-reveal-section>
+  <h2 id="projects-title" class="max-w-full whitespace-nowrap [font-size:clamp(1.5rem,7.5vw,4rem)]">
     {t('projects.title')}
   </h2>
-  <div class="projects-grid">
+  <div class="grid w-full mt-8 gap-[18px] sm:grid-cols-2 sm:gap-5 min-[900px]:mt-[46px]">
     {projects.map((project) => (
       <ProjectCard project={project} locale={locale} />
     ))}
   </div>
-  <p class="mobile-hint">
+  <p class="self-center [color:var(--blue)]! text-[.72rem]! font-medium tracking-[.03em] min-[900px]:hidden">
     {t('projects.hint')}
   </p>
 </section>

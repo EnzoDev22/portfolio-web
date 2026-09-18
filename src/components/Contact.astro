@@ -1,22 +1,27 @@
 ---
 import { t } from 'i18next';
+
+const fieldClass = 'flex min-w-0 flex-1 flex-col';
+const labelClass = 'mb-[7px] text-[.66rem] font-bold tracking-[.08em] text-[color:var(--quiet)] uppercase';
+const inputClass = 'w-full border border-solid border-[color:var(--line)] bg-[var(--page-alt)] px-[13px] py-3 text-[.88rem] font-normal tracking-normal text-[color:var(--text)] transition-[border-color,background-color,box-shadow] duration-[180ms] ease-[ease] hover:border-[color:var(--line-strong)] focus:border-[color:var(--accent-strong)] focus:bg-[var(--surface)] focus:shadow-[0_0_0_3px_rgb(95_181_113_/_28%)] focus:outline-0 supports-[box-shadow:0_0_0_3px_color-mix(in_srgb,white_50%,black)]:focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--accent)_28%,transparent)] aria-[invalid=true]:border-[#d85c5c] aria-[invalid=true]:shadow-[0_0_0_3px_rgb(216_92_92_/_12%)]';
+const errorClass = 'mt-[5px] min-h-[1.2em] text-[.68rem] leading-[1.35] font-medium text-[#c84949] empty:mt-0 empty:min-h-0 dark:text-[#ff9a9a]';
 ---
 
-<section id="contacto" class="panel section-block contact-section" aria-labelledby="contact-title" data-reveal-section>
-  <div class="contact-grid">
-    <aside class="contact-info">
-      <p class="contact-kicker"><span class="contact-kicker-dot" aria-hidden="true"></span>{t('contact.kicker')}</p>
-      <h2 id="contact-title">{t('contact.titleStart')}<em>{t('contact.titleAccent')}</em>{t('contact.titleEnd')}</h2>
-      <p class="contact-copy">{t('contact.copy')}</p>
+<section id="contacto" class="panel section-block" aria-labelledby="contact-title" data-reveal-section>
+  <div class="flex w-full flex-col gap-4 min-[900px]:flex-row min-[900px]:items-stretch min-[900px]:gap-[18px]">
+    <aside class="flex flex-col px-[22px] pt-[30px] pb-6 text-left text-[color:var(--text)] min-[900px]:basis-[47%] min-[900px]:px-9 min-[900px]:pt-[42px] min-[900px]:pb-[30px]">
+      <p class="mb-[30px] flex items-center gap-[9px] text-[.68rem] font-bold tracking-[.14em] text-[color:var(--muted)] uppercase"><span class="h-[9px] w-[9px] shrink-0 rounded-full bg-[var(--accent-strong)] shadow-[0_0_0_5px_rgb(95_181_113_/_22%)] supports-[box-shadow:0_0_0_5px_color-mix(in_srgb,white_50%,black)]:shadow-[0_0_0_5px_color-mix(in_srgb,var(--accent)_22%,transparent)]" aria-hidden="true"></span>{t('contact.kicker')}</p>
+      <h2 id="contact-title" class="m-0 max-w-[14ch] text-[length:clamp(2rem,9.5vw,3.15rem)] leading-[1.02] font-extrabold tracking-[-.055em] text-balance min-[900px]:text-[length:clamp(2.55rem,4vw,3.7rem)]">{t('contact.titleStart')}<em class="not-italic text-[color:var(--accent-strong)] dark:text-[color:var(--accent)]">{t('contact.titleAccent')}</em>{t('contact.titleEnd')}</h2>
+      <p class="mt-6 max-w-[54ch] text-[.9rem] leading-[1.7] text-[color:var(--muted)]">{t('contact.copy')}</p>
 
-      <div class="social-links">
-        <a class="linkedin" href="https://linkedin.com/in/enzo-jesuan-del-sole" rel="noreferrer" target="_blank">LinkedIn</a>
-        <a class="github" href="https://github.com/EnzoDev22" rel="noreferrer" target="_blank">GitHub</a>
+      <div class="mt-7 flex w-full flex-wrap gap-2.5">
+        <a class="flex min-h-12 flex-[1_1_140px] items-center justify-center gap-2 rounded-full border border-solid border-[color:var(--line)] bg-[var(--surface)] px-3.5 py-[9px] text-[.78rem] font-bold text-[color:var(--text)] transition-[border-color,background-color,transform] duration-[180ms] ease-[ease] hover:-translate-y-px hover:border-[color:var(--accent-strong)] hover:bg-[var(--surface-soft)] focus-visible:-translate-y-px focus-visible:border-[color:var(--accent-strong)] focus-visible:bg-[var(--surface-soft)] before:h-[19px] before:w-[19px] before:shrink-0 before:bg-current before:content-[''] before:[-webkit-mask:url('/assets/brand-linkedin.svg')_center_/_contain_no-repeat] before:[mask:url('/assets/brand-linkedin.svg')_center_/_contain_no-repeat]" href="https://linkedin.com/in/enzo-jesuan-del-sole" rel="noreferrer" target="_blank">LinkedIn</a>
+        <a class="flex min-h-12 flex-[1_1_140px] items-center justify-center gap-2 rounded-full border border-solid border-[color:var(--line)] bg-[var(--surface)] px-3.5 py-[9px] text-[.78rem] font-bold text-[color:var(--text)] transition-[border-color,background-color,transform] duration-[180ms] ease-[ease] hover:-translate-y-px hover:border-[color:var(--accent-strong)] hover:bg-[var(--surface-soft)] focus-visible:-translate-y-px focus-visible:border-[color:var(--accent-strong)] focus-visible:bg-[var(--surface-soft)] before:h-[19px] before:w-[19px] before:shrink-0 before:bg-current before:content-[''] before:[-webkit-mask:url('/assets/brand-github.svg')_center_/_contain_no-repeat] before:[mask:url('/assets/brand-github.svg')_center_/_contain_no-repeat]" href="https://github.com/EnzoDev22" rel="noreferrer" target="_blank">GitHub</a>
       </div>
     </aside>
 
     <form
-      class="contact-form"
+      class="contact-form flex flex-col gap-[18px] rounded-[var(--radius-md)] border border-solid border-[color:var(--line)] bg-[var(--surface)] px-5 py-6 text-left min-[900px]:basis-[53%] min-[900px]:justify-start min-[900px]:p-[38px]"
       action="/api/contact"
       method="post"
       novalidate
@@ -31,46 +36,46 @@ import { t } from 'i18next';
       data-error-subject={t('contact.form.subject')}
       data-error-message={t('contact.form.message')}
     >
-      <div class="contact-form-heading">
-        <p>{t('contact.write')}</p>
-        <h3>{t('contact.idea')}</h3>
+      <div class="mb-0.5">
+        <p class="m-0 mb-[5px] text-[.68rem] font-bold tracking-[.12em] text-[color:var(--accent-strong)] uppercase dark:text-[color:var(--accent)]">{t('contact.write')}</p>
+        <h3 class="m-0 text-[1.35rem] font-bold tracking-[-.025em]">{t('contact.idea')}</h3>
       </div>
 
-      <div class="form-row">
-        <div class="form-field">
-          <label for="contact-name">{t('contact.name')}</label>
-          <input id="contact-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required placeholder={t('contact.placeholders.name')} aria-describedby="contact-name-error" />
-          <p id="contact-name-error" class="field-error" data-error-for="name"></p>
+      <div class="flex flex-col gap-[14px] min-[640px]:flex-row">
+        <div class={fieldClass}>
+          <label class={labelClass} for="contact-name">{t('contact.name')}</label>
+          <input class={`${inputClass} min-h-12 rounded-[9px]`} id="contact-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required placeholder={t('contact.placeholders.name')} aria-describedby="contact-name-error" />
+          <p id="contact-name-error" class={errorClass} data-error-for="name"></p>
         </div>
-        <div class="form-field">
-          <label for="contact-email">{t('contact.email')}</label>
-          <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required placeholder={t('contact.placeholders.email')} aria-describedby="contact-email-error" />
-          <p id="contact-email-error" class="field-error" data-error-for="email"></p>
+        <div class={fieldClass}>
+          <label class={labelClass} for="contact-email">{t('contact.email')}</label>
+          <input class={`${inputClass} min-h-12 rounded-[9px]`} id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required placeholder={t('contact.placeholders.email')} aria-describedby="contact-email-error" />
+          <p id="contact-email-error" class={errorClass} data-error-for="email"></p>
         </div>
       </div>
 
-      <div class="form-field">
-        <label for="contact-subject">{t('contact.subject')}</label>
-        <input id="contact-subject" name="subject" type="text" minlength="3" maxlength="120" required placeholder={t('contact.placeholders.subject')} aria-describedby="contact-subject-error" />
-        <p id="contact-subject-error" class="field-error" data-error-for="subject"></p>
+      <div class={fieldClass}>
+        <label class={labelClass} for="contact-subject">{t('contact.subject')}</label>
+        <input class={`${inputClass} min-h-12 rounded-[9px]`} id="contact-subject" name="subject" type="text" minlength="3" maxlength="120" required placeholder={t('contact.placeholders.subject')} aria-describedby="contact-subject-error" />
+        <p id="contact-subject-error" class={errorClass} data-error-for="subject"></p>
       </div>
 
-      <div class="form-field">
-        <label for="contact-message">{t('contact.message')}</label>
-        <textarea id="contact-message" name="message" minlength="10" maxlength="3000" required placeholder={t('contact.placeholders.message')} aria-describedby="contact-message-error"></textarea>
-        <p id="contact-message-error" class="field-error" data-error-for="message"></p>
+      <div class={fieldClass}>
+        <label class={labelClass} for="contact-message">{t('contact.message')}</label>
+        <textarea class={`${inputClass} min-h-[116px] resize-y rounded-[9px]`} id="contact-message" name="message" minlength="10" maxlength="3000" required placeholder={t('contact.placeholders.message')} aria-describedby="contact-message-error"></textarea>
+        <p id="contact-message-error" class={errorClass} data-error-for="message"></p>
       </div>
 
-      <div class="contact-honeypot" aria-hidden="true" hidden>
+      <div aria-hidden="true" hidden>
         <label for="contact-website">Website</label>
         <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
       </div>
 
-      <div class="contact-form-footer">
-        <p class="contact-protection"><span aria-hidden="true">✓</span>{t('contact.protection')}</p>
-        <button type="submit">{t('contact.send')}</button>
+      <div class="flex flex-col-reverse gap-[14px] min-[900px]:flex-row min-[900px]:items-center min-[900px]:justify-between">
+        <p class="m-0 flex items-center gap-2 text-[.68rem] leading-[1.45] text-[color:var(--quiet)] min-[900px]:max-w-[24ch]"><span class="text-[.85rem] font-extrabold text-[color:var(--accent-strong)] dark:text-[color:var(--accent)]" aria-hidden="true">✓</span>{t('contact.protection')}</p>
+        <button class="flex min-h-[50px] w-full items-center justify-center gap-3 rounded-full border border-solid border-[color:var(--accent)] bg-[var(--accent)] px-[18px] py-[11px] font-bold text-[color:var(--accent-ink)] transition-[border-color,background-color,transform] duration-[180ms] ease-[ease] hover:-translate-y-px hover:border-[color:var(--accent-strong)] hover:bg-[var(--accent-strong)] focus-visible:-translate-y-px focus-visible:border-[color:var(--accent-strong)] focus-visible:bg-[var(--accent-strong)] disabled:cursor-wait disabled:saturate-[.7] disabled:opacity-[.68] disabled:transform-none min-[900px]:w-[210px] min-[900px]:shrink-0 after:h-[19px] after:w-[27px] after:shrink-0 after:bg-current after:content-[''] after:[-webkit-mask:url('/assets/arrow-send.svg')_center_/_contain_no-repeat] after:[mask:url('/assets/arrow-send.svg')_center_/_contain_no-repeat]" type="submit">{t('contact.send')}</button>
       </div>
-      <p class="form-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      <p class="form-status -mt-1 min-h-[1.45em] text-[.76rem] font-semibold text-[color:var(--muted)] empty:min-h-0 data-[state=success]:text-[color:var(--accent-strong)] data-[state=validation]:text-[#c84949] data-[state=server]:text-[#c84949] dark:data-[state=success]:text-[color:var(--accent)] dark:data-[state=validation]:text-[#ff9a9a] dark:data-[state=server]:text-[#ff9a9a]" role="status" aria-live="polite" aria-atomic="true"></p>
     </form>
   </div>
 </section>

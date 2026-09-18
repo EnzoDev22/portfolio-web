@@ -5,15 +5,15 @@ import { skills } from '../data/portfolio';
 const rail = [...skills, ...skills];
 ---
 
-<section id="habilidades" class="panel section-block skills-section" aria-labelledby="skills-title" data-reveal-section>
+<section id="habilidades" class="panel section-block" aria-labelledby="skills-title" data-reveal-section>
   <h2 id="skills-title">{t('skills.titlePrefix')} <em>{t('skills.titleAccent')}</em></h2>
-  <p>{t('skills.copy')}</p>
-  <div class="skills-viewport" aria-label={t('skills.label')}>
-    <div class="skills-rail">
+  <p class="min-[900px]:max-w-none!">{t('skills.copy')}</p>
+  <div class="group/skills mt-[30px] mx-[-16px] w-[calc(100%+32px)] overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_7%,#000_93%,transparent)] min-[900px]:mx-[calc(clamp(34px,5vw,68px)*-1)] min-[900px]:w-[calc(100%+clamp(68px,10vw,136px))]" aria-label={t('skills.label')}>
+    <div class="flex w-max gap-[10px] py-2 [animation:skills-scroll_46s_linear_infinite] has-[.skill-card:hover]:[animation-play-state:paused] group-focus-within/skills:[animation-play-state:paused] motion-reduce:animate-none">
       {rail.map(([name, icon], index) => (
-        <div class="skill-card" aria-hidden={index >= skills.length ? 'true' : undefined}>
-          <span class="skill-icon" style={`--skill-icon: url("${icon}")`} aria-hidden="true"></span>
-          <span class="skill-name">{name}</span>
+        <div class="skill-card flex h-[118px] w-[112px] flex-[0_0_112px] flex-col items-center justify-center gap-[10px] border-y [border-color:var(--line)] bg-[var(--surface)] px-[9px] py-[13px] supports-[background:color-mix(in_srgb,white_50%,black)]:[background:color-mix(in_srgb,var(--surface)_55%,transparent)] min-[900px]:h-[148px] min-[900px]:w-[138px] min-[900px]:basis-[138px]" aria-hidden={index >= skills.length ? 'true' : undefined}>
+          <span class="block size-[47px] flex-[0_0_47px] bg-[var(--accent-strong)] [mask:var(--skill-icon)_center/contain_no-repeat] [-webkit-mask:var(--skill-icon)_center/contain_no-repeat] dark:bg-[var(--accent)] min-[900px]:size-[58px] min-[900px]:basis-[58px]" style={`--skill-icon: url("${icon}")`} aria-hidden="true"></span>
+          <span class="max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-[.68rem] font-semibold [color:var(--muted)]">{name}</span>
         </div>
       ))}
     </div>
