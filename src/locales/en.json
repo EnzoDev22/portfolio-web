@@ -39,7 +39,9 @@
     "intro": "Hi, I am",
     "first": "Full Stack Developer",
     "second": "Enzo Jesuan Del Sole",
-    "title": "I develop software with INTENT.",
+    "titleFirst": "I develop software with",
+    "titleStar": "INTENT.",
+    "titleSecond": "",
     "copy": "I build clear, reliable solutions, adapting to the needs and technologies of each project.",
     "download": "Download résumé",
     "portraitAlt": "Portrait of Enzo Jesuan Del Sole"

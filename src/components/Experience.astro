@@ -66,15 +66,15 @@ const experienceKey = (group: string, id: string, field: string) => `experience.
                 <p class="m-0 min-w-0 text-[.84rem] leading-[1.55] [color:var(--quiet)]">{t(experienceKey('courses', course.id, 'institution'))}</p>
                 {course.certificateImage && (
                   <button
-                    class="certificate-button"
+                    class="m-0 inline-flex size-11 min-w-11 cursor-pointer items-center justify-center rounded-full border border-solid [border-color:var(--accent)] bg-[var(--accent)] p-0 [color:var(--accent-ink)]! transition-[border-color,background-color,transform] duration-[180ms] ease-[ease] hover:-translate-y-0.5 hover:[border-color:var(--accent-strong)] hover:bg-[var(--accent-strong)] focus-visible:-translate-y-0.5 focus-visible:[border-color:var(--accent-strong)] focus-visible:bg-[var(--accent-strong)]"
                     type="button"
                     data-certificate-open
                     data-certificate-src={course.certificateImage}
                     data-certificate-alt={t(experienceKey('courses', course.id, 'certificateAlt'))}
                     data-certificate-title={title}
                   >
-                    <span class="certificate-button__label">{t('experience.certificate')}</span>
-                    <span class="certificate-button__icon" aria-hidden="true"></span>
+                    <span class="sr-only">{t('experience.certificate')}</span>
+                    <span class="block size-5 bg-current [mask:url('/assets/certificate.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/certificate.svg')_center/contain_no-repeat]" aria-hidden="true"></span>
                   </button>
                 )}
               </div>
@@ -104,13 +104,13 @@ const experienceKey = (group: string, id: string, field: string) => `experience.
   </div>
 
   {hasCertificates && (
-    <dialog class="project-lightbox certificate-lightbox" aria-label={t('experience.certificate')} data-certificate-dialog>
-      <button class="project-lightbox__close" type="button" aria-label={t('actions.closeCertificate')} data-certificate-close>
-        <span aria-hidden="true"></span>
+    <dialog class="m-0 h-full max-h-none w-full max-w-none overflow-hidden border-0 bg-[rgb(3_7_4_/_94%)] p-0 text-white [&::backdrop]:bg-transparent [&[open]]:grid [&[open]]:place-items-center" aria-label={t('experience.certificate')} data-certificate-dialog>
+      <button class="fixed top-3.5 right-3.5 z-[2] flex size-11 items-center justify-center rounded-full border border-solid border-white/25 bg-[rgb(0_0_0_/_48%)] p-0 text-white transition-[border-color,background-color,transform] duration-[180ms] ease-[ease] hover:border-[color:var(--accent)] hover:bg-[rgb(0_0_0_/_72%)]" type="button" aria-label={t('actions.closeCertificate')} data-certificate-close>
+        <span class="relative block h-0.5 w-[18px] rotate-45 rounded-[99px] bg-current before:absolute before:inset-0 before:block before:rotate-90 before:rounded-[99px] before:bg-current before:content-['']" aria-hidden="true"></span>
       </button>
-      <figure class="project-lightbox__figure certificate-lightbox__figure">
-        <img alt="" data-certificate-image />
-        <figcaption data-certificate-caption></figcaption>
+      <figure class="pointer-events-none m-0 flex h-[100svh] w-[min(100vw,1180px)] flex-col items-center justify-center gap-3 px-[18px] pt-16 pb-[42px] min-[900px]:px-[76px] min-[900px]:pt-[52px] min-[900px]:pb-[34px]">
+        <img class="block max-h-[calc(100svh-130px)] max-w-full object-contain [filter:drop-shadow(0_24px_55px_rgb(0_0_0_/_50%))]" alt="" data-certificate-image />
+        <figcaption class="text-center text-[.75rem] font-semibold text-white/76" data-certificate-caption></figcaption>
       </figure>
     </dialog>
   )}

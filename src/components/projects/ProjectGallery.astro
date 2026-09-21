@@ -10,16 +10,17 @@ interface Props {
 const { project } = Astro.props;
 const images = project.images.length ? project.images : [project.image];
 const alt = t(`projects.items.${project.id}.alt`);
+const lightboxControlClass = 'fixed z-[2] flex size-11 items-center justify-center rounded-full border border-solid border-white/25 bg-[rgb(0_0_0_/_48%)] p-0 text-white transition-[border-color,background-color,transform] duration-[180ms] ease-[ease] hover:border-[color:var(--accent)] hover:bg-[rgb(0_0_0_/_72%)]';
 ---
 
-<section class="project-detail__gallery" aria-labelledby="project-gallery-title" data-project-gallery>
-  <h2 id="project-gallery-title">{t('actions.gallery')}</h2>
+<section class="mt-12 min-[900px]:mt-[58px]" aria-labelledby="project-gallery-title" data-project-gallery>
+  <h2 class="m-0 text-[length:clamp(1.16rem,4vw,1.45rem)] leading-[1.3] font-bold tracking-[-.025em] text-[#4dbe55] dark:text-[color:var(--accent)]" id="project-gallery-title">{t('actions.gallery')}</h2>
 
-  <ul class="project-detail__thumbnails">
+  <ul class="m-0 mt-4 grid list-none grid-cols-2 gap-[9px] p-0 sm:grid-cols-3 sm:gap-3 min-[900px]:grid-cols-4!">
     {images.map((image, index) => (
-      <li>
+      <li class="aspect-[4/3] min-w-0 overflow-hidden rounded-[9px] border border-solid [border-color:var(--line)] bg-[var(--page-alt)]">
         <button
-          class="project-thumbnail"
+          class="group block size-full cursor-zoom-in overflow-hidden rounded-none border-0 bg-transparent p-0"
           type="button"
           aria-label={`${t('actions.gallery')} ${index + 1}`}
           data-gallery-open
@@ -27,25 +28,25 @@ const alt = t(`projects.items.${project.id}.alt`);
           data-src={image.src}
           data-alt={`${alt} — ${index + 1}`}
         >
-          <Image src={image} alt="" layout="full-width" loading="lazy" decoding="async" />
+          <Image class="size-full object-cover [transition:transform_500ms_cubic-bezier(.22,1,.36,1),filter_var(--transition)] group-hover:scale-105 group-hover:saturate-[1.08] group-focus-visible:scale-105 group-focus-visible:saturate-[1.08]" src={image} alt="" layout="full-width" loading="lazy" decoding="async" />
         </button>
       </li>
     ))}
   </ul>
 
-  <dialog class="project-lightbox" aria-label={t('actions.gallery')} data-gallery-lightbox>
-    <button class="project-lightbox__close" type="button" aria-label={t('actions.closeGallery')} data-lightbox-close>
-      <span aria-hidden="true"></span>
+  <dialog class="m-0 h-full max-h-none w-full max-w-none overflow-hidden border-0 bg-[rgb(3_7_4_/_94%)] p-0 text-white [&::backdrop]:bg-transparent [&[open]]:grid [&[open]]:place-items-center" aria-label={t('actions.gallery')} data-gallery-lightbox>
+    <button class={`${lightboxControlClass} top-3.5 right-3.5`} type="button" aria-label={t('actions.closeGallery')} data-lightbox-close>
+      <span class="relative block h-0.5 w-[18px] rotate-45 rounded-[99px] bg-current before:absolute before:inset-0 before:block before:rotate-90 before:rounded-[99px] before:bg-current before:content-['']" aria-hidden="true"></span>
     </button>
-    <button class="project-lightbox__arrow project-lightbox__arrow--previous" type="button" aria-label={t('actions.previousImage')} data-lightbox-prev>
-      <span aria-hidden="true"></span>
+    <button class={`${lightboxControlClass} top-1/2 left-2.5 -translate-y-1/2 min-[900px]:left-[22px]`} type="button" aria-label={t('actions.previousImage')} data-lightbox-prev>
+      <span class="block size-[19px] rotate-180 bg-current [mask:url('/assets/arrow-send.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/arrow-send.svg')_center/contain_no-repeat]" aria-hidden="true"></span>
     </button>
-    <figure class="project-lightbox__figure">
-      <img alt="" data-lightbox-image />
-      <figcaption data-lightbox-counter></figcaption>
+    <figure class="pointer-events-none m-0 flex h-[100svh] w-[min(100vw,1440px)] flex-col items-center justify-center gap-3 px-[18px] pt-16 pb-[42px] min-[900px]:px-[76px] min-[900px]:pt-[52px] min-[900px]:pb-[34px]">
+      <img class="block max-h-[calc(100svh-130px)] max-w-full object-contain [filter:drop-shadow(0_24px_55px_rgb(0_0_0_/_50%))]" alt="" data-lightbox-image />
+      <figcaption class="text-[.75rem] font-semibold text-white/76" data-lightbox-counter></figcaption>
     </figure>
-    <button class="project-lightbox__arrow project-lightbox__arrow--next" type="button" aria-label={t('actions.nextImage')} data-lightbox-next>
-      <span aria-hidden="true"></span>
+    <button class={`${lightboxControlClass} top-1/2 right-2.5 -translate-y-1/2 min-[900px]:right-[22px]`} type="button" aria-label={t('actions.nextImage')} data-lightbox-next>
+      <span class="block size-[19px] bg-current [mask:url('/assets/arrow-send.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/arrow-send.svg')_center/contain_no-repeat]" aria-hidden="true"></span>
     </button>
   </dialog>
 </section>

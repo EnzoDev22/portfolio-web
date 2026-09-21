@@ -39,7 +39,9 @@
     "intro": "Hola, soy",
     "first": "Desarrollador Full Stack",
     "second": "Enzo Jesuan Del Sole",
-    "title": "Código sólido. ADAPTABILIDAD constante.",
+    "titleFirst": "Código sólido.",
+    "titleStar":"ADAPTABILIDAD",
+    "titleSecond": "constante.",
     "copy": "Construyo soluciones claras y confiables, adaptándome a las necesidades y tecnologías de cada proyecto.",
     "download": "Descargar CV",
     "portraitAlt": "Retrato de Enzo Jesuan Del Sole"
