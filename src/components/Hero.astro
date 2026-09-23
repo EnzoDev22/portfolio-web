@@ -65,12 +65,28 @@ const cvHref = `/cv-enzo-del-sole-${locale}.pdf`;
       </div>
     </div>
   </div>
-  <a class="mx-auto mt-3 inline-flex min-h-11 min-w-11 items-center justify-center gap-2.5 px-1 py-0.5 text-[.78rem] leading-[1.4] font-semibold text-[color:var(--accent)] transition-colors duration-[180ms] ease-[ease] hover:text-[color:var(--accent-strong)] focus-visible:text-[color:var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-[color:var(--accent-strong)] focus-visible:outline-offset-4 dark:hover:text-[color:var(--accent)] dark:focus-visible:text-[color:var(--accent)] dark:focus-visible:outline-[color:var(--accent)] [@media(max-width:639px)_and_(max-height:700px)]:mt-0" href="#proyectos" aria-label={t('nav.projects')}>
+  <a class="mx-auto mt-3 inline-flex min-h-11 min-w-11 items-center justify-center gap-2.5 px-1 py-0.5 text-[.78rem] leading-[1.4] font-semibold text-[color:var(--accent)] transition-colors duration-[180ms] ease-[ease] hover:text-[color:var(--accent-strong)] focus-visible:text-[color:var(--accent-strong)] focus-visible:outline-2 focus-visible:outline-[color:var(--accent-strong)] focus-visible:outline-offset-4 dark:hover:text-[color:var(--accent)] dark:focus-visible:text-[color:var(--accent)] dark:focus-visible:outline-[color:var(--accent)] [@media(max-width:639px)_and_(max-height:700px)]:mt-0" href="#proyectos" aria-label={t('nav.projects')} data-hero-scroll-indicator>
     <span class="!text-[color:var(--accent)] relative h-[38px] w-6 shrink-0 overflow-hidden rounded-full border-2 border-solid border-current before:absolute before:top-1.5 before:left-1/2 before:h-[5px] before:w-[5px] before:-translate-x-1/2 before:rounded-full before:bg-current before:content-[''] before:animate-[hero-scroll-wheel_1.4s_ease-out_infinite] motion-reduce:before:animate-none" aria-hidden="true"></span>
   </a>
 </section>
 
 <script>
+  const hero = document.querySelector<HTMLElement>('#inicio');
+  const scrollIndicator = hero?.querySelector<HTMLAnchorElement>('[data-hero-scroll-indicator]');
+
+  if (hero && scrollIndicator) {
+    const hideAfterHero = () => {
+      if (hero.getBoundingClientRect().bottom > 0) return;
+      scrollIndicator.style.visibility = 'hidden';
+      window.removeEventListener('scroll', hideAfterHero);
+      window.removeEventListener('pageshow', hideAfterHero);
+    };
+
+    window.addEventListener('scroll', hideAfterHero, { passive: true });
+    window.addEventListener('pageshow', hideAfterHero);
+    hideAfterHero();
+  }
+
   const typewriter = document.querySelector<HTMLElement>('[data-hero-typewriter]');
   const typewriterLabel = document.querySelector<HTMLElement>('[data-hero-typewriter-label]');
 
