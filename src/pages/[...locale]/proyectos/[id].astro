@@ -25,10 +25,10 @@ const actionClass = 'relative inline-flex min-h-[38px] items-center justify-cent
 ---
 
 <BaseLayout title={`${title} · Enzo Jesuan Del Sole`} description={t(projectKey('description'))} locale={locale}>
-  <div class="page-shell">
+  <div class="w-full">
     <Header sectionPrefix={locale === 'en' ? '/en/' : '/'} activeSection="proyectos" locale={locale} />
-    <main class="w-full!">
-      <article class="mx-auto w-[min(calc(100%_-_(var(--content-padding)_*_2)),1040px)] pt-10 pb-[72px] sm:pt-[52px] sm:pb-[84px] min-[900px]:pt-16! min-[900px]:pb-[104px]!">
+    <main class="mx-auto flex w-full flex-col">
+      <article class="mx-auto w-[min(calc(100%_-_(var(--content-padding)_*_2)),1040px)] pt-10 pb-[72px] sm:pt-[4px] sm:pb-[84px] min-[900px]:pt-36! min-[900px]:pb-[104px]!">
         <a class="inline-flex min-h-10 items-center gap-[9px] py-[7px] text-[.82rem] font-semibold [color:var(--accent-strong)]! transition-[color,transform] duration-[180ms] ease-[ease] hover:[color:var(--text)]! hover:[transform:translateX(-3px)] focus-visible:[color:var(--text)]! focus-visible:[transform:translateX(-3px)] dark:[color:var(--accent)]!" href={`${locale === 'en' ? '/en/' : '/'}#proyectos`}>
           <span class="block size-[17px] rotate-180 bg-current [mask:url('/assets/arrow-send.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/arrow-send.svg')_center/contain_no-repeat]" aria-hidden="true"></span>
           {t('actions.backProjects')}

@@ -47,7 +47,9 @@
     "portraitAlt": "Retrato de Enzo Jesuan Del Sole"
   },
   "projects": {
-    "title": "Proyectos Destacados",
+    "titleStart": "Proyectos ",
+    "titleAccent": "Destacados",
+    "titleEnd": "",
     "hint": "Tocá un proyecto para conocerlo",
     "production": "En producción",
     "items": {

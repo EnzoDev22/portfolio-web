@@ -15,9 +15,9 @@ const locale = Astro.params.locale === 'en' ? 'en' : 'es';
 ---
 
 <BaseLayout title={t('meta.title')} description={t('meta.description')} locale={locale}>
-  <div class="page-shell">
+  <div class="w-full">
     <Header locale={locale} />
-    <main><Hero locale={locale} /><Projects locale={locale} /><Skills /><Experience /><Contact /></main>
+    <main class="mx-auto flex w-[min(calc(100%_-_(var(--content-padding)_*_2)),var(--content-max-width))] flex-col"><Hero locale={locale} /><Projects locale={locale} /><Skills /><Experience /><Contact /></main>
     <div class="flex justify-center px-4 py-[26px]"><a class="back-to-top flex size-[46px] items-center justify-center rounded-full border border-solid [border-color:var(--line)] bg-[var(--surface)] [color:var(--text)]! transition-[border-color,background-color,transform] duration-[180ms] ease-[ease] hover:-translate-y-0.5 hover:[border-color:var(--accent)] hover:bg-[var(--accent)] hover:[color:var(--accent-ink)]! focus-visible:-translate-y-0.5 focus-visible:[border-color:var(--accent)] focus-visible:bg-[var(--accent)] focus-visible:[color:var(--accent-ink)]!" href="#inicio" aria-label={t('actions.backToTop')}><span class="block size-[18px] bg-current [mask:url('/assets/arrow-up.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/arrow-up.svg')_center/contain_no-repeat]" aria-hidden="true"></span></a></div>
     <Footer />
   </div>

@@ -6,16 +6,16 @@ interface Props { locale: 'es' | 'en'; }
 const { locale } = Astro.props;
 ---
 
-<section id="proyectos" class="panel section-block" aria-labelledby="projects-title" data-reveal-section>
-  <h2 id="projects-title" class="max-w-full whitespace-nowrap [font-size:clamp(1.5rem,7.5vw,4rem)]">
-    {t('projects.title')}
+<section id="proyectos" class="flex w-full flex-col items-start px-1 py-16 sm:px-3 min-[900px]:px-[clamp(34px,5vw,68px)] min-[900px]:py-[92px] min-[1536px]:py-24" aria-labelledby="projects-title" data-reveal-section>
+  <h2 id="projects-title" class="m-0 max-w-full whitespace-nowrap [font-size:clamp(.75rem,7.5vw,4rem)] font-extrabold tracking-[-.05em] leading-[1.02]">
+    {t('projects.titleStart')}<em class="not-italic [color:var(--accent)]!">{t('projects.titleAccent')}</em>{t('projects.titleEnd')}
   </h2>
   <div class="grid w-full mt-8 gap-[18px] sm:grid-cols-2 sm:gap-5 min-[900px]:mt-[46px]">
     {projects.map((project) => (
       <ProjectCard project={project} locale={locale} />
     ))}
   </div>
-  <p class="self-center [color:var(--blue)]! text-[.72rem]! font-medium tracking-[.03em] min-[900px]:hidden">
+  <p class="m-0 mt-[14px] max-w-[64ch] self-center text-[.72rem] leading-[1.7] font-medium tracking-[.03em] [color:var(--blue)] min-[900px]:hidden">
     {t('projects.hint')}
   </p>
 </section>

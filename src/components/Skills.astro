@@ -5,9 +5,9 @@ import { skills } from '../data/portfolio';
 const rail = [...skills, ...skills];
 ---
 
-<section id="habilidades" class="panel section-block" aria-labelledby="skills-title" data-reveal-section>
-  <h2 id="skills-title">{t('skills.titlePrefix')} <em>{t('skills.titleAccent')}</em></h2>
-  <p class="min-[900px]:max-w-none!">{t('skills.copy')}</p>
+<section id="habilidades" class="flex w-full flex-col items-start px-1 py-16 sm:px-3 min-[900px]:px-[clamp(34px,5vw,68px)] min-[900px]:py-[92px] min-[1536px]:py-24" aria-labelledby="skills-title" data-reveal-section>
+  <h2 id="skills-title" class="m-0 max-w-[15ch] [font-size:clamp(2.1rem,10vw,4rem)] font-extrabold tracking-[-.05em] leading-[1.02]">{t('skills.titlePrefix')} <em class="not-italic [color:var(--accent-strong)] dark:[color:var(--accent)]">{t('skills.titleAccent')}</em></h2>
+  <p class="m-0 mt-[14px] max-w-[64ch] text-[.92rem] leading-[1.7] [color:var(--muted)] min-[900px]:max-w-none min-[900px]:text-[.98rem]">{t('skills.copy')}</p>
   <div class="group/skills mt-[30px] mx-[-16px] w-[calc(100%+32px)] overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_7%,#000_93%,transparent)] min-[900px]:mx-[calc(clamp(34px,5vw,68px)*-1)] min-[900px]:w-[calc(100%+clamp(68px,10vw,136px))]" aria-label={t('skills.label')}>
     <div class="flex w-max gap-[10px] py-2 [animation:skills-scroll_46s_linear_infinite] has-[.skill-card:hover]:[animation-play-state:paused] group-focus-within/skills:[animation-play-state:paused] motion-reduce:animate-none">
       {rail.map(([name, icon], index) => (
