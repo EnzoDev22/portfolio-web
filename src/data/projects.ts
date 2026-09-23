@@ -42,7 +42,7 @@ export const projects: Project[] = [
     image: inventoryCategories,
     images: [inventoryCategories, inventoryAddCategory, inventoryAddProduct, inventoryLogin],
     githubUrl: 'https://github.com/EnzoDev22/inventory-frontend',
-    projectUrl: 'https://github.com/',
+    projectUrl: '',
     technologies: [
       technology('Java', 'tech-java.svg'),
       technology('Spring Boot 3', 'tech-spring-boot.svg'),

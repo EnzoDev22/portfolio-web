@@ -24,11 +24,13 @@ Run `npm run build` before handing off any change.
 
 Use two-space indentation, single quotes in TypeScript and JavaScript, and semicolons. TypeScript uses Astro's strict configuration; avoid `any` and type DOM queries and payloads explicitly. Name Astro components in PascalCase (`ProjectCard.astro`), scripts and data modules in kebab-case or lowercase (`section-reveal.ts`, `projects.ts`), and CSS classes in descriptive kebab-case.
 
+Tailwind CSS 4.1.18 and `@tailwindcss/vite` 4.1.18 are installed and integrated through Vite, but the current UI is still styled with custom CSS rather than Tailwind utilities. For new styles, reuse existing project patterns first, then prefer Tailwind utilities. If Tailwind cannot reproduce the requested visual accurately, ask the user before implementing the fallback with custom CSS.
+
 Favor semantic HTML, mobile-first CSS, Flexbox, existing custom properties, and small reusable selectors. Preserve the Spanish/English `.lang-es` and `.lang-en` pattern when editing visible text. No formatter or linter is configured, so match surrounding code.
 
 ## Testing Guidelines
 
-There is currently no automated test framework or coverage requirement. Treat `npm run check` and `npm run build` as required verification. For UI changes, manually test narrow mobile and desktop widths, both themes, both languages, keyboard focus, reduced motion, and horizontal overflow. Document these checks in the pull request.
+There is currently no automated test framework or coverage requirement. Treat `npm run check` and `npm run build` as required verification. For UI changes, visually compare the rendered result with the requested design, then manually test narrow mobile and desktop widths, both themes, both languages, keyboard focus, reduced motion, and horizontal overflow. Document these checks in the pull request.
 
 ## Commit & Pull Request Guidelines
 

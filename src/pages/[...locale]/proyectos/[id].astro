@@ -21,44 +21,45 @@ const { project } = Astro.props;
 const locale = Astro.params.locale === 'en' ? 'en' : 'es';
 const projectKey = (field: string) => `projects.items.${project.id}.${field}`;
 const title = t(projectKey('title'));
+const actionClass = 'relative inline-flex min-h-[38px] items-center justify-center gap-2 rounded-full px-3 py-2 text-[.76rem] font-semibold transition-[border-color,background-color,color,transform] duration-[180ms] ease-[ease] hover:[transform:translateY(-2px)]';
 ---
 
 <BaseLayout title={`${title} · Enzo Jesuan Del Sole`} description={t(projectKey('description'))} locale={locale}>
-  <div class="page-shell">
+  <div class="w-full">
     <Header sectionPrefix={locale === 'en' ? '/en/' : '/'} activeSection="proyectos" locale={locale} />
-    <main class="project-detail-page">
-      <article class="project-detail">
-        <a class="project-detail__back" href={`${locale === 'en' ? '/en/' : '/'}#proyectos`}>
-          <span aria-hidden="true"></span>
+    <main class="mx-auto flex w-full flex-col">
+      <article class="mx-auto w-[min(calc(100%_-_(var(--content-padding)_*_2)),1040px)] pt-10 pb-[72px] sm:pt-[4px] sm:pb-[84px] min-[900px]:pt-36! min-[900px]:pb-[104px]!">
+        <a class="inline-flex min-h-10 items-center gap-[9px] py-[7px] text-[.82rem] font-semibold [color:var(--accent-strong)]! transition-[color,transform] duration-[180ms] ease-[ease] hover:[color:var(--text)]! hover:[transform:translateX(-3px)] focus-visible:[color:var(--text)]! focus-visible:[transform:translateX(-3px)] dark:[color:var(--accent)]!" href={`${locale === 'en' ? '/en/' : '/'}#proyectos`}>
+          <span class="block size-[17px] rotate-180 bg-current [mask:url('/assets/arrow-send.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/arrow-send.svg')_center/contain_no-repeat]" aria-hidden="true"></span>
           {t('actions.backProjects')}
         </a>
-        <header class="project-detail__intro">
-          <h1>{title}</h1>
-          <p class="project-detail__subtitle">{t(projectKey('subtitle'))}</p>
-          <div class="project-detail__technology-group">
-            <p class="project-detail__label">{t('actions.technologies')}</p>
-            <ul class="project-detail__technologies">{project.technologies.map((technology) => <li>{technology.name}</li>)}</ul>
+        <header class="mt-7 w-[min(100%,760px)] min-[900px]:mt-9">
+          <h1 class="m-0 text-[length:clamp(2rem,10vw,3.7rem)] leading-[1.04] font-extrabold tracking-[-.05em] text-[color:var(--text)]">{title}</h1>
+          <p class="m-0 mt-3 text-[length:clamp(.96rem,3vw,1.08rem)] leading-normal font-semibold text-[color:var(--text)]">{t(projectKey('subtitle'))}</p>
+          <div class="mt-6">
+            <p class="m-0 text-[.76rem] font-semibold text-[color:var(--muted)]">{t('actions.technologies')}</p>
+            <ul class="m-0 mt-2 flex list-none flex-wrap gap-1.5 p-0">{project.technologies.map((technology) => <li class="rounded-[5px] bg-[var(--surface-soft)] px-[7px] py-0.5 text-[.7rem] leading-normal font-semibold text-[color:var(--accent-strong)] supports-[background:color-mix(in_srgb,white_50%,black)]:bg-[color-mix(in_srgb,var(--accent)_14%,transparent)] dark:text-[color:var(--accent)]">{technology.name}</li>)}</ul>
           </div>
-          <div class="project-detail__actions">
+          <div class="mt-[22px] flex flex-wrap items-center gap-[9px]">
             {project.videoUrl && (
-              <a class="modal-video" href={project.videoUrl} target="_blank" rel="noreferrer">
-                <span class="modal-video__icon" aria-hidden="true"></span>
+              <a class={`${actionClass} border border-solid border-[color:var(--accent)] bg-[var(--accent)] [color:var(--accent-ink)]! hover:border-[color:var(--accent-strong)] hover:bg-[var(--accent-strong)] hover:[color:var(--accent-strong)]! dark:border-[color:var(--accent)] dark:bg-[var(--accent)] dark:[color:var(--accent-ink)]! dark:hover:border-[color:var(--accent)] dark:hover:bg-[var(--accent)] dark:hover:[color:var(--accent-ink)]! dark:focus-visible:border-[color:var(--accent)] dark:focus-visible:bg-[var(--accent)] dark:focus-visible:[color:var(--accent-ink)]!`} href={project.videoUrl} target="_blank" rel="noreferrer">
+                <span class="block h-0 w-0 [border-top:5px_solid_transparent] [border-bottom:5px_solid_transparent] [border-left:8px_solid_currentColor]" aria-hidden="true"></span>
                 {t('actions.video')}
               </a>
             )}
-            <a class="modal-github" href={project.githubUrl} target="_blank" rel="noreferrer">
-              <span class="modal-github__icon" aria-hidden="true"></span>
+            <a class={`${actionClass} border border-solid border-[color:var(--line)] bg-[var(--surface)] [color:var(--text)]! hover:border-[color:var(--accent-strong)] hover:[color:var(--accent-strong)]!`} href={project.githubUrl} target="_blank" rel="noreferrer">
+              <span class="block size-4 bg-current [mask:url('/assets/brand-github.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/brand-github.svg')_center/contain_no-repeat]" aria-hidden="true"></span>
               GitHub
             </a>
             {project.projectUrl && (
-              <a class="modal-project-link" href={project.projectUrl} target="_blank" rel="noreferrer">
+              <a class={`${actionClass} border border-solid border-[#4dbe55] bg-[#4dbe55] [color:#0b1a0d]! hover:border-[#4dbe55] hover:bg-[#4dbe55] hover:[color:#0b1a0d]! focus-visible:border-[#4dbe55] focus-visible:bg-[#4dbe55] focus-visible:[color:#0b1a0d]! dark:border-[color:var(--accent)] dark:bg-[var(--accent)] dark:[color:var(--accent-ink)]! dark:hover:border-[color:var(--accent)] dark:hover:bg-[var(--accent)] dark:hover:[color:var(--accent-ink)]! dark:focus-visible:border-[color:var(--accent)] dark:focus-visible:bg-[var(--accent)] dark:focus-visible:[color:var(--accent-ink)]!`} href={project.projectUrl} target="_blank" rel="noreferrer">
                 {t('actions.viewProject')}
-                <span class="modal-project-link__arrow" aria-hidden="true"></span>
+                <span class="block size-[15px] bg-current [mask:url('/assets/arrow-send.svg')_center/contain_no-repeat] [-webkit-mask:url('/assets/arrow-send.svg')_center/contain_no-repeat]" aria-hidden="true"></span>
               </a>
             )}
           </div>
         </header>
-        <div class="project-detail__narrative">
+        <div class="mt-[46px] w-[min(100%,760px)] [&>section+section]:mt-[34px] [&>section>h2]:m-0 [&>section>h2]:text-[length:clamp(1.16rem,4vw,1.45rem)] [&>section>h2]:leading-[1.3] [&>section>h2]:font-bold [&>section>h2]:tracking-[-.025em] [&>section>h2]:text-[color:var(--text)] [&>section:nth-child(odd)>h2]:text-[#4dbe55] [&>section>p]:m-0 [&>section>p]:mt-2.5 [&>section>p]:text-[.9rem] [&>section>p]:leading-[1.8] [&>section>p]:text-[color:var(--muted)] dark:[&>section:nth-child(odd)>h2]:text-[color:var(--accent)] min-[900px]:mt-14 min-[900px]:[&>section>p]:text-[.96rem]">
           <section><h2>{t('actions.problem')}</h2><p>{t(projectKey('problem'))}</p></section>
           <section><h2>{t('actions.built')}</h2><p>{t(projectKey('built'))}</p></section>
           <section><h2>{t('actions.decisions')}</h2><p>{t(projectKey('technicalDecisions'))}</p></section>

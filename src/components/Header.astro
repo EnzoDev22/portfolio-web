@@ -8,39 +8,40 @@ interface Props {
 import { t } from 'i18next';
 const { sectionPrefix = '', activeSection, locale } = Astro.props;
 const sectionHref = (section: string) => `${sectionPrefix}#${section}`;
+const desktopNavLinkClass = 'flex min-h-10 items-center rounded-full px-3.5 py-2 !text-[color:var(--muted)] text-[.78rem] font-semibold transition-[background-color,color] duration-[180ms] ease-[ease] hover:!bg-[var(--surface)] hover:!text-[color:var(--text)] focus-visible:!bg-[var(--surface)] focus-visible:!text-[color:var(--text)] [&.is-active]:!bg-[var(--accent)] [&.is-active]:!text-[color:var(--accent-ink)]';
+const mobileNavLinkClass = 'flex min-h-[46px] items-center rounded-full px-3.5 text-[.9rem] font-semibold hover:bg-[var(--surface-soft)] focus-visible:bg-[var(--surface-soft)] supports-[background:color-mix(in_srgb,white_50%,black)]:hover:bg-[color-mix(in_srgb,var(--accent)_22%,var(--surface))] supports-[background:color-mix(in_srgb,white_50%,black)]:focus-visible:bg-[color-mix(in_srgb,var(--accent)_22%,var(--surface))]';
 ---
 
-<header class="site-header" aria-label={t('nav.label')}>
-  <a class="logo" href={sectionHref('inicio')} aria-label={t('nav.home')}>E N Z O <span class="logo__suffix">.D E V</span></a>
+<header class="site-header relative z-20 mx-auto flex min-h-[76px] w-[min(calc(100%_-_(var(--content-padding)_*_2)),var(--content-max-width))] items-center justify-between gap-3.5 border-[color:var(--line)] py-3 max-[639px]:sticky max-[639px]:top-0 max-[639px]:bg-[var(--page)] min-[900px]:fixed min-[900px]:inset-x-0 min-[900px]:top-0 min-[900px]:z-30 min-[900px]:min-h-[104px] min-[900px]:w-full min-[900px]:border-b-transparent min-[900px]:bg-transparent min-[900px]:px-[max(var(--content-padding),calc((100%_-_var(--content-max-width))_/_2))] min-[900px]:py-6 min-[900px]:transition-[min-height,padding,background-color,border-color,box-shadow,backdrop-filter] min-[900px]:duration-[280ms] min-[900px]:ease-[ease] motion-reduce:!transition-none min-[900px]:[&.is-scrolled]:min-h-[76px] min-[900px]:[&.is-scrolled]:border-b-[color:var(--line)] min-[900px]:[&.is-scrolled]:bg-[var(--page)] min-[900px]:[&.is-scrolled]:py-3 min-[900px]:[&.is-scrolled]:shadow-[var(--shadow)] min-[900px]:[&.is-scrolled]:backdrop-blur-[12px] min-[900px]:[&.is-scrolled]:supports-[background:color-mix(in_srgb,white_50%,black)]:bg-[color-mix(in_srgb,var(--page)_88%,transparent)]" aria-label={t('nav.label')}>
+  <a class="inline-flex min-h-11 items-center whitespace-nowrap text-[length:clamp(.75rem,3.5vw,.92rem)] font-extrabold tracking-[length:clamp(.18em,.9vw,.28em)] min-[900px]:text-[1rem]" href={sectionHref('inicio')} aria-label={t('nav.home')}>E N Z O <span class="text-[color:var(--accent)]">.D E V</span></a>
 
-  <div class="desktop-nav-slot">
-    <nav class="desktop-nav" aria-label={t('nav.label')}>
-      <a href={sectionHref('inicio')}>{t('nav.home')}</a><a href={sectionHref('proyectos')} class:list={{ 'is-active': activeSection === 'proyectos' }} aria-current={activeSection === 'proyectos' ? 'page' : undefined}>{t('nav.projects')}</a><a href={sectionHref('habilidades')}>{t('nav.skills')}</a><a href={sectionHref('experiencia')}>{t('nav.experience')}</a><a href={sectionHref('contacto')}>{t('nav.contact')}</a>
+  <div class="desktop-nav-slot hidden min-[900px]:block min-[900px]:flex-none">
+    <nav class="desktop-nav hidden items-center gap-0.5 rounded-full border border-solid border-[color:var(--line)] bg-[var(--page)] p-[5px] supports-[background:color-mix(in_srgb,white_50%,black)]:bg-[color-mix(in_srgb,var(--page)_92%,transparent)] min-[900px]:flex" aria-label={t('nav.label')}>
+      <a class={desktopNavLinkClass} href={sectionHref('inicio')}>{t('nav.home')}</a><a class:list={[desktopNavLinkClass, { 'is-active': activeSection === 'proyectos' }]} href={sectionHref('proyectos')} aria-current={activeSection === 'proyectos' ? 'page' : undefined}>{t('nav.projects')}</a><a class={desktopNavLinkClass} href={sectionHref('habilidades')}>{t('nav.skills')}</a><a class={desktopNavLinkClass} href={sectionHref('experiencia')}>{t('nav.experience')}</a><a class={desktopNavLinkClass} href={sectionHref('contacto')}>{t('nav.contact')}</a>
     </nav>
   </div>
 
-  <div class="header-controls">
-    <div class="persistent-controls-slot">
-      <div class="persistent-header-controls">
-        <a class="language-toggle" href={locale === 'en' ? '/' : '/en/'} aria-label={t('actions.language')}><span aria-hidden="true">{locale === 'en' ? 'EN' : 'ES'}</span></a>
-        <button class="round-control theme-toggle" type="button" aria-label={t('actions.darkTheme')} data-light-label={t('actions.lightTheme')} data-dark-label={t('actions.darkTheme')} aria-pressed="false">
-          <span class="theme-icon" aria-hidden="true">
+  <div class="flex items-center gap-2">
+    <div class="persistent-controls-slot flex flex-none items-center">
+      <div class="persistent-header-controls flex items-center gap-2 [&.is-fixed]:fixed [&.is-fixed]:z-30">
+        <a class="language-toggle relative flex min-h-11 min-w-11 w-12 items-center justify-center overflow-hidden rounded-full border border-solid border-[color:var(--line)] bg-[var(--surface)] p-0 text-[.68rem] font-bold tracking-[.08em] text-[color:var(--text)] transition-[border-color,background-color,transform] duration-[180ms] ease-[ease] hover:-translate-y-px hover:border-[color:var(--accent-strong)] hover:bg-[var(--surface-soft)] focus-visible:-translate-y-px focus-visible:border-[color:var(--accent-strong)] focus-visible:bg-[var(--surface-soft)] after:absolute after:right-2 after:bottom-1.5 after:left-2 after:h-0.5 after:rounded-[2px] after:bg-[var(--accent)] after:content-[''] after:scale-x-[.45] after:transition-transform after:duration-[180ms] after:ease-[ease]" href={locale === 'en' ? '/' : '/en/'} aria-label={t('actions.language')}><span aria-hidden="true">{locale === 'en' ? 'EN' : 'ES'}</span></a>
+        <button class="theme-toggle flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-full border border-solid border-[color:var(--line)] bg-[var(--surface)] p-0 text-[color:var(--text)] transition-[border-color,background-color,transform] duration-[180ms] ease-[ease] hover:-translate-y-px hover:border-[color:var(--accent-strong)] hover:bg-[var(--surface-soft)] focus-visible:-translate-y-px focus-visible:border-[color:var(--accent-strong)] focus-visible:bg-[var(--surface-soft)] dark:[&_.theme-icon-light]:!hidden dark:[&_.theme-icon-dark]:!block" type="button" aria-label={t('actions.darkTheme')} data-light-label={t('actions.lightTheme')} data-dark-label={t('actions.darkTheme')} aria-pressed="false">
+          <span class="flex h-[22px] w-[22px] items-center justify-center" aria-hidden="true">
             <img class="theme-icon-light" src="/assets/theme-light.svg" width="22" height="22" alt="" />
-            <img class="theme-icon-dark" src="/assets/theme-dark.svg" width="18" height="18" alt="" />
+            <img class="theme-icon-dark !hidden" src="/assets/theme-dark.svg" width="18" height="18" alt="" />
           </span>
         </button>
       </div>
     </div>
-    <button class="round-control menu-toggle" type="button" aria-label={t('actions.openMenu')} data-open-label={t('actions.openMenu')} data-close-label={t('actions.closeMenu')} aria-expanded="false" aria-controls="mobile-menu">
+    <button class="menu-toggle flex h-11 w-11 min-h-11 min-w-11 items-center justify-center rounded-full border border-solid border-[color:var(--line)] bg-[var(--surface)] p-0 text-[1.28rem] text-[color:var(--text)] transition-[border-color,background-color,transform] duration-[180ms] ease-[ease] hover:-translate-y-px hover:border-[color:var(--accent-strong)] hover:bg-[var(--surface-soft)] focus-visible:-translate-y-px focus-visible:border-[color:var(--accent-strong)] focus-visible:bg-[var(--surface-soft)] min-[900px]:hidden" type="button" aria-label={t('actions.openMenu')} data-open-label={t('actions.openMenu')} data-close-label={t('actions.closeMenu')} aria-expanded="false" aria-controls="mobile-menu">
       <span aria-hidden="true">☰</span>
     </button>
   </div>
 
-  <nav id="mobile-menu" class="mobile-nav" aria-label={t('nav.label')} hidden>
-    <a href={sectionHref('inicio')}>{t('nav.home')}</a><a href={sectionHref('proyectos')}>{t('nav.projects')}</a><a href={sectionHref('habilidades')}>{t('nav.skills')}</a><a href={sectionHref('experiencia')}>{t('nav.experience')}</a><a href={sectionHref('contacto')}>{t('nav.contact')}</a>
+  <nav id="mobile-menu" class="mobile-nav fixed z-[35] top-[68px] right-4 flex w-[min(256px,calc(100vw_-_32px))] flex-col rounded-[var(--radius-md)] border border-solid border-[color:var(--line)] bg-[var(--surface)] p-2 shadow-[var(--shadow-raised)] backdrop-blur-[14px] supports-[background:color-mix(in_srgb,white_50%,black)]:bg-[color-mix(in_srgb,var(--surface)_96%,transparent)]" aria-label={t('nav.label')} hidden>
+    <a class={mobileNavLinkClass} href={sectionHref('inicio')}>{t('nav.home')}</a><a class={mobileNavLinkClass} href={sectionHref('proyectos')}>{t('nav.projects')}</a><a class={mobileNavLinkClass} href={sectionHref('habilidades')}>{t('nav.skills')}</a><a class={mobileNavLinkClass} href={sectionHref('experiencia')}>{t('nav.experience')}</a><a class={mobileNavLinkClass} href={sectionHref('contacto')}>{t('nav.contact')}</a>
   </nav>
 </header>
-
 <script>
   const siteHeader = document.querySelector<HTMLElement>('.site-header');
   const desktopNavSlot = document.querySelector<HTMLElement>('.desktop-nav-slot');
